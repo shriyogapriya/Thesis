@@ -1,0 +1,77 @@
+\documentclass[twoside,a4paper]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{titling}
+\graphicspath{ {./images/} }
+\newcommand{\subtitle}[1]{%
+	\posttitle{%
+		\par\end{center}
+	\begin{center}\LARGE#1\end{center}
+	\vskip0.5em}%
+}
+
+\title{ALBERT LUDWIGS UNIVERISTY OF FREIBURG
+		\\{\Large Master Thesis}}
+\subtitle{\line(1,0){250}\\{\Huge Multisite RNA-RNA Interaction Prediction}\\\line(1,0){250}}	
+
+\author{Yogapriya Ayyanarmoorthy}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\tableofcontents
+	
+	\chapter{Introduction}
+	RNA molecules play important roles in various biological processes.Their regulation and function are mediated by interacting with other molecules. 	Forming base pairs between two RNAs, called RNA-RNA interactions (RRI). There are fast and reliable single interaction site (S-RRI) prediction tools like IntaRNA, that often show the additional sites within their suboptimal list, ie. are capable of modelling all sites individually but not in a joint prediction. Many RNAs interact via multiple synchronous, non-overlapping subinteractions (M-RRI), e.g. OxyS-fhlA. The simultaneous prediction of both intra- and inter-molecular base pairing allowing for multiple sites is computationally expensive. Some known approaches are IRIS, piRNA, NUPACK. Here we use a S-RRI prediction tool (namely IntaRNA) for the prediction of M-RRI.
+	
+	\section{Biological Background}
+	\begin{itemize}
+	 	\item 1.What is RNA
+	 	\item 2.RNA representation {a,c,g,u}
+	 	\item 3.classes of rna
+	 	\item 4.base pairs of RNA
+	 	\item 5.RNA secondary structure
+	 	\item 6.types of rna secondary structure
+	 	\item 7.RRI 
+	\end{itemize}
+	
+	\section{RNA-RNA Interaction}
+ 	Computational prediction of RNA-RNA interactions (RRI) is a central methodology for the specific investigation of inter-molecular RNA interactions and regulatory effects of non-coding RNAs.RNA–RNA interactions are fast emerging as a major functional component in many newly discovered non-coding RNAs.\\
+ 	
+ 	\begin{itemize}
+ 	\item Why RRI
+ 	\item problem with S-RRI
+ 	\end{itemize}
+ 
+ 	Hence we go for, Multi-site RRI optimization based on single-site IntaRNA predictions.
+
+
+	\chapter{RNA-RNA Interaction Prediction Approaches}
+	There are several available methods, that can be classified according to their underlying prediction strategies, each implicating unique capabilities and restrictions often not transparent to the non-expert user.\\ 
+	Most computational methods for RNA structure or RNA-RNA interaction prediction
+	are based on thermodynamic models and provide an efficient computation since Richard Bellman’s principle of optimality \cite{raden2018interactive} can be applied.
+	
+	\begin{itemize}
+	\item 1. Approaches that predict RRI
+	\end{itemize}
+	
+	\section{Hybrid}
+	\section{Concatenation}
+	\section{Accessibility}
+	\section{Adv. and disadv.}
+	
+	\chapter{Multisite RNA-RNA Interaction Prediction }
+	\chapter{Results}
+	\chapter{Related Work}
+	\chapter{Future Work}
+	\chapter{conclusion}
+	
+	\bibliographystyle{plain}
+	\bibliography{ref}
+
+	
+\end{document}
