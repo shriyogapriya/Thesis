@@ -201,11 +201,14 @@
  	In order to allow highly accurate predictions, state-of-the-art methods not only take into account the stability (energy) of possible RNA–RNA interactions, but they also take the accessibility of the interacting subsequences \citep{umu2017comprehensive}.\\
  	
  	\subsection{Formal background of RNA-RNA interactions}
- 	Here, we will see the formal background of RNA-RNA interactions.
+ 	Here, we will see the formal background of RNA-RNA interactions.\\
+ 	In general RNA–RNA interaction prediction (RIP) problem, given two RNA sequences S and R (e.g., an antisense RNA and its target), the RIP problem asks one to predict their joint secondary structure. A joint secondary structure between S and R is a set of “pairings” where each nucleotide of S and R is paired with at most one other nucleotide, either from S or R \citep{alkan2006rna}.  \\
+ 	
  	\begin{itemize}
  		\item  joint secondary structure
  	\end{itemize}
- 	Formally, the energy of RNA-RNA interaction \citep{muckstein2006thermodynamics} can be modeled as below.\\
+ 
+ 	We compute the joint structure between S and R through minimizing their total free energy. Formally, the energy of RNA-RNA interaction \citep{muckstein2006thermodynamics} can be modeled as below.\\
  	
  	\begin{center}
  			$\Delta G = \Delta G_u + \Delta G_h$
