@@ -10,6 +10,8 @@
 \usepackage{mathtools}
 \usepackage{titling}
 \usepackage[labelfont=bf]{caption}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
 \usepackage[hmarginratio=1:1]{geometry}
 \graphicspath{ {./images/} }
 \newcommand{\subtitle}[1]{%
@@ -92,7 +94,7 @@
  	\end{itemize}
  
  
- 	 \citep{DeVoe1962TheSO} discovered that vertical stacking of bases gives largest contribution to the stability of the RNA helix. The stacking of unpaired bases is less predictable and stable than the paired bases. Hence, the directly neighboured bases must be taken into account while estimating the energy contribution of a  base pair, that results in the \textit{Nearest Neighbor Model} (\citep{borer1974stability}).\\
+ 	 \citeauthor{DeVoe1962TheSO} discovered that vertical stacking of bases gives largest contribution to the stability of the RNA helix. The stacking of unpaired bases is less predictable and stable than the paired bases. Hence, the directly neighboured bases must be taken into account while estimating the energy contribution of a  base pair, that results in the \textit{Nearest Neighbor Model} \citep{borer1974stability}.\\
  	 
  	 \subsection{Nearest neighbor model and energy contributions }
  	 
@@ -196,19 +198,77 @@
 	\section{RNA-RNA Interaction}
  	The interaction of RNA molecules is an essential factor for regulatory processes in all organisms. Computational prediction of RNA-RNA interactions (RRI) is a central methodology for the specific investigation of inter-molecular RNA interactions and regulatory effects of non-coding RNAs. RNA–RNA interactions are fast emerging as a major functional component in many newly discovered non-coding RNAs. They are important in many basic cellular activities including transcription, RNA processing, localization, and translation. Interacting RNA strands is classified into two types. ie., Intermolecular and Intramolecular. Many RNA species function is guided by their structure, which is defined by intramolecular base pair formation. Small prokaryotic RNAs display evolutionary unstructured regions that control the expression of their target mRNAs by intermolecular base pairing \citep{wright2013comparative}. Hence, The prediction of both functional intramolecular and intermolecular RNAs are important bioinformatics tasks. \\
  	
- 	Let's see about some simple RNA-RNA interactions. In \textit{splicing} , small nuclear RNA's (snRNA) can recognize intronic regions of precursor messenger RNAs(mRNA) which is the important step in identifying the RNA splicing products \citep{modrek2002genomic}. In \textit{translation} transfer RNAs(tRNA) interact with messenger RNAs(mRNA) by reading the three letter code and define amino acid sequence \citep{selmer2006structure}, \citep{ibba2000aminoacyl}. In RNA modification, small nucleolar RNAs(snoRNA) guide the modification of ribosomal RNAs(rRNA) \cite{kiss2002small}. In microRNA (miRNA) targetting, the base pairing between an miRNA and mRNA leads to degradation or translation inhibition of the mRNA \cite{bartel2004micrornas}. For RNA function and regulation these examples gives us the importance of the RNA-RNA interaction. \\
+ 	Let's see about some simple RNA-RNA interactions. In \textit{splicing} , small nuclear RNA's (snRNA) can recognize intronic regions of precursor messenger RNAs(mRNA) which is the important step in identifying the RNA splicing products \citep{modrek2002genomic}. In \textit{translation} transfer RNAs(tRNA) interact with messenger RNAs(mRNA) by reading the three letter code and define amino acid sequence \citep{selmer2006structure}, \citep{ibba2000aminoacyl}. In RNA modification, small nucleolar RNAs(snoRNA) guide the modification of ribosomal RNAs(rRNA) \citep{kiss2002small}. In microRNA (miRNA) targetting, the base pairing between an miRNA and mRNA leads to degradation or translation inhibition of the mRNA \citep{bartel2004micrornas}. For RNA function and regulation these examples gives us the importance of the RNA-RNA interaction. \\
  		
  	In order to allow highly accurate predictions, state-of-the-art methods not only take into account the stability (energy) of possible RNA–RNA interactions, but they also take the accessibility of the interacting subsequences \citep{umu2017comprehensive}.\\
  	
  	\subsection{Formal background of RNA-RNA interactions}
  	Here, we will see the formal background of RNA-RNA interactions.\\
- 	In general RNA–RNA interaction prediction (RIP) problem, given two RNA sequences S and R (e.g., an antisense RNA and its target), the RIP problem asks one to predict their joint secondary structure. A joint secondary structure between S and R is a set of “pairings” where each nucleotide of S and R is paired with at most one other nucleotide, either from S or R \citep{alkan2006rna}.  \\
+ 	In general RNA–RNA interaction prediction (RIP) problem, given two RNA sequences S1 and S2 (e.g., an antisense RNA and its target), the RIP problem asks one to predict their joint secondary structure. A joint secondary structure between S1 and S2 is a set of “pairings” where each nucleotide of S1 and S2 is paired with at most one other nucleotide, either from S1 or S2 \citep{alkan2006rna}.  \\
  	
- 	\begin{itemize}
- 		\item  joint secondary structure
- 	\end{itemize}
+ 	The RNA-RNA interaction is the combination of the set all of all base pairs in S1 , set of all base pairs in S2 and the total intermolecular base pairs between two sequences. Formally, the RRI can be modelled as below.
+
+ 	\begin{center}
+ 		 RRI = $ \uplus $ bp (S1) $ \cup $ $\uplus$ bp (S2) $\cup$ $\uplus$ (Inter)
+ 	\end{center}
  
- 	We compute the joint structure between S and R through minimizing their total free energy. Formally, the energy of RNA-RNA interaction \citep{muckstein2006thermodynamics} can be modeled as below.\\
+	 	\begin{figure}[H]
+		\includegraphics[width=0.6\linewidth]{RRI2}
+		\centering
+		\caption{Sample RRI }
+		\label{fig:RRI2}
+	\end{figure}
+	
+ 	We can simplify the above formula by considering  $ \uplus $ bp (S1) as "P1", $\uplus$ bp (S2) as "P2" and $\uplus$ (Inter) as "B" ( B is the interaction block or interaction site). By, rewriting them, we get, 
+ 	
+ 	\begin{center}
+ 		RRI =  P1 $ \cup $  P2 $\cup$ B
+ 	\end{center}
+ 
+ 	\begin{figure}[H]
+ 		\includegraphics[width=0.6\linewidth]{RRI}
+ 		\centering
+ 		\caption{The model for RRI }
+ 		\label{fig:RRI}
+ 	\end{figure}
+ 
+ 	Further, the interaction block or interaction site "B" can be represented as,
+ 	
+ 	\begin{center}
+ 	 $B = \{ (i_1 , i_2)  \mid  S1_{i_1}$ complementary to $ S2_{i_2} \} \subseteq [ 1, n_1] * [1 , n_2] $
+ 	\end{center}
+ 	
+ 	Where for all $(i_1 ,i_2) ,(j_1, j_2) $ is 
+ 	
+ 	\begin{center}
+ 		$(i_1 < i_2) \iff  (j_1 > j_2)$
+ 	\end{center}
+ 	
+ 	ie., It should be non-crossing and no intra molecular base pairs in block region R(B) of P1 , P2. The block region R(B) is $(i(B) , j(B))$ ie., left and right most base pairs of B concerning S1, where\\
+ 	
+ 	\begin{equation*}
+ 		i(B) = \argmin_{i = (i_1, i_2 ) \in B } (i_1)
+ 	\end{equation*}
+ 
+ 	\begin{equation*}
+ 			j(B) = \argmax_{i = (i_1, i_2 ) \in B} (i_1)
+ 	\end{equation*}
+ 	
+ 	\begin{figure}[H]
+ 		\includegraphics[width=0.6\linewidth]{region}
+ 		\centering
+ 		\caption{The model for region }
+ 		\label{fig:region}
+ 	\end{figure}
+ 	
+ 	For a valid RRI, lets consider bases $k$ and $l$ form another allowed base pair. Then,
+ 	
+ 	\begin{center}
+ 		 $\forall_{B\in I } :\nexists_{(k,l) \in P1} : i(B)_1 \le k \le j(B)_1  \cup   i(B)_1 \le l \le j(B)_1 $ \\$\cap $\\ 	$\nexists_{(k',l') \in P1} : i(B)_2 \le k' \le j(B)_2  \cup  i(B)_2 \le l' \le j(B)_2 $
+ 	\end{center}
+ 	
+ 	where I is the union of all blocks (ie., all inter molecular base pairs)
+ 	We compute the joint structure between S1 and S2 through minimizing their total free energy. Formally, the energy of RNA-RNA interaction \citep{muckstein2006thermodynamics} can be modeled as below.\\
  	
  	\begin{center}
  			$\Delta G = \Delta G_u + \Delta G_h$
@@ -220,7 +280,36 @@
 		\item  The free energy required to unfold the interaction site in both the rna molecules.
 		\end{itemize}
 	
-	Using dynamic programming the interactions are predicted by minimizing the interaction energy score. 
+	Using dynamic programming the interactions are predicted by minimizing the interaction energy score. By using the above RRI equation, we can rewrite this energy of RRI as \\
+	
+	\begin{center}
+		$E(RRI) = E(P1)+E(P2)+E(I) = E(bp)$ 
+	\end{center}
+	
+	\begin{figure}[H]
+		\includegraphics[width=0.6\linewidth]{ene}
+		\centering
+		\caption{The model for energy  }
+		\label{fig:ene}
+	\end{figure}
+
+	where E(I) can be calculated as follows,
+	
+	\begin{center}
+		$E(I) = E(  \uplus  B) + E_{init} $
+	\end{center}
+	\begin{center}
+		where, E( $ \uplus $ B) = $\sum_B$ E(B) + E(gaps) and $E_{init}$ is fixed init score if I $\neq$ $\phi$ 
+	\end{center}
+		
+	The Energy for the block E(B) can be calculated as  ,
+	
+	\begin{center}
+	$E(B)$ =  $\sum_{\substack{i \in B \\ \exists i < j \\ j \in B}}E^{inter}_{loop} (i)$
+	\end{center}	
+	
+	and for the E( gaps) it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea.
+	
 	
 	\section{RNA-RNA Interaction Prediction Approaches}
 	There are several available methods, that can be classified according to their underlying prediction strategies, each implicating unique capabilities and restrictions often not transparent to the non-expert user.\\ 
@@ -255,11 +344,14 @@
 		\caption{Recursion scheme to maximize intermolecular base pairs between two RNAs $S1$ and $S2$ represented in orange/blue, respectively} 
 		\label{fig:hybrid}
 	\end{figure}
-	
-	They are implemented in tools like TargetRNA, RNAhybrid, RNAplex. The main advantages of this approach is they allows temperature to taken into account, they are very fast adn easy to calculate the significance of hits.  Since,  intramolecular base pairing is ignored they are used for the identification of short RNA's and overestimate the length of target sites. These disadvantages can be overcomed by concatenation and accessibility based approaches.\\ 
+	The energy for RRI can be calculated as follows:
+	\begin{equation*}
+		E(gaps B) = \sum _{\substack {B,B' \in I}} E_{loop}(j(B),i(B'))
+	\end{equation*}
+	They are implemented in tools like TargetRNA, RNAhybrid, RNAplex. The main advantages of this approach is they allows temperature to taken into account, they are very fast and easy to calculate the significance of hits.  Since,  intramolecular base pairing is ignored they are used for the identification of short RNA's and overestimate the length of target sites. These disadvantages can be overcome by concatenation and accessibility based approaches.\\ 
 	
 	\subsection{General}
-	One of the most common general approach that is used for predicting the two intermolecular RNA molecules is IRIS \citep{pervouchine2004iris} method. This method is basically implemented by dynamic programming where it is the product of the sequence alignment and two MFOLD type secondary structure prediction algorithms. They can predict \textit{general duplex structures}. This method is applied to some well known interactions such as OxyS with fhlA mRNA which basically forms a double kissing hairpin interactions as shown in below fig ~\ref{fig:doublekiss}.\\
+	One of the most common general approach that is used for predicting the two intermolecular RNA molecules is IRIS \citep{pervouchine2004iris} method. This method is basically implemented by dynamic programming where it is the product of the sequence alignment and two MFOLD type secondary structure prediction algorithms. They can predict \textit{general duplex structures}. This method is applied to some well known interactions such as OxyS with fhlA mRNA which basically forms a double kissing hairpin interactions as shown in below fig ~\ref{fig:doublekiss}.It uses the energy model where the number of base pairs can be maximised.\\
 	
 	 \begin{figure}[H]
 		\includegraphics[width=0.4\linewidth]{doublekiss}
@@ -313,7 +405,7 @@
 	
 	
 	\subsection{Accessibility}
-	Concatenation approaches cannot predict the structures which contains pseudoknots. To overcome the drawback of concatenation approach, Accessibility approaches has been introduced. The main aim of this approach is to ensemble properties of the single sequences that are necessary for the interaction. Here we have to neglect the intra molecular structure before the intermolecular interaction is formed. In order to form a stable interaction of intermolecular base pairs, the intra molecular base pairs has to be opened /broken. \\
+	Concatenation approaches cannot predict the structures which contains pseudoknots. To overcome the drawback of concatenation approach, Accessibility approaches has been introduced. The main aim of this approach is to ensemble properties of the single sequences that are necessary for the interaction. Tools like RNAup and IntaRNA can be used to predict such approaches. Here we have to neglect the intra molecular structure before the intermolecular interaction is formed. In order to form a stable interaction of intermolecular base pairs, the intra molecular base pairs has to be opened /broken. \\
 	
 	The accessibility-incorporating interaction scorings
 	are computed and stored in table $I$. A non-zero entry $I^{i,k}_{j,l}$
@@ -350,7 +442,7 @@
 	\end{cases}
 	\end{equation}
 	
-	Approaches like RNAup and IntaRNA use precalculated ED values for all possible interaction regions. They gives us how much energy is needed to free of intramolecular base pairs. These approaches cannot be modelled correctly for the double kissing hairpin interaction.\\
+	Approaches like RNAup and IntaRNA use precalculated ED values for all possible interaction regions. They gives us how much energy is needed to free of intramolecular base pairs. Thus, accessibility approach can handle only one crossing blocks. These approaches cannot be modelled correctly for the double kissing hairpin interaction which has more than one crossing blocks of interaction.\\
 	
 	
 	\subsection{Comparison with approaches}
@@ -358,26 +450,29 @@
 	
 	\begin{table}[H]
 		\centering
-	\begin{tabular}{ |p{3cm}||p{3cm}|p{3cm}|p{3cm}|p{3cm}|  }
+	\begin{tabular}{ |p{2cm}|p{4.5cm}|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|  }
 		\hline
-		\multicolumn{5}{|c|}{RRI prediction approaches} \\
+		\multicolumn{3}{|c|}{\textbf{RRI Pattern}}  & \multicolumn{4}{|c|}{\textbf{RRI prediction approaches}} \\
 		\hline
-		Figures& Hybrid  &General  &Concatenation  &Accessibility \\
+		Figures & RRI description& No.of blocks& \rotatebox[origin=c]{90} {Hybrid}  &\rotatebox[origin=c]{90}{General}  &\rotatebox[origin=c]{90}{Concatenation}  &\rotatebox[origin=c]{90}{Accessibility} \\
 		\hline
-		~\ref{fig:rnahybrid} &yes &yes &no &yes\\
-		~\ref{fig:concat} (a) & no &yes &yes &yes \\
-		~\ref{fig:concat} (b) & no &yes &no &yes \\
-		~\ref{fig:concat} (c) & no &yes &no &yes \\
-		~\ref{fig:doublekiss} &no &yes &no &no\\
+		~\ref{fig:rnahybrid}&Full duplex structure&1 &yes &yes &no &yes\\
+		\hline
+		~\ref{fig:concat} (a)& Nested joint structure without pseudoknots &2 & no &yes &yes &yes \\
+		\hline
+		~\ref{fig:concat} (b)& Kissing stem loop &1 & no &yes &no &yes \\
+		\hline
+		~\ref{fig:concat} (c)& Kissing hairpin loop &1 & no &yes &no &yes \\
+		\hline
+		~\ref{fig:doublekiss}&Double kissing hairpin loop &2 &no &yes &no &no\\
 		 \hline
 	\end{tabular}
    \caption{ Comparison of RNA-RNA interaction prediction approaches for different figures}
    \label{table:1}
    \end{table}
 
-	We could conclude that the accessibility based approach is the best approach for single site RNA-RNA interaction. As, they can't predict the multisite RRI because in IntaRNA model, we remove the base pairs while predicting, when they are no intramolecular base pairs are in between, it is considered to be a wrong model (ie., double kissing hairpin loop interaction). Hence, we are going for the multisite accessibility based approach in the next chapter.\\
-	
-	Hence we go for, Multi-site RRI optimization based on single-site IntaRNA predictions.\\
+	We could conclude that the accessibility based approach is the best approach for single site RNA-RNA interaction. As, they can't predict the multisite RRI because in IntaRNA model, we remove the base pairs while predicting, when they are no intramolecular base pairs are in between, it is considered to be a wrong model (ie., double kissing hairpin loop interaction).  To handle two or multi crossing blocks of interaction, we are introducing multisite accessibility based approach. The Multi-site RRI optimization is based on single-site IntaRNA predictions. Hence, we are going for the multisite accessibility based approach in the next chapter.\\
+
 		
 		
 		
