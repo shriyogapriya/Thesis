@@ -8,6 +8,7 @@
 \usepackage{ amssymb }
 \usepackage{array, makecell}
 \usepackage{booktabs, tabularx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{mathtools}
@@ -220,41 +221,23 @@
  		\end{center}
  
 	 	\begin{figure}[H]
-		\includegraphics[width=0.6\linewidth]{RRI2}
+		\includegraphics[width=0.6\linewidth]{rrinteraction}
 		\centering
-		\caption{Diagrammatic representation of formal RRI }
-		\label{fig:RRI2}
+		\caption{The Rna-Rna Interaction is the union of all base pairs in sequence 1 and sequence 2 are denoted as $P^1$ and $P^2$ respectively. $I$ denotes the union of all intermolecular base pairs. $B_1$, $B_2$ are the interaction blocks.}
+		\label{fig:rrinteraction}
 	\end{figure}
 	
- 	In the figure, sky blue colour represents the intramolecular loop with the intermolecular base pairs paired. We will need to find out, how to score them. Here,without further knowledge or energy parameters, we score it via standard loop scores ignoring the intermolecular pairings. The problem starts with the pseudoknot, in the loops where the positions are not paired within the loop ~\ref{fig:position}.\\
+ 	In the figure ~\ref{fig:rrinteraction}, light violet colour represents the intramolecular loop with the intermolecular base pairs paired. We will need to find out, how to score them. Here, without further knowledge or energy parameters, we score it via standard loop scores ignoring the intermolecular pairings. The problem starts with the pseudoknot, in the loops where the positions are not paired within the loop ~\ref{fig:pseudo}.\\
  	
  		\begin{figure}[H]
- 		\includegraphics[width=0.5\linewidth]{position}
+ 		\includegraphics[width=1.0\linewidth]{pseudo}
  		\centering
  		\caption{Positions are not paired within the loop }
- 		\label{fig:position}
+ 		\label{fig:pseudo}
  	\end{figure}
  	
  	The same problem we have for the scoring of crossing structure in a pseudoknot.\\
- 	
- 		\begin{figure}[H]
- 		\includegraphics[width=0.5\linewidth]{pseduknot}
- 		\centering
- 		\caption{Diagrammatic representation of Pseudoknot }
- 		\label{fig:pseduknot}
- 	\end{figure}
- 	
- 	
-    Now, we further decompose $I$ into the sequence of subsets of consecutive base pairs that form interaction blocks $B$ which is depicted in the figure ~\ref{fig:RRI2} , Where $ I = (B_1 ,..., B_x)$. A block $B$ is the interaction block or interaction site.
- 	
- 
- 
- 	\begin{figure}[H]
- 		\includegraphics[width=0.6\linewidth]{RRI}
- 		\centering
- 		\caption{The model for RRI }
- 		\label{fig:RRI}
- 	\end{figure}
+ 	Now, we further decompose $I$ into the sequence of subsets of consecutive base pairs that form interaction blocks $B$ which is depicted in the figure ~\ref{fig:pseudo} , Where $ I = (B_1 ,..., B_x)$. A block $B$ is the interaction block or interaction site.
  
  	Further, the interaction block or interaction site "B" can be represented as,
  	
@@ -279,49 +262,52 @@
  	\end{equation*}
  	
  	\begin{figure}[H]
- 		\includegraphics[width=0.6\linewidth]{region}
+ 		\includegraphics[width=0.6\linewidth]{reg}
  		\centering
- 		\caption{The model for block region }
+ 		\caption{The block region $R(B)$ }
  		\label{fig:region}
  	\end{figure}
  	
  	For a valid RRI, lets consider bases $k$ and $l$ form another allowed base pair. Then,
  	
  	\begin{center}
- 		 $\forall_{B\in I } :\nexists_{(k,l) \in P^1} : i(B)_1 \le k \le j(B)_1  \wedge   i(B)_1 \le l \le j(B)_1 $ \\$\wedge $\\ 	$\nexists_{(k',l') \in P^1} : i(B)_2 \le k' \le j(B)_2  \wedge  i(B)_2 \le l' \le j(B)_2 $
+ 		 $\forall_{B\in I } :\nexists_{(k,l) \in P^1} : i(B)_1 \le k \le j(B)_1  \vee   i(B)_1 \le l \le j(B)_1 $ \\$\wedge $\\ 	$\nexists_{(k',l') \in P^1} : i(B)_2 \le k' \le j(B)_2  \vee  i(B)_2 \le l' \le j(B)_2 $
  	\end{center}
  	
  	where I is the union of all blocks (ie., all inter molecular base pairs)
- 	We compute the joint structure between S1 and S2 through minimizing their total free energy. Now, lets see the formal definition of energy of RRI. By using the above RRI equation, we can write energy of RRI as \\
-	
-	\begin{center}
-		$E(RRI) = E(P^1)+E(P^2)+E_init+ \sum_{B_i \in I}E(B_i) + \sum_{B_i \in I} E^{right}_{gap} (B_i,Bi+1, P^1, P^2)$ 
-	\end{center}
+ 	We compute the joint structure between S1 and S2 through minimizing their total free energy. 
 	
 	\begin{figure}[H]
-		\includegraphics[width=0.6\linewidth]{ene}
+		\includegraphics[width=0.5\linewidth]{break}
 		\centering
-		\caption{The model for energy of interaction. }
-		\label{fig:ene}
+		\caption{The energy of RRI is the energy of all the base pairs. $E(B_1)$ is the energy of block 1 and the $E(breaks)$ can be calculated from sum of all breaks.  }
+		\label{fig:break}
 	\end{figure}
 
-	The E(I) can be calculated as follows,
-	
-	\begin{center}
-		$E(I) = E(  \uplus  B) + E_{init} $
-	\end{center}
-	\begin{center}
-		where, E( $ \uplus $ B) = $\sum_B$ E(B) + E(break) and $E_{init}$ is fixed init score if I $\neq$ $\phi$ 
-	\end{center}
 		
-	The Energy for the block E(B) can be calculated as  ,
+	$E(breaks)$ is defined by the sum over all individual breaks between blocks ~\ref{fig:break}.  The Energy for the block E(B) can be calculated as  ,
 	
 	\begin{equation*}
 	E(B) =  \sum_{\substack{i \in B \\ j \in B \\ \exists i < j}}E^{SBI}(i,j,k,l)
 	\end{equation*}	
 	
-	where $j = argmin_{i' \in B \wedge i'>i}(i'_1)$
-	and for the E(break) it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea.\\
+	where $j = argmin_{i' \in B \wedge i'>i}(i'_1)$. For the E(breaks) it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea.\\
+	
+		The E(I) can be calculated as follows,
+	
+	\begin{center}
+		$E(I) = E(  \uplus  B) + E_{init} $
+	\end{center}
+	\begin{center}
+		where, E( $ \uplus $ B) = $\sum_B$ E(B) + E(breaks) and $E_{init}$ is fixed init score if I $\neq$ $\phi$ 
+	\end{center}
+
+	Now, we will summarise the formal definition of energy of RRI. By using the above RRI equation, we can write overall energy of RRI as \\
+	
+	\begin{equation}
+	\label{eq:rri}
+	E(RRI) = E(P^1)+E(P^2)+E_{init}+ \sum_{B_i \in I}E(B_i) + \sum_{B_i \in I} E_{break} (B_i,B_{i+1}, P^1, P^2)
+	\end{equation}
 	
 	
 	\section{RNA-RNA Interaction Prediction Approaches}
@@ -351,20 +337,25 @@
 	\end{cases}
 	\end{equation}
 	Where $H_{ij}$ is the maximal number of intermolecular base pairs for the prefixes $S^1_1..i$	and $\overleftarrow{S^2_1..j}$ the reverse sequnce of $S^2$. The visual representation of the recursion scheme ~\ref{fig:hybrid} . The above equation is the s a variant of the global sequence alignment approach by \citep{needleman1970general} using scoring scheme i.e.,base pair instead of match/mismatch scoring for$S^1_i$, $\overleftarrow{S^2_j}$ no gap cost. Hence , when initialising $ H_{i,0} / H_{0,j} $ with 0, the $H_{n,m} $ gives the maximal number of intermolecular base pairs and we can trace back them. As stated above, this approach has very low runtime.\\
-	 \begin{figure}[h]
+	
+	 \begin{figure}[H]
 		\includegraphics[width=0.8\linewidth]{hybrid}
 		\centering
 		\caption{Recursion scheme to maximize intermolecular base pairs between two RNAs $S1$ and $S2$ represented in orange/blue, respectively} 
 		\label{fig:hybrid}
 	\end{figure}
-	The energy for RRI can be calculated as follows:
+
+	In order to compute the energy of an RRI using equation ~\ref{eq:2} , no intra-molecular structure is considered, i.e. $P^1=P^2= \emptyset $ .
+	Therefore, energy of a break is computed by an interior loop contribution only, ie.
+	
 	\begin{equation*}
-		E(break) = \sum _{\substack {B_i \in I}} E_{loop}(j(B_i),i(B_{i+1}))
+	E^{right}_{break}(B_i, B_{i+1}, \emptyset, \emptyset) = E_{loop}(j(B_i),i(B_{i+1}))
 	\end{equation*}
-	They are implemented in tools like TargetRNA, RNAhybrid, RNAplex. The main advantages of this approach is they allows temperature to taken into account, they are very fast and easy to calculate the significance of hits.  Since,  intramolecular base pairing is ignored they are used for the identification of short RNA's and overestimate the length of target sites. These disadvantages can be overcome by concatenation and accessibility based approaches.\\ 
+	
+	Thus, eventually, only one block of inter-mol base pairs is modelled. They are implemented in tools like TargetRNA, RNAhybrid, RNAplex. The main advantages of this approach is they allows temperature to taken into account, they are very fast and easy to calculate the significance of hits.  Since,  intramolecular base pairing is ignored they are used for the identification of short RNA's and overestimate the length of target sites. These disadvantages can be overcome by concatenation and accessibility based approaches.\\ 
 	
 	\subsection{General}
-	One of the most common general approach that is used for predicting the two intermolecular RNA molecules is IRIS \citep{pervouchine2004iris} method. This method is basically implemented by dynamic programming where it is the product of the sequence alignment and two MFOLD type secondary structure prediction algorithms. They can predict \textit{general duplex structures}. This method is applied to some well known interactions such as OxyS with fhlA mRNA which basically forms a double kissing hairpin interactions as shown in below fig ~\ref{fig:doublekiss}.It uses the energy model where the number of base pairs can be maximised.\\
+	One of the most common general approach that is used for predicting the two intermolecular RNA molecules is IRIS \citep{pervouchine2004iris} method. This method is basically implemented by dynamic programming where it is the product of the sequence alignment and two MFOLD type secondary structure prediction algorithms. They can predict \textit{general duplex structures}. This method is applied to some well known interactions such as OxyS with fhlA mRNA which basically forms a double kissing hairpin interactions as shown in below fig ~\ref{fig:doublekiss}.\\
 	
 	 \begin{figure}[H]
 		\includegraphics[width=0.4\linewidth]{doublekiss}
@@ -374,36 +365,38 @@
 		\label{fig:doublekiss}
 	\end{figure}
 	
-	In IRIS method we use nussinov recursion matrix for computing the base pair maximization without intermolecular interactions. let's represent $N^{R^1}$ , $N^{R^2}$ denotes the interacting RNA's $R^1$ and $R^2$. The recursion matrix $M^{i, k}_{j, l}$ denotes the maximal number of both intramolecular and intermolecular base pairs for the interacting subsequences $ R^1_{i..k}$, $R^2_{j..l}$. The recursion ~\ref{eq:3} is as follows    \\ 
-	
-	 \begin{equation}
-	 \label{eq:3}
-	M^{i..k}_{j..l} = \max \begin{cases}
-	0 & : \text{if both $j > l $  and $ i > k $}, \\
-	N^{R^1_{i,k}} , N^{R^2_{j,l}} & : \text{no interaction considered if $j > l $  and $ i > k $} \\
-	M^{i+1..k-1}_{j..l}+1 , M^{i..k}_{j+1..l-1}+1 & : \text{intramolecular base pair if $R^1_i, R^1_k $  or $ R^2_j , R^2_l$ can pair}  \\
-	M^{i+1..k}_{j+1..l}+1 , M^{i..k-1}_{j..l-1}+1 & : \text{intermolecular base pair if $R^1_i, R^2_j $  or $ R^1_k , R^2_l$ can pair} \\
-	\max_{s,t} \{ 
-	M^{i..s}_{j..t} + 	M^{s+1..k}_{t+1..l} \} & : \text{ decomposition of interaction site}\\
-	\end{cases}
-	\end{equation}
-	
-	In the above recursion the $j > l $  and $ i > k $ represents the individual structure formation of $R^1$ and $R^2$ and are given by $N^{R^1}$ , $N^{R^2}$ . In third case, we omit omits the minimal intramolecular base pair span $s_l$ for the simplicity purpose. The last case is does not account for generalized pseudoknots. The fig ~\ref{fig:iris} shows the visual depiction of the recursion. For treating the generalized pseudoknots, we need to replace it with $max \{ M^{i..s}_{k..t} + 	M^{s..j}_{t..l} , M^{i..s}_{t..l} + 	M^{s..j}_{k..t}\}$. After examining this interaction, it was found that the fact it is not the minimum free energy structure.\\
-	
+	It shares most common features with pseudoknots, but is less computationally intensive, secondary structure prediction system. The input is made up of two sequences of RNA. Each sequence can form its own nested secondary structure and hybridize into the other molecule. The computing time and space are $O(n3m3)$ and $O(n2m2)$ , where $n$ and $m$ are the length of the sequence sizes. The configuration of the oxyS-fhlA complex proposed in \citep{argaman2000fhla} consists of four neighboring stem loops, two in each of the molecules which connect, forming two stable kissing complexes. In this method, the main goal is the simulatinous optimization of intra and inter-molecular base pairing.\\
+
 	\begin{figure}[H]
-		\includegraphics[width=1.0\linewidth]{iris}
+		\includegraphics[width=0.9\linewidth]{general}
 		\centering
 		\caption{ Depiction of the recursion $M^{i..k}_{j..l}$. Figure is taken from the paper} 
-		\citep{wright2018structure}
-		\label{fig:iris}
+		\citep{pervouchine2004iris}
+		\label{fig:general}
 	\end{figure}
 	
+	The energy contribution of general approach doesn't follow the interaction energy model instead they have pseudoknot energy. The energy associated with exterior pseudoknot can be given as (\citep{xu2015physics}) \\
+	
+		\begin{equation}
+		G^{Pseudo} = \beta_1 + \beta_2 B^p + \beta_3 U^p
+		\end{equation}
+		
+	where $\beta_1$ represents penalty for introducing a pseudoknot, $B^p$ is the number of base pairs that border the interior of the pseudoknot, and $U^p$ is the number of unpaired bases inside the pseudoknot. If pseudoknot is inside a multiloop then they can be represented as $\beta_1^m$ ( by replacing the $\beta_1$) and if pseudoknot is inside another pseudoknot they can be  represented as $\beta_1^p$ (by replacing $\beta_1$).\\
+	
+	As an approximation, one could use E(PK-loop) to score breaks.\\
 
 	The time and space usage of IRIS are $ O(n^6)$ and $ O(n^4)$, respectively. The partition function version of RNA-RNA interaction prediction allows to predict the suboptimal interaction and its probabilities also the computation of probabilities of intermolecular interactions, which is used to access the stability. Due to its high complexity, several approaches for reducing the requirements of this method have been introduced.\\
 	
 	 
 	\subsection{Concatenation}
 	Concatenation or co-folding approach is used for predicting the interacting base pairs of two RNA molecules. Two or more sequences are concatenated  into a single sequence with special inter-spacing linker sequences. The final sequence is used within an adaptation of a standard structure prediction that takes  care of the linker sequences. The first implementation of this approach was by using Nearest neighbor model which was used for mfold and then implemented in tools like MutliRNAfold and RNAcofold.\\
+	
+	\begin{figure}[H]
+		\includegraphics[width=0.3\linewidth]{concatenation}
+		\centering
+		\caption{ Green and blue are the two different Rna's that are interacting. } 
+		\label{fig:concatenation}
+	\end{figure}
 	
 	This is extension of nussinov recursion with a special handling of linker sequence. Here,the input is restricted to two RNA sequences that are concatenated by a linker of length $l+1$  to ensure the presence of a linker and that the concatenated sequence ends can form a base pair. We don't need any special energy treatment because the intra and inter molecular base pairs are treated equally.\\
 	The optimal hybrid structures can be listed by the sub optimal traceback implementation. The parenthesis "( )" are used for representing the intramolecular base pairs and square brackets "[ ]" represents the  intermolecular base pairs, "X" represents the linker. \\
@@ -416,10 +409,27 @@
 		\label{fig:concat}
 	\end{figure}
 	
-	The energy for the concatenation approach, as we have linker here it becomes as a one interior loop.\\
+	The energy for the concatenation approach, the breaks are considered as multi loop and scored accordingly. \\
 	
 	\subsection{Accessibility}
-	Concatenation approaches cannot predict the structures which contains pseudoknots. To overcome the drawback of concatenation approach, Accessibility approaches has been introduced. The main aim of this approach is to ensemble properties of the single sequences that are necessary for the interaction. Tools like RNAup and IntaRNA can be used to predict such approaches. Here we have to neglect the intra molecular structure before the intermolecular interaction is formed. In order to form a stable interaction of intermolecular base pairs, the intra molecular base pairs has to be opened /broken. \\
+	Concatenation approaches cannot predict the structures which contains pseudoknots. To overcome the drawback of concatenation approach, Accessibility approaches has been introduced. The main aim of this approach is to ensemble properties of the single sequences that are necessary for the interaction.  It can predict single site an interaction pattern of two respective RNA subsequences. Tools like RNAup and IntaRNA can be used to predict such approaches. Here we have to neglect the intra molecular structure before the intermolecular interaction is formed. In order to form a stable interaction of intermolecular base pairs, the intra molecular base pairs has to be opened /broken. \\
+	
+	We can classify single-site RNA-RNA interactions based on the structural context of the respective subsequences, which are\\
+	
+	\begin{itemize}
+	\item exterior - not enclosed by any base pair.
+	\item hairpin loop - directly enclosed by a base pair.
+	\item non-hairpin loop - subsequence enclosed by two loops forming a bulge, interior or multi-loop.\\
+    \end{itemize}
+		
+	IntaRNA can predict single-site interactions within any structural context of the respective subsequences, but concatenation-based approaches can only predict exterior-exterior context combinations. \\
+	
+	\begin{figure}[H]
+		\includegraphics[width=0.2\linewidth]{acess}
+		\centering
+		\caption{ Green and blue are the two different Rna's that are interacting and forms pseudoknots. } 
+		\label{fig:acess}
+	\end{figure}
 	
 	The accessibility-incorporating interaction scorings
 	are computed and stored in table $I$. A non-zero entry $I^{i,k}_{j,l}$
@@ -456,41 +466,55 @@
 	\end{cases}
 	\end{equation}
 	
-	The energy of accessibility approach, we will no break. Approaches like RNAup and IntaRNA use precalculated ED values for all possible interaction regions. They gives us how much energy is needed to free of intramolecular base pairs. The main drawback of accessibility approach is, it can handle only one crossing blocks. These approaches cannot be modelled correctly for the double kissing hairpin interaction which has more than one crossing blocks of interaction.\\
+
+	The energy of accessibility approach has no break , since the interaction I forms only one interaction block. Approaches like RNAup and IntaRNA use precalculated ED values for all possible interaction regions. They gives us how much energy is needed to free of intramolecular base pairs. \\
+	
+		\begin{figure}[H]
+		\includegraphics[width=0.4\linewidth]{doublestem}
+		\centering
+		\caption{ Double stem loop interaction cannot be handled by accessibility as they have two binding site.} 
+		\label{fig:doublestem}
+	\end{figure}
+	
+	
+	The main drawback of accessibility approach is, it can handle only one crossing blocks. These approaches cannot be modelled correctly for the double kissing hairpin interaction which has more than one crossing blocks of interaction.\\
 	
 	
 	\subsection{Comparison with approaches}
 	In this subsection, we will see the comparison between the approaches for few interaction pattern. Below table ~\ref{table:1} gives the overview for which interaction pattern , the approaches can be used. \\
-	
-	\begin{table}[H]
-		\begin{spacing}{0.5}
-	  \caption{ Comparison of RNA-RNA interaction prediction approaches for different figures}
-	\label{table:1}
-	\begin{tabularx}{\hsize}{l*{7}{L}}
+		\begin{table}[H]
+				\caption{ Comparison of RNA-RNA interaction prediction approaches for different figures}
+				\label{table:1}
+		\begin{tabularx}{\textwidth}{ p{2cm}p{4.5cm}p{1.5cm}p{1cm}p{1cm}p{1cm}p{1cm}}
 		\toprule
-		\multicolumn{8}{c}{\textbf{Comparison of RRI approaches}}\\  
+		\multicolumn{7}{c}{\textbf{Comparison of RRI approaches}}\\  
 		\midrule
-		& \multicolumn{3}{c}{\textbf{RRI pattern}} 
-		&	\multicolumn{4}{c}{\textbf{RRI prediction approaches}}\\
-		\cmidrule(r){2-4}  \cmidrule(l){5-8}
-		No. & Figures & RRI description& No.of blocks& \rotatebox[origin=c]{90} {Hybrid}  &\rotatebox[origin=c]{90}{General}  &\rotatebox[origin=c]{90}{Concatenation}  &\rotatebox[origin=c]{90}{Accessibility} \\
-	 	\midrule
-	 	\addlinespace[0.5cm]
-		1& ~\ref{fig:rnahybrid}&Full duplex structure&1 &yes &yes &yes &yes\\
+		\multicolumn{3}{c}{\textbf{RRI Pattern}}  & \multicolumn{4}{c}{\textbf{RRI prediction approaches}} \\
+		\cmidrule(r){1-3}  \cmidrule(r){4-7}
+		Figures & RRI description& No.of blocks& \rotatebox[origin=c]{90} {Hybrid}  &\rotatebox[origin=c]{90}{General}  &\rotatebox[origin=c]{90}{Concatenation}  &\rotatebox[origin=c]{90}{Accessibility} \\
+		\hline
+		\addlinespace[1.2cm]
+		~\ref{fig:rnahybrid}&Full duplex structure&1 &yes &yes &yes &yes\\
 		\addlinespace[1cm]
-		2& ~\ref{fig:concat} (a)& Nested joint structure (without pseduknots) &2 & no &yes &yes &yes \\
-		\addlinespace[1cm]
-		3 & ~\ref{fig:concat} (b)& Kissing stem  &1 & no &yes &no &yes \\
-		\addlinespace[1cm]
-		4 & ~\ref{fig:concat} (c)& Kissing hairpin  &1 & no &yes &no &yes \\
-		\addlinespace[1cm]
-		5 & ~\ref{fig:doublekiss}&Double kissing hairpin  &2 &no &yes &no &no\\
-		\addlinespace[1cm]
-		\bottomrule
-		\end{tabularx}
-	\end{spacing}
-   \end{table}
-
+		~\ref{fig:concat} (a)& Nested joint structure without pseudoknots &2 & no &yes &yes &yes \\
+		\addlinespace[1.2cm]
+		~\ref{fig:concatenation}& Nested joint structure without pseudoknots &2 & no &yes &yes &yes \\
+		\addlinespace[1.2cm]
+		~\ref{fig:concat} (b)& Stem loop interaction &1 & no &yes &no &yes \\
+		\addlinespace[1.2cm]
+		~\ref{fig:acess} & Stem loop interaction &1 & no &yes &no &yes \\
+		\addlinespace[1.2cm]
+		~\ref{fig:concat} (c)& Kissing hairpin loop &1 & no &yes &no &yes \\
+		\addlinespace[1.2cm]
+		~\ref{fig:doublekiss}&Double kissing hairpin loop &2 &no &yes &no &no\\
+		\addlinespace[1.2cm]
+		~\ref{fig:rrinteraction}& Kissing stem interaction &2 &no &yes &no &no\\
+		\addlinespace[1.2cm]
+		~\ref{fig:doublestem}& Double kissing stem loop &2 &no &yes &no &no\\
+		\addlinespace[1.2cm]
+		
+	\end{tabularx}
+	\end{table}
 	We could conclude that the accessibility based approach is the best approach for single site RNA-RNA interaction. As, they can't predict the multisite RRI because in IntaRNA model, we remove the base pairs while predicting, when they are no intramolecular base pairs are in between, it is considered to be a wrong model (ie., double kissing hairpin loop interaction).  To handle two or multi crossing blocks of interaction, we are introducing multisite accessibility based approach. The Multi-site RRI optimization is based on single-site IntaRNA predictions. Hence, we are going for the multisite accessibility based approach in the next chapter.\\
 
 		
