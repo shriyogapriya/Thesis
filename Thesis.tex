@@ -17,6 +17,8 @@
 \usepackage{lscape}
 \usepackage{verbatim}
 \usepackage{pdfpages}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
 \usepackage[labelfont=bf]{caption}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -223,19 +225,17 @@
  	
  
 	 	\begin{figure}[tb]
-		\includegraphics[width=0.6\linewidth]{rnarnainter}
+		\includegraphics[width=0.6\linewidth]{rnarna.pdf}
 		\centering
 		\caption{The RNA-RNA Interaction is the union of all base pairs in sequence 1 and sequence 2 are denoted as $P^1$ and $P^2$ respectively. $I$ denotes the union of all intermolecular base pairs. $B_1$, $B_2$ are the interaction blocks. Break is the loop enclosed by two inter-molecular base pairs that also contains positions involved in intra-molecular base pairs}
-		\label{fig:rnarnainter}
+		\label{fig:rnarna}
 	\end{figure}
 	
- 	In the figure ~\ref{fig:rnarnainter}, light violet colour represents the intramolecular loop with the intermolecular base pairs paired. We will need to find out, how to score them. Here, without further knowledge or energy parameters, we score it via standard loop scores ignoring the intermolecular pairings. The problem starts with the pseudoknot, in the loops where the positions are not paired within the loop ~\ref{fig:pseudo}.\\
- 	
  		\begin{figure}[tb]
- 		\includegraphics[width=1.0\linewidth]{pseudo}
+ 		\includegraphics[width=1.0\linewidth]{pseudoknot.pdf}
  		\centering
  		\caption{ The left side figure shows the Positions are not paired within the loop. This problem starts with the pseudoknot which is shown in the right side figure where the same problem exists for the scoring of crossing structures. }
- 		\label{fig:pseudo}
+ 		\label{fig:pseudoknot}
  	\end{figure}
  	
  	The same problem we have for the scoring of crossing structure in a pseudoknot.\\
@@ -264,10 +264,10 @@
  	\end{equation*}
  	
  	\begin{figure}[tb]
- 		\includegraphics[width=0.6\linewidth]{reg}
+ 		\includegraphics[width=0.6\linewidth]{block.pdf}
  		\centering
  		\caption{The block region $R(B)$ where the left and right most base pairs of $B$ concerning $S_1$}
- 		\label{fig:region}
+ 		\label{fig:block}
  	\end{figure}
  	
  	For a valid RRI, lets consider bases $k$ and $l$ form another allowed base pair. Then,
@@ -280,7 +280,7 @@
  	We compute the joint structure between $S_1$ and $S_2$ through minimizing their total free energy. 
 	
 	\begin{figure}[tb]
-		\includegraphics[width=0.5\linewidth]{break}
+		\includegraphics[width=0.5\linewidth]{break.pdf}
 		\centering
 		\caption{The interaction energy of RRI is the energy defined by the loops enclosed by all inter-molecular base pairs. $E(B_1)$ is the energy of block 1 and the $E(breaks)$ can be calculated from sum of all breaks.  }
 		\label{fig:break}
@@ -304,7 +304,9 @@
 		where, $E(  \uplus  B) = \sum_B E(B) + E(breaks)$ and $E_{init}$ is fixed init score if $I$ $\neq$ $\phi$ 
 	\end{center}
 
-	$E(breaks)$ is defined by the sum over all individual breaks between blocks ~\ref{fig:break}. For the $E(breaks)$ it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea. Now, we will summarise the formal definition of energy of RRI. By using the above RRI equation, we can write overall energy of RRI as \\
+	In the fig ~\ref{fig:rnarna}, light violet colour represents the intramolecular loop with the intermolecular base pairs paired. We will need to find out, how to score them. Here, without further knowledge or energy parameters, we score it via standard loop scores ignoring the intermolecular pairings. The problem starts with the pseudoknot, in the loops where the positions are not paired within the loop ~\ref{fig:pseudoknot}.\\
+
+	$E(breaks)$ is defined by the sum over all individual breaks between blocks (fig  ~\ref{fig:break} ). For the $E(breaks)$ it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea. Now, we will summarise the formal definition of energy of RRI. By using the above RRI equation, we can write overall energy of RRI as \\
 	
 	\begin{equation}
 	\label{eq:rri}
@@ -315,11 +317,12 @@
 	\section{RNA-RNA Interaction Prediction Approaches}
 	There are several available methods, that can be classified according to their underlying prediction strategies, each implicating unique capabilities and restrictions often not transparent to the non-expert user.\\ 
 	Mostly for RNA-RNA interaction prediction methods are based on thermodynamic models and provide an efficient computation since Richard Bellman’s principle of optimality \citep{raden2018interactive} can be applied. RNA–RNA interaction prediction approaches are classified according to their algorithmic idea into hybrid-only interaction prediction,General interaction prediction, concatenation-based/cofolding interaction prediction , and accessibility-based interaction prediction. \\
+	
 	In the following subsections we will see about the approaches used for predicting the RNA-RNA interactions.\\
 
 	
 	\subsection{Hybrid}
-	In hybrid-only interaction approach, the identification of RNA-RNA interaction doesn't consider intramolecular base pairs ~\ref{fig:rnahybrid} and they can be done with $O(nm)$ time and space complexity for two RNA sequences $S1$, $S2$ of lengths $n$ and $m$ respectively \citep{tjaden2006target}.\\
+	In hybrid-only interaction approach, the identification of RNA-RNA interaction doesn't consider intramolecular base pairs (fig ~\ref{fig:rnahybrid}) and they can be done with $O(nm)$ time and space complexity for two RNA sequences $S1$, $S2$ of lengths $n$ and $m$ respectively \citep{tjaden2006target}.\\
 	
 	\begin{figure}[H]
 		\includegraphics[width=0.4\linewidth]{rnahybrid}
@@ -499,6 +502,74 @@
 		
 		
 	\chapter{Multisite Accessibility Based  }
+	
+	In this chapter , we will see about the approach used for multisite interaction prediction for RNA. Accessibility-based RNA-RNA interaction prediction methods are typically modelling a single block of consecutive inter-molecular base pairs. Thus, interaction pattern that consists of multiple concurrently formed blocks can not be predicted. Within this thesis, we are developing and testing possibilities to efficiently predict concurrent blocks of interaction within an accessibility-based prediction model.The approach will be based on IntaRNA, which is one of the state-of-the-art programs for RNA-RNA interaction prediction.\\
+	
+	IntaRNA, developed by \citep{busch2008intarna} bioinformatics group at Freiburg University, is a general and fast approach to the prediction of RNA-RNA interactions incorporating both the accessibility of interacting sites as well as the existence of a user-definable seed interaction. IntaRNA is an interaction prediction tool developed for the prediction of mRNA target sites for small regulatory bacterial RNAs. IntaRNA uses energy minimisation to find the best possible interaction. The minimized energy consists of an energy of accessibility and hybridization. \\
+	
+	Many RNAs interact via multiple synchronous, non-overlapping subinteractions (M-RRI), e.g. OxyS-fhlA. The simultaneous prediction of both intra- and inter-molecular base pairing allowing for multiple sites is computationally expensive. Some approaches in include IRIS, NUPACK, piRNA , etc., There are fast and reliable single interaction site (S-RRI) prediction tools like IntaRNA, that often show the additional sites within their suboptimal list, ie. are capable of modelling all sites individually but not in a joint prediction.	To overcome this, we use the iterative method in this thesis for finding the interaction between multiple blocks. \\
+	
+	
+	
+	\section{Iterative scheme}
+	 We use a Single-RRI prediction tool (namely IntaRNA) for the prediction of Multi-RRI. To this end, an iterative scheme is to be applied.\\
+	
+	 
+	 \begin{itemize}
+	 	 
+	
+	 \item Step 1: Firstly, we have to run IntaRNA and store minimum free energy and the respective interaction site.
+	 \item Step 2: Then we will derive the 'blocking' constraint from step 1 and predict conditional minimum free energy and site.
+	 \item Step 3: Thirdly, the energy of an respective M-RRI can be computed from the two energies.
+	 \item Step 4: Since prediction (2) is conditional, the existence of the interaction from (2) can have effects on (1). Thus, one starts to iterate the procedure from (2) but fixes the conditional site
+	 \item Step 5: Finally, check for convergence: is the site from two-steps before retained? If yes: convergence and stop iteration. If no: repeat constraint prediction until convergence.
+	 
+	  \end{itemize}
+  
+  	
+  	 \begin{figure}[tb]
+  		\includegraphics[width=1.2\linewidth]{idea}
+  		\centering
+  		\caption{ Iterative scheme that is used in this thesis.} 
+  		\label{fig:idea}
+ 	 \end{figure}
+  
+  
+  	Below is the flowchart representation for the same.\\
+	
+	% Define block styles
+	\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+	text width=4em, text badly centered, node distance=3cm, inner sep=0pt]
+	\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+	text width=5em, text centered, rounded corners, minimum height=4em]
+	\tikzstyle{line} = [draw, very thick, color=black!50, -latex']
+	\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=2.5cm,
+	minimum height=2em]
+	
+	\begin{tikzpicture}[scale=2, node distance = 2.5cm, auto]
+	% Place nodes
+	\node [block] (store) {store mfe and interaction site};
+	\node [cloud, left of=store, node distance=3.5cm] (run) {run IntaRNA};
+	\node [block, below of=store] (predict) {predict conditional mfe and site};
+	\node [cloud, right of=predict, node distance=3.5cm] (energy) {energy I + II};
+	\node [block, below of=predict] (Iterate) {Iterate and fix conditional site};
+	\node [decision, below of=Iterate, node distance=3cm] (decide) {Energy I = Energy II};
+	\node [block, right of=decide, node distance=3.2cm] (repeat) {repeat untill convergence};
+	\node [block, below of=decide, node distance=2.8cm] (stop) {stop};
+	% Draw edges
+	\path [line] (store) -- (predict);
+	\path [line] (predict) -- (Iterate);
+	\path [line] (Iterate) -- (decide);
+	\path [line] (decide) -- node [near start] {yes} (stop);
+	\path [line] (decide) -- node {no}(repeat);
+	\path [line,dashed] (run) -- (store);
+	\path [line,dashed] (store) -- (energy);
+	\path [line,dashed] (predict) -- (energy);
+	\end{tikzpicture}
+	
+
+	
+	
 	\chapter{Results}
 	\chapter{Discussion and conclusion}
 	
