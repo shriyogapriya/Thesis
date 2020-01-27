@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{titling}
+\usepackage{eqnarray, amsmath}
 \usepackage{endnotes}
 \usepackage{lscape}
 \usepackage{verbatim}
@@ -564,11 +565,11 @@
 	\end{itemize}
 	
 	
-	The energy of an ensemble of structures is calculated using a partition function \citep{mccaskill1990equilibrium} . Similarly, we get $E_{i,k}^{unpaired}$ by calculating the partition function, ${Z_s}_{i,k}^{unpaired}$ where $s_{i,k}^{unpaired} $ is an ensemble of all structures which can be formed by a sequence S, with a single stranded region $[i,k]$. Therefore,
+	The energy of an ensemble of structures is calculated using a partition function \citep{mccaskill1990equilibrium} . Similarly, we get $ED(i,k)$ by calculating the partition function, ${Z_s}_{i,k}^{u}$ where $s_{i,k}^{u} $ is an ensemble of all structures which can be formed by a sequence S, with a single stranded region $[i,k]$. Refer to the section 1.4.4. Therefore,
 	
 		\begin{center}
 		
-		$E_{i,k}^{unpaired} = - RTln({Z_s}_{i,k}^{unpaired})$
+		$ED(i,k) = - RTln({Z_s}_{i,k}^{u})$
 		
 	\end{center}
 	
@@ -608,7 +609,7 @@
 	\end{cases}
 	\end{equation}
 	
-	We get the time and space complexity of $O(n^2m^2)$ which is very high. RNA molecules fold by intermolecular base pairing, by incorporating hydrogen bonds reduces free energy. Hence the system with the minimum free energy (mfe) is most likely the structure. The interaction with the minimum estimated free energy is probably the most stable structure and thus the structure fulfills the RNA molecule function.\\
+	We get the time and space complexity of $O(n^2m^2)$ by limiting the loop size, which is still very high. When we limit the interaction length to l , it has a complexity of $O(nml^2)$ time and $O(nml^2)$ space. RNA molecules fold by intermolecular base pairing, by incorporating hydrogen bonds reduces free energy. Hence the system with the minimum free energy (mfe) is most likely the structure. The interaction with the minimum estimated free energy is probably the most stable structure and thus the structure fulfills the RNA molecule function.\\
 	
 	 \begin{equation*}
 	mfe = \argmin_{i,j,k,l} C(i,j,k,l)
@@ -622,13 +623,17 @@
 	
 	\begin{equation}
 	C(i,j) =  \begin{cases}
-	min_{p,q}\{ e^{SBI}(i,j,p,q)+ C(p,q)\} \\
+	E_{init} + ED_1(i, i) + ED_2(j, j) \\
+	\quad 	: \text{in the case of new interaction}\\
+	min_{p,q}\{ e^{SBI}(i,j,p,q)+ C(p,q) - ED_1(p,K(p,q)) - ED_2(q,L(p,q))\\
+	\quad \quad \quad \quad + ED_1(i,K(p,q)) + ED_2(j,L(p,q))\} \\
 	\quad 	: \text{if $(S_i^1 , S_j^2 )$ can pair },\\
 	\infty \\
 	\quad : \text{otherwise},
 	\end{cases}
 	\end{equation}
 	
+	Here $K(p,q) , L(p,q)$ are the newly introduced matrices which are optimal. Since ED values are not additive, we have to subtract the old ED values before we add the new ED value.
 	
 	\section{Iterative scheme for multisite}
 	 We use a Single-RRI prediction tool (namely IntaRNA) for the prediction of Multi-RRI. To this end, an iterative scheme is to be applied.
@@ -638,14 +643,12 @@
 	 	 
 	
 	 \item Step 1: Firstly, we have to run IntaRNA and store minimum free energy as $B_1$ and the respective interaction site as $B_2$ which is empty.
-	 \item Step 2: Then we will derive the 'blocking' constraint from step 1 by rerunning IntaRNA and predict conditional minimum free energy and site. Here we block $B_1$ (Constrainted IntaRNA) and we get $B_2'$ as minimum free energy.
-	 \item Step 3: Thirdly, the energy of an respective M-RRI can be computed from the two energies. ie., the energy of the conditional call can be added using the conditional probability.\\
+	 \item Step 2: Then we get the 'blocking' constraint from step 1 by rerunning IntaRNA and predict conditional minimum free energy and site. Here we block $B_1$ (Constrainted IntaRNA) and we get $B_2'$ as minimum free energy. Then, the energy of an respective M-RRI can be computed from the two energies. ie., the energy of the conditional call can be added using the conditional probability.\\
 	 \begin{center}
 	 	 $E(B_1 \land B_2) = E(B_1) + E(B_2 | B_1)$ .
 	 \end{center}
 	 
-	 \item Step 4: Since prediction (2) is conditional, the existence of the interaction from (2) can have effects on (1). Thus, one starts to iterate the procedure from (2) but fixes the conditional site. Then , we print the respective the $B_1$ and $B_2$.
-	 \item Step 5: Finally, check for convergence: is the site from two-steps before retained? If yes: convergence and stop iteration by printing the new $B_1 , B_2$. If no: repeat constraint prediction until convergence by swapping ( ie.,$B_2 = B_1; B_1 = B_2'$ ).
+	 \item Step 3: Since prediction (2) is conditional, the existence of the interaction from (2) can have effects on (1). Thus, one starts to iterate the procedure from (2) but fixes the conditional site. Then , we print the respective the $B_1$ and $B_2$. Finally, check for convergence: is the site from two-steps before retained $(B_2 == B'_2)$? If yes: convergence and stop iteration by printing the new $B_1 , B_2$. If no: repeat constraint prediction until convergence by swapping ( ie.,$B_2 = B_1; B_1 = B_2'$ ).
 	 
 	  \end{itemize}
   
@@ -690,74 +693,60 @@
 	
 	Below is the proof of why the energy of the conditional call can be just added. 
 	
-		\begin{equation}
-		\label{1}
-	E(B_1 \land B_2) = E(B_1) + E(B_2 | B_1)	
-		\end{equation}
-		\begin{center}
-	$E(B_1 \land B_2) = E_{hyb}(B_1 \land B_2) + ED(B_1 \land B_2)$
-		\end{center}
-	\begin{equation}
-	\label{2}
-	E(B_1 \land B_2) = E_{hyb}(B_1)+E_{hyb}(B_2)-RTlog(\mathcal{P}^u(B_1 \land B_2))
-	\end{equation}
-	From Eqn ~\ref{1}, 
-	\begin{center}
-		$E(B_1) = E_{hyb}(B_1) + ED(B_1)$
-	\end{center}
-	\begin{equation}
-	\label{3}
-	E(B_1) = E_{hyb}(B_1) - RTlog(\mathcal{P}^u(B_1))
-	\end{equation}
-	\begin{center}
-	$E(B_2 | B_1) = E_{hyb}( B_2 | B_1 )+ ED(B_2 | B_1)$
-	\end{center}
-	\begin{equation}
-	\label{4}
-	E(B_2 | B_1) = E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_2 | B_1))
-	\end{equation}
+		\begin{align}	
+	E(B_1 \land B_2) &= E(B_1) + E(B_2 | B_1) \nonumber\\	
+	&= E_{hyb}(B_1 \land B_2) + ED(B_1 \land B_2) \nonumber\\	
+	&= E_{hyb}(B_1)+E_{hyb}(B_2)-RTlog(\mathcal{P}^u(B_1 \land B_2)) \label{1}
+	\end{align}
+
+	 \begin{align}
+	E(B_1) &= E_{hyb}(B_1) + ED(B_1)\nonumber\\
+	&= E_{hyb}(B_1) - RTlog(\mathcal{P}^u(B_1)) \label{2}
+	\end{align}
 	
-	
-	From Eqn ~\ref{2} = Eqn ~\ref{3} + Eqn ~\ref{4}
-	 
+	\begin{align}
+	E(B_2 | B_1) &= E_{hyb}( B_2 | B_1 )+ ED(B_2 | B_1)\nonumber \\
+	& = E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_2 | B_1)) \label{3}
+	\end{align}
+
+Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	\begin{equation}
 	\label{5}
-	E_{hyb}(B_1)+E_{hyb}(B_2)-RTlog(\mathcal{P}^u(B_1 \land B_2)) \Leftrightarrow E_{hyb}(B_1) + E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_1)) - RTlog(\mathcal{P}^u(B_2 | B_1))
+	 E_{hyb}(B_1) + E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_1)) - RTlog(\mathcal{P}^u(B_2 | B_1))
 	\end{equation}
 	 
-	As we know $log (A) + log (B) = log( A . B)$ , we apply this condition in right end side of the Eqn ~\ref{5}\\
+	As we know $log (A) + log (B) = log( A . B)$ , we apply this condition for log values in the Eqn~\ref{5}\\
 	
-	\begin{center}
-		$-RTlog(\mathcal{P}^u(B_1)) - RTlog(\mathcal{P}^u(B_2 | B_1))$\\
-		$-RTlog(\mathcal{P}^u(B_1) * \mathcal{P}^u(B_2 | B_1))$
-	\end{center}
+	\begin{align*}
+		-RTlog(\mathcal{P}^u(B_1)) - RTlog(\mathcal{P}^u(B_2 | B_1))\\
+		-RTlog(\mathcal{P}^u(B_1) * \mathcal{P}^u(B_2 | B_1))\\
+	\end{align*}
 	
-	Since $P(A \land B) = P(A) * P(B |A)$ we get,
+	Since $P(A \land B) = P(A) * P(B |A)$ we get,\\
 	
 	\begin{center}
 		$-RTlog(\mathcal{P}^u(B_1 \land B_2))$
 	\end{center}
- 	Therefore right end side of the Eqn ~\ref{5} becomes,
+
+ 	After adding and simplifying the right end side values of Eqn ~\ref{3} + ~\ref{2} we get, \\
+ 	
  	\begin{equation}
  	\label{6}
- 	E_{hyb}(B_1) + E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_1 \land B_2))
+ 	E_{hyb}(B_1) + E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_1 \land B_2))\\
  	\end{equation}
 	
-	Now,  Eqn ~\ref{2} = Eqn ~\ref{6},
+	Now,  we see the equations ~\ref{6} and ~\ref{1} are equal ,\\
 	\begin{equation}
 	\label{7}
 	E_{hyb}(B_1)+E_{hyb}(B_2)-RTlog(\mathcal{P}^u(B_1 \land B_2)) \Leftrightarrow E_{hyb}(B_1) + E_{hyb}(B_2) - RTlog(\mathcal{P}^u(B_1 \land B_2))
 	\end{equation}
 	
-	We also know that 
+	We also know that \\
+	\begin{align*}
+		E_{hyb}(B_1) &= E_{hyb}(B_1)\\
+		E_{hyb}( B_2 | B_1 ) &= \sum_{\forall loops in B_2}E_{hyb}(B_2)
+	\end{align*}
 	
-	\begin{center}
-		$E_{hyb}(B_1) = E_{hyb}(B_1)$\\
-	\end{center}
-	\[
-		E_{hyb}( B_2 | B_1 ) = \sum_{\forall loops in B_2}E_{hyb}(B_2)
-	\]
-
 	Hence proved. \\
 	
 	
