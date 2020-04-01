@@ -19,6 +19,7 @@
 \usepackage{lscape}
 \usepackage{verbatim}
 \usepackage{pdfpages}
+\usepackage[toc,page]{appendix}
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows}
 \usepackage[labelfont=bf]{caption}
@@ -513,25 +514,25 @@
 		\cmidrule(r){1-3}  \cmidrule(r){4-7}
 		Figures & RRI description& No.of blocks& \rotatebox[origin=c]{90} {Hybrid}  &\rotatebox[origin=c]{90}{General}  &\rotatebox[origin=c]{90}{Concatenation}  &\rotatebox[origin=c]{90}{Accessibility} \\
 		\hline
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:rnahybrid}&Full duplex structure&1 &yes &yes &yes &yes\\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:concat} (a)& Nested joint structure without pseudoknots &2 & no &yes &yes &yes \\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:concatenation}& Nested joint structure without pseudoknots &2 & no &yes &yes &yes \\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:concat} (b)& Stem loop interaction &1 & no &yes &no &yes \\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:acess} & Stem loop interaction &1 & no &yes &no &yes \\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:concat} (c)& Kissing hairpin loop &1 & no &yes &no &yes \\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:doublekiss}&Double kissing hairpin loop &2 &no &yes &no &no\\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:rnarnainter}& Kissing stem interaction &2 &no &yes &no &no\\
-		\addlinespace[0.8cm]
+		\hline
 		~\ref{fig:doublestem}& Double kissing stem loop &2 &no &yes &no &no\\
-		\addlinespace[0.8cm]
+		\hline
 		
 	\end{tabularx}
 	\end{table}
@@ -773,46 +774,7 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 %	\end{table}
 %	
 	
-	\begin{table}[H]
-	
-		\label{table:2}
-		\begin{tabularx}{\textwidth}{ p{2cm}p{2.8cm}p{2.8cm}p{1cm}p{1cm}p{1cm}p{1cm}}
-			\midrule
-			query:target& original& prediction& \rotatebox[origin=c]{90} {E(B1)}  &\rotatebox[origin=c]{90}{E(B1+B2)}  &\rotatebox[origin=c]{90}{originalIdxPos0}  &\rotatebox[origin=c]{90}{seqLen} \\
-			\hline
-			\addlinespace[0.8cm]
-			OxyS:fhlA&104:-15\&98:-9 30:34\&22:42
-			&104:-15\&98:-9 30:34\&22:44&-4.37 &-7.99 &1:-53&109:113\\
-			\addlinespace[0.8cm]
-			Spot42:sthA&55:15\&48:22  7:NA\&5:NA & 55:15\&34:40 7:-8\&1:-2
-			 & -7.85 &-13.05 & 1:-75 &109:150 \\
-			\addlinespace[0.8cm]
-			oppA:Gcvb &-95:163\&-64:151 -17:142\&-11:136 -3:84\&19:49 39:18\&64:1  &-9:89\&14:67 57:158\&63:152
-			 & -14.57 &26.38 & -95:3 &159:160\\
-			\addlinespace[0.8cm]
-%			GcvB:cycA&  &161:175\&62:277 40:91\&34:97	& -18.88 &-23.19 & &201:300 \\
-%			\addlinespace[0.8cm]
-			Dicf:ftsz&52:55\&39:69   36:-12\&25:-1 10:20\&5:25  &52:55\&35:73 76:82\&12:18	& -6.89 &-13.86 &1:-73 &70:227 \\
-			\addlinespace[0.8cm]
-			mRNA:EGS S-SER &26:7\&20:13 17:46\&11:52  &26:7\&20:11 & -10.3 &NA & 1:1 &29:56 \\
-			\addlinespace[0.8cm]
-			mRNA:EGS S-SER-C &26:7\&20:13 17:46\&11:52  &26:7\&20:11 & -10.28 &NA & 1:1 &29:56 \\
-			\addlinespace[0.8cm]
-			mRNA:EGS S-C386 &11:46\&17:40 20:13\&26:7  &10:47\&17:40 2:13\&8:7  & -9.94 &-12.69 & 1:1 &29:50 \\
-			\addlinespace[0.8cm]
-			mRNA:EGS S-C386-C &11:46\&17:40 20:13\&26:7  &10:47\&16:41 1:14\&8:7  & -10.45 &-14.84 & 1:1 &29:50 \\
-			\addlinespace[0.8cm]
-		\end{tabularx}
-		\caption{Collections of multisite RNA interaction }	
-	\end{table}
-	
-	\begin{itemize}
 		
-		
-	\item \textbf{Oxys – fhla}
-	
-	The first example is interaction between Oxys – fhla . OxyS binds to a short sequence within the coding region of fhlA mRNA. This is one of the best example for the multi site interaction, OxyS forms a stable kissing complex with fhlA . When tested with our multisite prediction, we find no difference in the Energy parameters and also with the hybridDB ( ie., hybrid in dot-bar notation). The total energy for both the block is -7.99. Here the sequence length for oxys starts from 1 to 109 and for fhla it is from -53 to 60. \\
-	
 	\begin{figure}
 		\centering
 		\begin{subfigure}{.5\textwidth}
@@ -827,96 +789,140 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 			\caption{oppA:Gcvb}
 			\label{fig:oppagcvb}
 		\end{subfigure}
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width=.9\linewidth]{egssc386c}
-		\caption{mRNA:EGS S-C386-C}
-		\label{fig:egssc386c}
-	\end{subfigure}%
-	\begin{subfigure}{.5\textwidth}
-	\centering
-	\includegraphics[width=.9\linewidth]{egss-c386}
-	\caption{mRNA:EGS S-C386}
-	\label{fig:egss-c386}
-	\end{subfigure}
 		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{egs(e)}
+			\caption{mRNA:EGS S-C386}
+			\label{fig:egs(e)}
+		\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{egs(f)}
+			\caption{mRNA:EGS S-C386-C}
+			\label{fig:egs(f)}
+		\end{subfigure}
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{dic}
+			\caption{Dicf:ftsz}
+			\label{fig:dic}
+		\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{dicfftsz}
-		\caption{Dicf:ftsz}
-		\label{fig:dicfftsz}
+		\includegraphics[width=.9\linewidth]{spot}
+		\caption{spot42:stha}
+		\label{fig:spot4}
 	\end{subfigure}
-	\caption{Multisite Interaction prediction for various RNA's}
+		\caption{Multisite Interaction prediction for various RNA's}
 		\label{fig:test}
+			
 	\end{figure}
 
+\clearpage		
+	\subsection{Oxys – fhla}
+	
+	The interaction between Oxys – fhla OxyS binds to a short sequence within the coding region of fhlA mRNA. This is one of the best example for the multi site interaction, where OxyS forms a stable kissing complex with fhlA . \\
 
-	\begin{figure}[tb]
+
+	\begin{figure}[h!tb]
 	\includegraphics[width=1.0\linewidth]{oxys}
 	\centering
 	\caption{ Interaction of fhla-oxys } 
 	\label{fig:oxys}
 	\end{figure}
+
+\begin{figure}[h!tb]
+	\centering
+	\includegraphics[width=.4\linewidth]{fhla}
+	\caption{OxyS:fhlA}
+	\label{fig:fhla}
+\end{figure}
+
+\clearpage
 	
-	\item \textbf{Spot42 – sthA }
 	
-	The interaction between Spot42 - sthA. Base-pairing RNA Spot 42 plays a broad role in catabolite repression in Escherichia coli by directly repressing genes involved in central and secondary metabolism. Here when Spot42 interacts with sthA, we observed that the ED value changes. This is because , the unconstrained has been added to constrained value. Though there is no much difference in the total energy value, we are ignoring it. The total energy value is -26.38. In order to have the same ED values, we can use the --energyNoDangles option. Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}} . From the figure ~\ref{fig:spot42} we can clearly see . There is huge impact on pSpot32-III and pSpot32-I whereas less during the pSpot42-II\\
 	
-		\begin{figure}[tb]
+	\subsection{Spot42 – sthA }
+	
+	The interaction between Spot42 - sthA. Base-pairing RNA Spot 42 plays a broad role in catabolite repression in Escherichia coli by directly repressing genes involved in central and secondary metabolism.\\
+	
+		\begin{figure}[h!tb]
 		\includegraphics[width=0.6\linewidth]{spot42}
 		\centering
 		\caption{ Interaction of Spot42 – sthA } 
 		\label{fig:spot42}
 	\end{figure}
 
-	\item \textbf{GcvB – oppA }
-	The structure of the GcvB-oppA complex involves two intermolecular helices, which precede and follow the putative terminator. The structure in GcvB-oppA complex is located in the upstream region. This is the example where there are four blocks are presented as per the {\citep{pervouchine2004iris}} . As, we predict the multi block interaction, we have predicted the two sides of the same. The total interaction energy for two sides of block is 26.88.  
+	\begin{figure}[h!tb]
+		\centering
+		\includegraphics[width=.5\linewidth]{spot}
+		\caption{spot42:stha}
+		\label{fig:spot4}
+	\end{figure}
+
+\clearpage
+
+	\subsection{GcvB – oppA }
+	The structure of the GcvB-oppA complex involves two intermolecular helices, which precede and follow the putative terminator. The structure in GcvB-oppA complex is located in the upstream region. This is the example where there are four blocks are presented as per the {\citep{pervouchine2004iris}} . \\ 
 	
-		\begin{figure}[tb]
+		\begin{figure}[h!tb]
 		\includegraphics[width=1.0\linewidth]{oppa}
 		\centering
 		\caption{ Interaction of GCVB – oppA } 
 		\label{fig:oppa}
 	\end{figure}
+
+
+\clearpage
 	
 %	\item \textbf{GcvB – cycA }
 %	
 %	This interaction is an example for more than two site RNA interaction. In Escherichia coli, the GcvB gene encodes a small non-translated RNA that regulates several genes involved in transport of amino acids and peptides (including sstT, oppA and dppA). Microarray analysis identified cycA as an additional regulatory target of GcvB. In addition, deletion of the GcvB gene resulted in increased sensitivity to d-cycloserine, consistent with increased expression of cycA. The total energy for both the block is -23.19.
 	
-	\item \textbf{Dicf - ftsz }
+	\subsection{Dicf - ftsz }
 	
 	This is the example for pseudknot (crossing interaction). We find that dicF-ftsZ complex admits region of complementarity,which gives rise to a generalized pseudoknot. The structure of the dicF-ftsZ complex is similar to the one of dsrA-hns, in which dsrA RNA interacts with both 5' and 3' ends of the has mRNA.   
 	
-		\begin{figure}[tb]
+		\begin{figure}[h!tb]
 		\includegraphics[width=1.0\linewidth]{dicf}
 		\centering
 		\caption{ Interaction of Dicf- ftsz } 
 		\label{fig:dicf}
 	\end{figure}
+
+\begin{figure}[h!tb]
+	\centering
+	\includegraphics[width=.4\linewidth]{dic}
+	\caption{Dicf:ftsz}
+	\label{fig:dic}
+\end{figure}
+
+\clearpage
+	\subsection{S-mRNA - EGS }
 	
-	\item \textbf{mRNA - EGS }
-	
-	 RNase P  can  be  recruited  to cleave anymRNA  using  a  custom-designed  external  guidesequence  (EGS)  that  hybridizes  with  the  target  mRNAto form a structure resembling a tRNA substrate. 
+	 RNase P  can  be  recruited  to cleave anymRNA  using  a  custom-designed  external  guidesequence  (EGS)  that  hybridizes  with  the  target  mRNAto form a structure resembling a tRNA substrate. Only the exact sequence of the S mRNA around the targeting site is shown (in red) and the EGS sequence is shown in blue color. The site of cleavage by RNase P is marked with an arrowhead. The sequences of S-SER and S-SER-C that were equivalent to the T-stem and loop, and variable region of a tRNA molecule were derived from tRNASer, while those of S-C386 and S-C386-C were from EGS variant C386.\\
+
 	 
-	 \begin{figure}
+	 \begin{figure}[h!tb]
 	 	\centering
-	 	\begin{subfigure}{.5\textwidth}
+	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
-	 		\includegraphics[width=.9\linewidth]{mrnaegs}
-	 		
+	 		\includegraphics[width=.9\linewidth]{mrnaegs}	
 	 		\label{fig:mrnaegs}
-	 	\end{subfigure}%
-	 	\begin{subfigure}{.5\textwidth}
+	 	\end{subfigure}
+
+	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{SC386}
 	 		\label{fig:SC386}
 	 	\end{subfigure}
-	 	\begin{subfigure}{.5\textwidth}
+	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{sc386c}
 	 	
 	 		\label{fig:sc386c}
 	 	\end{subfigure}%
-	 	\begin{subfigure}{.5\textwidth}
+	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{SERC}
 	 		
@@ -926,14 +932,134 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	 	\label{fig:test1}
 	 \end{figure}
 	 
+	 \begin{figure}[h!tb]
+	 	\centering
+	 \begin{subfigure}{.5\textwidth}
+	 	\centering
+	 	\includegraphics[width=.9\linewidth]{egs(e)}
+	 	\caption{mRNA:EGS S-C386}
+	 	\label{fig:egs(e)}
+	 \end{subfigure}%
+	 \begin{subfigure}{.5\textwidth}
+	 	\centering
+	 	\includegraphics[width=.9\linewidth]{egs(f)}
+	 	\caption{mRNA:EGS S-C386-C}
+	 	\label{fig:egs(f)}
+	 \end{subfigure}
+ \end{figure}
+\clearpage	
+
+
+\subsection{Details of studied RRIs}
+
 	
-	\end{itemize}
+\begin{table}[H]
+	
+	\label{table:2}
+	\begin{tabular}{ p{2cm}p{2.8cm}|p{2.8cm}p{1cm}p{1cm}|p{1cm}p{1cm}}
+		\hline
+		query:target& original& prediction& \rotatebox[origin=c]{90} {E(B1)}  &\rotatebox[origin=c]{90}{E(B1+B2)}  &\rotatebox[origin=c]{90}{1st index}  &\rotatebox[origin=c]{90}{length} \\
+		\hline
+		OxyS:fhlA&104:-15\&98:-9 30:34\&22:42
+		&104:-15\&98:-9 30:34\&22:44&-4.37 &-7.99 &1:-53&109:113\\
+		\hline
+		Spot42:sthA&51:19\&49:21  7:NA\&5:NA & 55:15\&34:40 7:-8\&1:-2
+		& -7.85 &-13.05 & 1:-75 &109:150 \\
+		\hline
+		oppA:Gcvb &-95:163\&-64:151 -17:142\&-11:136 -3:84\&19:49 39:18\&64:1  &-9:89\&14:67 57:158\&63:152
+		& -14.57 &-26.38 & -95:3 &159:160\\
+		\hline
+		%			GcvB:cycA&  &161:175\&62:277 40:91\&34:97	& -18.88 &-23.19 & &201:300 \\
+		%			\hline
+		Dicf:ftsz&52:55\&39:69   \hbox{36:-12\&5:25}  &52:55\&35:73 12:82\&18:76	& -6.89 &-13.86 &1:-73 &70:227 \\
+		\hline
+		mRNA:EGS S-SER &26:7\&20:13 17:46\&11:52  &26:7\&20:11 & -10.3 &NA & 1:1 &29:56 \\
+		\hline
+		mRNA:EGS S-SER-C &26:7\&20:13 17:46\&11:52  &26:7\&20:11 & -10.28 &NA & 1:1 &29:56 \\
+		\hline
+		mRNA:EGS S-C386 &1:46\&7:40 10:13\&16:7 &-1:47\&7:40 \hbox{-9:13\&-3:7}
+		  & -9.94 &-12.64 & -10:1 &29:50 \\
+		\hline
+		mRNA:EGS S-C386-C &1:46\&7:40 10:13\&16:7
+		 &-1:47\&6:41 \hbox{-10:14\&-3:7}
+		  & -9.51 &-14.9 & -10:1 &29:50 \\
+		\hline
+	\end{tabular}
+	\caption{Collections of multisite RNA interaction }	
+\end{table}
+
+
 	
 	\chapter{Discussion and conclusion}
 	
+	Here in the chapter we will discuss about the result section briefly.
+	
+	
+	\section{Oxys – fhla}
+	 The first interaction is interaction between Oxys - fhla. It is taken from the paper ~\cite{argaman2000fhla} .   When tested , we find no difference in the Energy parameters and also with the hybridDB ( ie., hybrid in dot-bar notation). The total energy for both the block is -7.99. Here the sequence length for oxys starts from 1 to 109 and for fhla it is from -53 to 60. We use the parameter file for giving the target position to start from -53 ( indexing starts with 1 (tIdxPos0). We can clearly see from the ~\ref{fig:fhla} where the interaction that has been predicted and the original prediction from the same is almost same. \\
+	 
+	 \section{Spot42 – sthA }
+	 
+	  Here when Spot42 interacts with sthA, we observed that the ED value changes. This is because , the unconstrained has been added to constrained value. Though there is no much difference in the total energy value, we are ignoring it. The total energy value is -26.38. In order to have the same ED values, we can use the --energyNoDangles option. Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}} . From the figure ~\ref{fig:spot42} we can clearly see . There is huge impact on pSpot32-III and pSpot32-I whereas less during the pSpot42-II. We use the parameter file for giving the target position to start from -75.\\
+	  
+	  \section{Gcvb – oppA }
+	As, we predict the multi block interaction, we have predicted the two sides of the interaction out of four. The total interaction energy for two sides of block is 26.88. For this example we used the parameter file and set the tIdxPos0=-95, 
+	qIdxPos0=3 . \\
+	
+	 \section{Dicf- ftsz  }
+	 
+	 This example is taken from the paper \citep{pervouchine2004iris} . Due to region of complementarity which leads to generalized pseudoknot  . For this example we used the parameter file and set the tIdxPos0=-73 , tIntLenMax=20 ( for restricting the overall length an interaction ).The total interaction energy for two sides of block that has been predicted by the tool is -13.86 \\
+	 
+	 \section{S-mRNA:EGS  }
+	This example is taken from the paper \citep{zhang2013engineered }  .Here, the start of the S-mRNA is complementary to the end of the S-SER, which led to the crossing pattern. We can also clearly see that there is a shortage of the sequence. Also, the tails are not the actual , they are just the artificial one's. The index position is taken from the site of cleavage . Hence we add the parameterfile and set qIdxPos0=-10. We can also see that only one block is been predicted for the mRNA:EGS S-SER and mRNA:EGS S-SER-C. For the mRNA:EGS S-C386 and mRNA:EGS S-C386C two blocks are predicted. The total energy for mRNA:EGS S-C386 is -12.46 and mRNA:EGS S-C386C is -14.9  \\
+	 
 	
 	\bibliographystyle{plainnat}
 	\bibliography{ref}
+	
+\begin{appendices}
 
+	\chapter{RNA Sequences}
+	
+	\begin{table}[H]
+		
+	\begin{tabular}{|p{1.5cm}|p{15cm}|}
+		\hline
+		RNA& Sequence\\
+		\hline\hline	
+		OxyS& GAAACGGAGCGGCACCTCTTTTAACCCTTGAAGTCACTGCCCGTTTCGAG AGTTTCTCAACTCGAATAACTAAAGCCAACGTGAACTTTTGCGGATCTCCAGGATCCGC \\
+		\hline
+		fhla&AGTTAGTCAATGACCTTTTGCACCGCTTTGCGGTGCTTTCCTGGAAGAACA AAATGTCATATACACCGATGAGTGATCTCGGACAACAAGGGTTGTTCGACATCACTCGGACA\\
+		\hline
+		spot42&GUAGGGUACAGAGGUAAGAUGUUCUAUCUUUCAGACCUUUUACUUCACGUAAUCG
+		GAUUUGGCUGAAUAUUUUAGCCGCCCCAGUCAGUAAUGACUGGGGCGUUUUUUA\\
+			\hline
+		stha&GGGATCAATTGGCTTACCCGCGATAAAATGTTACCATTCTGTTGCTTTTATGTATAAGAA
+		CAGGTAAGCCCTACCATGCCACATTCCTACGATTACGATGCCATAGTAATAGGTTCCGGCCCCGGCGGCGAAGG CGCTGCAATGGGCCTG\\
+			\hline	
+		GCVB &TTCCTGAGCCGGAACGAAAAGTTTTATCGGAATGCGTGTTCTGATGGGCTTTTGGCTT ACGGTTGTGATGTTGTGTTGTTGTGTTTGCAATTGGTCTGCGATTCAGACCACGGTAGCGAGACTACCCTTTT TCACTTCCTGTACATTTACCCTGTCTGTC\\
+		\hline
+		oppa& GACAGCAGAAAGUCUCCGAGCCUGUGCAGGGUCCCAAUCCGGGAUUACACAUGCUGG UUAAUACCAGUAAUUAUAAUGAGGGAGUCCAAAAAACAAUGACCAACAUCACCAAGAGAAGUUUAGUAGCAG CUGGCGUUCUGGCUGCGCUAAUGGCAGGGA\\
+		\hline
+		Dicf& TTTCTGGTGACGTTTGGCGGTATCAGTTTTACTCCGTGACTGCTCTGCCGCCCTTTTT AAAGTGAATTTT\\
+		\hline
+		ftsz& AAAAGAGTTTTAATTTTTATGAGGCCGACGATGATTACGGCCTCAGGCGACAGGCAC AAATCGGAGAGAAACTATGTTTGAACCAATGGAACTTACCAATGACGCGGTGATTAAAGTCATCGGCGTCGGCGGCGGCGGCGGTAATGCTGTTGAACACATGGTGCGCGAGCGCATTG AAGGTGTTGAATTCTTCGCGGTAAATACCGATGCACAAGCGCTGCGTAAAA\\	
+			\hline
+			egs& TCTTCATCCTGCTGCTATGCCTCATCTTC\\
+			\hline
+			S-SER& GTTAACGATGAGGGTGCGGTCTCCGCGCGCAGGTTCAAATCCTGCTAGCAGCATTT\\
+			\hline
+			S-SER-C&GTTAACGATGAGGGTGCGGTCTCCGCGCGCAGGAAGAAATCCTGCTAGCAGCATTT\\
+			\hline
+			S-C386&GTTAACGATGAGGGACCTCACCGGTCGTTCGGATTCGACTAGCAGCATTT\\
+			\hline
+			S-C386C& GTTAACGATGAGGGACCTCACCGGTCGAAGGGATTCGACTAGCAGCATTT\\
+			\hline
+	\end{tabular}
+\caption{Table of RNAs with their corresponding sequence as used in this thesis.}
+\end{table}
+
+	
+\end{appendices}
 	
 \end{document}
