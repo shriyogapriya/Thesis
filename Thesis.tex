@@ -27,6 +27,7 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \newcolumntype{L}{>{\centering\arraybackslash}m{1.6cm}}
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
 \usepackage[hmarginratio=1:1]{geometry}
 \graphicspath{ {./images/} }
 \newcommand{\subtitle}[1]{%
@@ -36,23 +37,78 @@
 	\vskip0.5em}%
 }
 
-\title{ALBERT LUDWIGS UNIVERISTY OF FREIBURG
-\\{\Large MASTER THESIS}}
-
-\subtitle{\line(1,0){250}\\\textbf{\Huge Multisite RNA-RNA Interaction Prediction}\\\line(1,0){250}}	
-
-\author{Yogapriya Ayyanarmoorthy}
-\date{\today}
 
 
 
 \begin{document}
+%\maketitle
+
+\input{title}
+\pagenumbering{roman}
+\newpage
+%\chapter*{DECLARATION}
+\begin{center}
+
+\textbf{ \Large DECLARATION}\\
 	
-	\maketitle
+\end{center}
+ 	\vspace{0.9cm}
+I hereby declare, that I am the sole author and composer of my Thesis and that no
+other sources or learning aids, other than those listed, have been used. Furthermore, I declare that I have acknowledged the work of others by providing detailed references of said work. I hereby also declare, that my Thesis has not been prepared for another examination or assignment, either wholly or excerpts thereof.\\
+
+\hfill%
+\vspace{0.9cm}
+
+\begin{tabular}[t]{c}
+	
+	\rule{10em}{0.4pt}\\ Place , Date
+\end{tabular}%
+\hfill%
+\begin{tabular}[t]{c}
+	\rule{10em}{0.4pt}\\ Signature
+\end{tabular}%
+
+
+\newpage
+First and foremost, I want to thank my supervisor Dr. Martin Raden for giving me the
+opportunity to work on RNA as topic for my Master thesis and for providing me
+with thorough feedback and help throughout my work.
+I also want to thank my parents and friends for their constant support. \\
+
+
+\newpage
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+%Abstract in English
+
+Ribonucleic acid (RNA) is an essential biological macromolecule live in all biological cells. The interaction between two RNAs plays a vital role in the basic cellular activities like transcription, RNA processing and translation.\\
+
+ Computational prediction techniques may be used to determine how two RNA molecules will form an intermolecular base pairing. A variety of biophysical and biochemical approaches are there to test the RNA-RNA interactions (RRIs). At very large computational expense, there are a range of algorithms in the literature that can anticipate a lot of these interactions. Comparison between the RRIs prediction approaches are also discussed. \\
+
+IntaRNA is a tool for rapid and precise prediction of interactions among two RNA molecules. Within this thesis, we developed a model which predicts the double-site RNA- RNA interaction and gives the total energy of the blocks that are predicted using IntaRNA. The respective extensions of the IntaRNA package will be included in the main package for external usage and further development. The comparison between various RNAs molecules have been tested and the output is been provided with polygon plots. Further to that, we also discussed about the advance improvements and drawbacks about the thesis. \\
+
+
+
+\newpage
+\chapter*{Zusammenfassung}
+\addcontentsline{toc}{chapter}{Kurzfassung} 
+%Kurzfassung auf Deutsch
+
+Ribonukleinsäure (RNA) ist ein essentielles biologisches Makromolekül, das in allen biologischen Zellen lebt. Die Wechselwirkung zwischen zwei RNAs spielt eine wichtige Rolle bei den grundlegenden zellulären Aktivitäten wie Transkription, RNA-Verarbeitung und Translation. \\
+
+Computergestützte Vorhersagetechniken können verwendet werden, um zu bestimmen, wie zwei RNA-Moleküle eine intermolekulare Basenpaarung bilden. Es gibt verschiedene biophysikalische und biochemische Ansätze, um die RNA-RNA-Wechselwirkungen (RRIs) zu testen. Bei sehr hohem Rechenaufwand gibt es in der Literatur eine Reihe von Algorithmen, die viele dieser Wechselwirkungen antizipieren können. Ein Vergleich zwischen den RRIs-Vorhersageansätzen wird ebenfalls diskutiert. \\
+
+IntaRNA ist ein Werkzeug zur schnellen und präzisen Vorhersage von Wechselwirkungen zwischen zwei RNA-Molekülen. Im Rahmen dieser Arbeit haben wir ein Modell entwickelt, das die Doppelstellen-RNA-RNA-Wechselwirkung vorhersagt und die Gesamtenergie der Blöcke angibt, die mit IntaRNA vorhergesagt werden. 
+Die jeweiligen Erweiterungen des IntaRNA-Pakets werden zur externen Verwendung und Weiterentwicklung in das Hauptpaket aufgenommen. Der Vergleich zwischen verschiedenen RNAs-Molekülen wurde getestet und die Ausgabe wurde mit Polygon-Plots versehen. Darüber hinaus diskutierten wir auch über die fortgeschrittenen Verbesserungen und Nachteile der These.
+
+
+	
+%	\maketitle
 	
 	\tableofcontents
-	
+	 	
 	\chapter{Introduction}
+	\pagenumbering{arabic}
 	RNA molecules play important roles in various biological processes.Their regulation and function are mediated by interacting with other molecules. 	Forming base pairs between two RNAs, called RNA-RNA interactions (RRI). There are fast and reliable single interaction site (S-RRI) prediction tools like IntaRNA, that often show the additional sites within their suboptimal list, ie. are capable of modelling all sites individually but not in a joint prediction. Many RNAs interact via multiple synchronous, non-overlapping subinteractions (M-RRI), e.g. OxyS-fhlA. The simultaneous prediction of both intra- and inter-molecular base pairing allowing for multiple sites is computationally expensive. Some known approaches are IRIS, piRNA, NUPACK. Here we use a S-RRI prediction tool (namely IntaRNA) for the prediction of M-RRI.
 	
 	\section{Biological Background of RNA}
@@ -200,7 +256,7 @@
   	 
   	 Where $\mathcal {P}_{all}$ is the ensemble of all structures that can be formed from a sequence. The calculation of accessibility of single stranded regions is carried out using  unpaired probability \citep{muckstein2006thermodynamics}, hence it is very important. 
   
- 	 The below figure ~\ref{fig:unpaired} was inspired by the lecture material of RNA bioinformatics lecture .\\
+ 	 The figure ~\ref{fig:unpaired} was inspired by the lecture material of RNA bioinformatics lecture .\\
  	 
  	 \begin{figure}[tb]
  	 	\includegraphics[width=0.8\linewidth]{unpaired}
@@ -656,13 +712,13 @@
 	 
 	  \end{itemize}
   
-  	
-  	 \begin{figure}[tb]
-  		\includegraphics[width=0.9\linewidth]{idea}
-  		\centering
-  		\caption{ Iterative scheme that is used in this thesis.} 
-  		\label{fig:idea}
- 	 \end{figure}
+%  	
+%  	 \begin{figure}[tb]
+%  		\includegraphics[width=0.9\linewidth]{idea}
+%  		\centering
+%  		\caption{ Iterative scheme that is used in this thesis.} 
+%  		\label{fig:idea}
+% 	 \end{figure}
   
   
   	Below is the flowchart representation for the same.\\
@@ -756,14 +812,13 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	
 	\chapter{Results}
 	
-	In order to evaluate the multi site interaction, I will compare the results of few RNA interactions with single site interaction tool "IntaRNA" . The multisite predictions gives you the total energy value of the interactions.\\ 
+	In order to evaluate the multi site interaction, I am comparing the results of few RNA interactions with single site interaction tool "IntaRNA" . The multisite predictions gives you the total energy value of the interactions.\\ 
 	
 	
 	\section{Setup}
 	
 	I have used the IntaRNA-3.1.3-windows-64bit version for my thesis. The following parameter has been set. The --outMode=C a flexible interface to generate RNA-RNA interaction output in CSV format (using ; as separator). The argument -n 1 or --outNumber=1 can be used to generate up to N interactions for each query-target pair. IntaRNA provides the possibility to constrain the accessibility computation using the --qAccConstr and --tAccConstr parameters. In this I have used "b" blocked by some other interaction (implies single-strandedness). The blocking of region is done for blocking the " B1" . For some applications it is needed to ignore dangling end energy contributions that reflect minor stabilizing (stacking) contributions of unpaired bases adjacent to a helix-closing base pair. They can be ignored via --energyNoDangles . It is possible to restrict the overall length an interaction is allowed to have. This can be done independently for the query and target sequence using --qIntLenMax and --tIntLenMax, respectively. We can alter indexing (independently for query and target) using the --qIdxPos0 and --tIdxPos0 parameters, respectively.\\
 	
-	\section{ Sample results}
 	
 	With the above setup , we were able to test few multi site RNA-RNA interactions.\\
 	
@@ -775,55 +830,56 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 %	
 	
 		
+		
 	\begin{figure}
 		\centering
 		\begin{subfigure}{.5\textwidth}
 			\centering
-			\includegraphics[width=.9\linewidth]{oxyleg}
+			\includegraphics[width=0.9\linewidth]{rricomparison1.pdf}
 			\caption{OxyS:fhlA}
-			\label{fig:oxyleg}
+			\label{fig:rricomparison1}
 		\end{subfigure}%
 		\begin{subfigure}{.5\textwidth}
 			\centering
-			\includegraphics[width=.9\linewidth]{opp}
+			\includegraphics[width=.9\linewidth]{rricomparison6}
 			\caption{oppA:Gcvb}
-			\label{fig:opp}
+			\label{fig:rricomparison6}
 		\end{subfigure}
 		\begin{subfigure}{.5\textwidth}
 			\centering
-			\includegraphics[width=.9\linewidth]{egsc386leg}
+			\includegraphics[width=.9\linewidth]{rricomparison4}
 			\caption{mRNA:EGS S-C386}
-			\label{fig:egsc386leg}
+			\label{fig:rricomparison4}
 		\end{subfigure}%
 		\begin{subfigure}{.5\textwidth}
 			\centering
-			\includegraphics[width=.9\linewidth]{egsc386cleg}
+			\includegraphics[width=.9\linewidth]{rricomparison5}
 			\caption{mRNA:EGS S-C386-C}
-			\label{fig:egsc386cleg}
+			\label{fig:rricomparison5}
 		\end{subfigure}
 		\begin{subfigure}{.5\textwidth}
 			\centering
-			\includegraphics[width=.9\linewidth]{dicleg}
+			\includegraphics[width=.9\linewidth]{rricomparison3}
 			\caption{Dicf:ftsz}
-			\label{fig:dicleg}
+			\label{fig:rricomparison3}
 		\end{subfigure}%
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{spoleg}
+		\includegraphics[width=.9\linewidth]{rricomparison2}
 		\caption{spot42:stha}
-		\label{fig:spotleg}
+		\label{fig:rricomparison2}
 	\end{subfigure}
 \begin{subfigure}{.5\textwidth}
 	\centering
-	\includegraphics[width=.9\linewidth]{sserleg}
+	\includegraphics[width=.9\linewidth]{rricomparison7}
 	\caption{mRNA:EGS S-SER}
-	\label{fig:sserleg}
+	\label{fig:rricomparison7}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
 	\centering
-	\includegraphics[width=.9\linewidth]{ssercleg}
+	\includegraphics[width=.9\linewidth]{rricomparison8}
 	\caption{mRNA:EGS S-SERC}
-	\label{fig:ssercleg}
+	\label{fig:rricomparison8}
 \end{subfigure}%
 
 		\caption{Multisite Interaction prediction for various RNA's}
@@ -832,7 +888,7 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	\end{figure}
 
 \clearpage		
-	\subsection{Oxys – fhla}
+	\section{Oxys – fhla}
 	
 	OxyS interaction binds to a short sequence inside the fhlA mRNA coding region. This is one of the better site interaction examples where OxyS forms a stable kissing complex with fhlA. \\
 
@@ -846,18 +902,18 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 
 \begin{figure}[h!tb]
 	\centering
-	\includegraphics[width=.4\linewidth]{oxyleg}
+	\includegraphics[width=.4\linewidth]{rricomparison1.pdf}
 	\caption{OxyS:fhlA}
-	\label{fig:oxyleg}
+	\label{fig:rricomparison1}
 \end{figure}
 
 \clearpage
 	
 	
 	
-	\subsection{Spot42 – sthA }
+	\section{Spot42 – sthA }
 	
-	The Spot42 Interaction with sthA, Base-pairing RNA Spot 42 plays a large role in the suppression of catabolites in Escherichia coli by the direct suppression of genes involved in primary and secondary metabolism.\\
+	The Spot42 Interaction with sthA, Base-pairing RNA Spot 42 plays a large role in the suppression of catabolites in Escherichia coli (E.coli) by the direct suppression of genes involved in primary and secondary metabolism.\\
 	
 		\begin{figure}[h!tb]
 		\includegraphics[width=0.6\linewidth]{spot42}
@@ -868,14 +924,14 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 
 	\begin{figure}[h!tb]
 		\centering
-		\includegraphics[width=.5\linewidth]{spoleg}
+		\includegraphics[width=.5\linewidth]{rricomparison2}
 		\caption{spot42:stha}
-		\label{fig:spotleg}
+		\label{fig:rricomparison2}
 	\end{figure}
 
 \clearpage
 
-	\subsection{gcvB – oppA }
+	\section{gcvB – oppA }
     The gcvB gene encodes two small, nontranslated RNAs that regulate OppA and DppA. The structure of the GcvB-oppA complex consists of two intermolecular helices that precede and follow the putative terminator. This is the example where there are four blocks are presented as per the {\citep{pervouchine2004iris}} . \\ 
 	
 		\begin{figure}[h!tb]
@@ -886,10 +942,10 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	\end{figure}
 
 	\begin{figure}[h!tb]
-	\includegraphics[width=.5\linewidth]{opp}
+	\includegraphics[width=.5\linewidth]{rricomparison6}
 	\centering
 	\caption{ Interaction of GCVB – oppA } 
-	\label{fig:opp}
+	\label{fig:rricomparison6}
 \end{figure}
 
 
@@ -899,7 +955,7 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 %	
 %	This interaction is an example for more than two site RNA interaction. In Escherichia coli, the GcvB gene encodes a small non-translated RNA that regulates several genes involved in transport of amino acids and peptides (including sstT, oppA and dppA). Microarray analysis identified cycA as an additional regulatory target of GcvB. In addition, deletion of the GcvB gene resulted in increased sensitivity to d-cycloserine, consistent with increased expression of cycA. The total energy for both the block is -23.19.
 	
-	\subsection{DicF - ftsZ }
+	\section{DicF - ftsZ }
 	
 	This is an example of a pseudknot (crossing interaction). We note that the dicF-ftsZ complex admits a area of complementarity, which gives rise to a generalized pseudo-knot. The composition of the dicF-ftsZ complex is identical to that of the dsrA-hns in which the dsrA RNA communicates with both the 5 'and 3' ends of the mRNA.\\   
 	
@@ -912,13 +968,13 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 
 \begin{figure}[h!tb]
 	\centering
-	\includegraphics[width=.4\linewidth]{dicleg}
+	\includegraphics[width=.4\linewidth]{rricomparison3}
 	\caption{Dicf:ftsz}
-	\label{fig:dicleg}
+	\label{fig:rricomparison3}
 \end{figure}
 
 \clearpage
-	\subsection{S-mRNA - EGS }
+	\section{S-mRNA - EGS }
 	
 	 RNase P can be recruited to cleave any mRNA using a modified external reference sequence (EGS) that hybridizes with the target mRNAto shape a structure resembling the tRNA substrate. Just the exact sequence of the S mRNA around the targeting region is displayed (in red) and the EGS sequence is shown in blue. The RNase P cleavage site is labelled with an arrowhead. The sequences of S-SER and S-SER-C relative to T-stem and loop and the variable area of the tRNA molecule were derived from tRNASer, while those of S-C386 and S-C386-C were derived from the EGS variant C386.\\
 
@@ -929,48 +985,83 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{mrnaegs}	
 	 		\label{fig:mrnaegs}
-	 	\end{subfigure}
-
+	 	\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{rricomparison7}
+			\caption{mRNA:EGS S-SER}
+			\label{fig:rricomparison7}
+		\end{subfigure}
 	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{SC386}
 	 		\label{fig:SC386}
-	 	\end{subfigure}
+	 	\end{subfigure}%
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=.9\linewidth]{rricomparison4}
+ 		\caption{mRNA:EGS S-C386}
+ 		\label{fig:rricomparison4}
+ 	\end{subfigure}
 	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{sc386c}
 	 	
 	 		\label{fig:sc386c}
 	 	\end{subfigure}%
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=.9\linewidth]{rricomparison5}
+ 		\caption{mRNA:EGS S-C386-C}
+ 		\label{fig:rricomparison5}
+ 	\end{subfigure}
 	 	\begin{subfigure}{.25\textwidth}
 	 		\centering
 	 		\includegraphics[width=.9\linewidth]{SERC}
 	 		
 	 		\label{fig:SERC}
-	 	\end{subfigure}
+	 	\end{subfigure}%
+ 	\begin{subfigure}{.5\textwidth}
+ 		\centering
+ 		\includegraphics[width=.9\linewidth]{rricomparison8}
+ 		\caption{mRNA:EGS S-SERC}
+ 		\label{fig:rricomparison8}
+ 	\end{subfigure}
  	\caption{An EGS resembling the structure of a tRNA.}
 	 	\label{fig:test1}
 	 \end{figure}
 	 
-	 \begin{figure}[h!tb]
-	 	\centering
-	 \begin{subfigure}{.5\textwidth}
-	 	\centering
-	 	\includegraphics[width=.9\linewidth]{egsc386leg}
-	 	\caption{mRNA:EGS S-C386}
-	 	\label{fig:egsc386leg}
-	 \end{subfigure}%
-	 \begin{subfigure}{.5\textwidth}
-	 	\centering
-	 	\includegraphics[width=.9\linewidth]{egsc386cleg}
-	 	\caption{mRNA:EGS S-C386-C}
-	 	\label{fig:egsc386cleg}
-	 \end{subfigure}
- \end{figure}
+%	 \begin{figure}[h!tb]
+%	 	\centering
+%	 \begin{subfigure}{.5\textwidth}
+%	 	\centering
+%	 	\includegraphics[width=.9\linewidth]{rricomparison4}
+%	 	\caption{mRNA:EGS S-C386}
+%	 	\label{fig:rricomparison4}
+%	 \end{subfigure}%
+%	 \begin{subfigure}{.5\textwidth}
+%	 	\centering
+%	 	\includegraphics[width=.9\linewidth]{rricomparison5}
+%	 	\caption{mRNA:EGS S-C386-C}
+%	 	\label{fig:rricomparison5}
+%	 \end{subfigure}
+% \begin{subfigure}{.5\textwidth}
+% 	\centering
+% 	\includegraphics[width=.9\linewidth]{rricomparison7}
+% 	\caption{mRNA:EGS S-SER}
+% 	\label{fig:rricomparison7}
+% \end{subfigure}%
+% \begin{subfigure}{.5\textwidth}
+% 	\centering
+% 	\includegraphics[width=.9\linewidth]{rricomparison8}
+% 	\caption{mRNA:EGS S-SERC}
+% 	\label{fig:rricomparison8}
+% \end{subfigure}%
+% \end{figure}
 \clearpage	
 
 
-\subsection{Details of studied RRIs}
+\section{Details of studied RRIs}
 
 	
 \begin{table}[H]
@@ -981,21 +1072,24 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 		query:target& original& prediction& \rotatebox[origin=c]{90} {E(B1)}  &\rotatebox[origin=c]{90}{E(B1+B2)}  &\rotatebox[origin=c]{90}{1st index}  &\rotatebox[origin=c]{90}{length} \\
 		\hline
 		OxyS:fhlA&104:-15\&98:-9 30:34\&22:42
-		&104:-15\&98:-9 30:34\&22:44&-4.37 &-7.99 &1:-53&109:113\\
+		&104:-15\&98:-9 24:40\&30:34&-4.37 &-7.99 &1:-53&109:113\\
 		\hline
-		Spot42:sthA&51:19\&49:21  7:NA\&5:NA & 55:15\&34:40 7:-8\&1:-2
+		Spot42:sthA&55:15\&48:22  7:NA\&5:NA & 55:15\&34:40 7:-8\&1:-2
 		& -7.85 &-13.05 & 1:-75 &109:150 \\
 		\hline
-		oppA:Gcvb &-95:163\&-64:151 -17:142\&-11:136 -3:84\&19:49 39:18\&64:1  &67:14\&89:-9 152:63\&158:57
+		oppA:Gcvb &-95:163\&-64:151 -17:142\&-11:136 -3:84\&19:49 39:18\&64:1  &14:67\&-9:89 63:152\&57:158
+		
 		& -14.57 &-26.38 & -95:3 &159:160\\
 		\hline
 		%			GcvB:cycA&  &161:175\&62:277 40:91\&34:97	& -18.88 &-23.19 & &201:300 \\
 		%			\hline
 		Dicf:ftsz&52:55\&39:69   \hbox{36:-12\&5:25}  &52:55\&35:73 12:82\&18:76	& -6.89 &-13.86 &1:-73 &70:227 \\
 		\hline
-		mRNA:EGSS-SER &26:7\&20:13 17:46\&11:52  &26:7\&20:11 & -10.3 &NA & 1:1 &29:56 \\
+		mRNA:EGSS-SER &26:7\&20:13 17:46\&11:52  &-1:53\&7:46 \hbox{-9:13\&-3:7}
+		 & -8.41 &-16.0 & -60:1 &129:156 \\
 		\hline
-		mRNA:EGSS-SER-C &26:7\&20:13 17:46\&11:52  &26:7\&20:11 & -10.28 &NA & 1:1 &29:56 \\
+		mRNA:EGSS-SER-C &26:7\&20:13 17:46\&11:52  &-1:53\&7:46 \hbox{-9:13\&-3:7}
+		 & -8.41 &-16.0 & -60:1 &129:156 \\
 		\hline
 		mRNA:EGS S-C386 &1:46\&7:40 10:13\&16:7 &
 		47:48\&63:31 10:13\&16:7
@@ -1021,7 +1115,7 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	 
 	 OxyS binds wild-type fhlA mRNA shows that kissing complex forming between OxyS and fhlA results in a healthy anti-sense-target structure. The secondary structure of the 5 'end region of fhlA mRNA was predicted to include two stemloop structures. The findings of the study of the structure confirm the presence of the two structure. The result also show that the upper and lower portions of the Rbs stem- may be balanced by tertiary interactions.Awareness of the three-dimensional structure of the fhlA-OxyS kissing complex and the structural requirements that allow its development may have important consequences for the design of the artificial anti-sense RNAs. \\
 	   
-	 When tested , we find no difference in the Energy parameters and also with the hybridDB ( ie., hybrid in dot-bar notation). The total energy for both the block is -7.99. Here the sequence length for oxys starts from 1 to 109 and for fhla it is from -53 to 60. We use the parameter file for giving the target position to start from -53 ( indexing starts with 1 (tIdxPos0). We can clearly see from the ~\ref{fig:fhla} where the interaction that has been predicted and the original prediction from the same is almost same. \\
+	 When tested , we find no difference in the Energy parameters and also with the hybridDB ( ie., hybrid in dot-bar notation). The total energy for both the block is -7.99. Here the sequence length for oxys starts from 1 to 109 and for fhla it is from -53 to 60. We use the parameter file for giving the target position to start from -53 ( indexing starts with 1 (tIdxPos0). We can clearly see from the ~\ref{fig:rri-comparison-1} where the interaction that has been predicted and the original prediction from the same is almost same. \\
 	 
 	 \section{Spot42 – sthA }
 	 This example is taken from \citep{beisel2011base} where Spot 42 secondary structure, previously re shown. Three consecutive nucleotides in each single-stranded region were mutated to block expected base-pair interactions with target mRNAs (I – III) refer ~\ref{fig:bei}. To validate base pairing through the three single-stranded regions of Spot 42, compensatory mutations have been made in the sthA. Such findings suggest that the base pairing with target mRNAs requires three single-stranded regions of Spot 42. The mutation in Region III influenced the repression of the fusion of sthA ( refer ~\ref{fig:bei1})  \\
@@ -1069,7 +1163,7 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	  
 	  S-C386-C and S-SER-C were derived from S-C386 and S-SER, respectively, and incorporated simple substitutions (5'-UUC-3'- > AAG) at the three closely conserved locations in the T-loop of these EGSs.Nucleotides in these three positions are highly conserved among tRNA molecules and are essential for the folding and recognition of tRNA molecules by RNase P, so mutations in these positions are involved in the EGS process.S-C386-C and S-SER-C had the same anti-sense pattern to the targetS RNA series as S-C386 and S-SER ~\ref{fig:test1}  and had identical binding affinities to S38 as S-C386 and S-SER, respectively . S-C386-Cand S-SER-C can also be used as anti-sense regulation of such EGSs.\\
 	 
-	This example is taken from the paper \citep{zhang2013engineered }  .Here, the start of the S-mRNA is complementary to the end of the S-SER, which led to the crossing pattern. We can also clearly see that there is a shortage of the sequence. Also, the tails are not the actual , they are just the artificial one's. Due to its very short sequence , we took the 50nt long on the left side and right side of UCUUCAUCCUGCUGCUAUGCCUCAUCUUC of S-mRNA. The index position is taken from the site of cleavage .\\
+	This example is taken from the paper{\citep{zhang2013engineered}}  .Here, the start of the S-mRNA is complementary to the end of the S-SER, which led to the crossing pattern. We can also clearly see that there is a shortage of the sequence. Also, the tails are not the actual , they are just the artificial one's. Due to its very short sequence , we took the 50nt long on the left side and right side of UCUUCAUCCUGCUGCUAUGCCUCAUCUUC of S-mRNA. The index position is taken from the site of cleavage .\\
 	
 	 Hence we add the parameterfile and set qIdxPos0=-10. We can also see that only one block is been predicted for the mRNA:EGS S-SER and mRNA:EGS S-SER-C. For the mRNA:EGS S-C386 and mRNA:EGS S-C386C two blocks are predicted. The total energy for mRNA:EGS S-C386 is -12.46 and mRNA:EGS S-C386C is -14.9  \\
 	 
@@ -1083,27 +1177,25 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	
 	\begin{table}[H]
 		
-	\begin{tabular}{|p{1.5cm}|p{15cm}|}
+	\begin{tabular}{ |l | p{1.0\linewidth}| }
 		\hline
 		RNA& Sequence\\
 		\hline\hline	
-		OxyS& GAAACGGAGCGGCACCTCTTTTAACCCTTGAAGTCACTGCCCGTTTCGAG AGTTTCTCAACTCGAATAACTAAAGCCAACGTGAACTTTTGCGGATCTCCAGGATCCGC \\
+		OxyS&  GAAACGGAGCGGCACCTCTTTTAACCCTTGAAGTCACTGCCCGTTTCGAGAGTTTCTCAACTCGAATAACTAAAGCCAACGTGAACTTTTGCGGATCTCCAGGATCCGC \\
 		\hline
-		fhla&AGTTAGTCAATGACCTTTTGCACCGCTTTGCGGTGCTTTCCTGGAAGAACA AAATGTCATATACACCGATGAGTGATCTCGGACAACAAGGGTTGTTCGACATCACTCGGACA\\
+		fhla&AGTTAGTCAATGACCTTTTGCACCGCTTTGCGGTGCTTTCCTGGAAGAACAAAATGTCATATACACCGATGAGTGATCTCGGACAACAAGGGTTGTTCGACATCACTCGGACA\\
 		\hline
-		spot42&GUAGGGUACAGAGGUAAGAUGUUCUAUCUUUCAGACCUUUUACUUCACGUAAUCG
-		GAUUUGGCUGAAUAUUUUAGCCGCCCCAGUCAGUAAUGACUGGGGCGUUUUUUA\\
+		spot42&GUAGGGUACAGAGGUAAGAUGUUCUAUCUUUCAGACCUUUUACUUCACGUAAUCGGAUUUGGCUGAAUAUUUUAGCCGCCCCAGUCAGUAAUGACUGGGGCGUUUUUUA\\
 			\hline
-		stha&GGGATCAATTGGCTTACCCGCGATAAAATGTTACCATTCTGTTGCTTTTATGTATAAGAA
-		CAGGTAAGCCCTACCATGCCACATTCCTACGATTACGATGCCATAGTAATAGGTTCCGGCCCCGGCGGCGAAGG CGCTGCAATGGGCCTG\\
+		stha&GGGATCAATTGGCTTACCCGCGATAAAATGTTACCATTCTGTTGCTTTTATGTATAAGAACAGGTAAGCCCTACCATGCCACATTCCTACGATTACGATGCCATAGTAATAGGTTCCGGCCCCGGCGGCGAAGGCGCTGCAATGGGCCTG\\
 			\hline	
-		GCVB &TTCCTGAGCCGGAACGAAAAGTTTTATCGGAATGCGTGTTCTGATGGGCTTTTGGCTT ACGGTTGTGATGTTGTGTTGTTGTGTTTGCAATTGGTCTGCGATTCAGACCACGGTAGCGAGACTACCCTTTT TCACTTCCTGTACATTTACCCTGTCTGTC\\
+		GCVB &TTCCTGAGCCGGAACGAAAAGTTTTATCGGAATGCGTGTTCTGATGGGCTTTTGGCTTACGGTTGTGATGTTGTGTTGTTGTGTTTGCAATTGGTCTGCGATTCAGACCACGGTAGCGAGACTACCCTTTTTCACTTCCTGTACATTTACCCTGTCTGTC\\
 		\hline
-		oppa& GACAGCAGAAAGUCUCCGAGCCUGUGCAGGGUCCCAAUCCGGGAUUACACAUGCUGG UUAAUACCAGUAAUUAUAAUGAGGGAGUCCAAAAAACAAUGACCAACAUCACCAAGAGAAGUUUAGUAGCAG CUGGCGUUCUGGCUGCGCUAAUGGCAGGGA\\
+		oppa& GACAGCAGAAAGUCUCCGAGCCUGUGCAGGGUCCCAAUCCGGGAUUACACAUGCUGGUUAAUACCAGUAAUUAUAAUGAGGGAGUCCAAAAAACAAUGACCAACAUCACCAAGAGAAGUUUAGUAGCAGCUGGCGUUCUGGCUGCGCUAAUGGCAGGGA\\
 		\hline
-		Dicf& TTTCTGGTGACGTTTGGCGGTATCAGTTTTACTCCGTGACTGCTCTGCCGCCCTTTTT AAAGTGAATTTT\\
+		Dicf& TTTCTGGTGACGTTTGGCGGTATCAGTTTTACTCCGTGACTGCTCTGCCGCCCTTTTTAAAGTGAATTTT\\
 		\hline
-		ftsz& AAAAGAGTTTTAATTTTTATGAGGCCGACGATGATTACGGCCTCAGGCGACAGGCAC AAATCGGAGAGAAACTATGTTTGAACCAATGGAACTTACCAATGACGCGGTGATTAAAGTCATCGGCGTCGGCGGCGGCGGCGGTAATGCTGTTGAACACATGGTGCGCGAGCGCATTG AAGGTGTTGAATTCTTCGCGGTAAATACCGATGCACAAGCGCTGCGTAAAA\\	
+		ftsz& AAAAGAGTTTTAATTTTTATGAGGCCGACGATGATTACGGCCTCAGGCGACAGGCACAAATCGGAGAGAAACTATGTTTGAACCAATGGAACTTACCAATGACGCGGTGATTAAAGTCATCGGCGTCGGCGGCGGCGGCGGTAATGCTGTTGAACACATGGTGCGCGAGCGCATTGAAGGTGTTGAATTCTTCGCGGTAAATACCGATGCACAAGCGCTGCGTAAAA\\	
 			\hline
 			egs& AACTTGTCCTGGTTATCGCTGGATGTGTCTGCGGCGTTTTATCATCTTCCTCTTCATCCTGCTGCTATGCCTCATCTTCTTGTTGGTTCTTCTGGACTATCAAGGTATGTTGCCCGTTTGTCCTCTAAT\\
 			\hline
