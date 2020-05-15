@@ -323,13 +323,13 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
  		
  	In order to allow highly accurate predictions, state-of-the-art methods not only take into account the stability (energy) of possible RNA–RNA interactions, but they also consider the accessibility of the interacting subsequences \citep{umu2017comprehensive}, i.e., the intramolecular structure pattern.\\
  	
- 	Small regulatory RNAs (sRNAs) typically have a range of 50 to 500 nucleotides and are transcribed through intergenic bacterial genome regions. sRNAs work in trans and display complementarity with target mRNAs. Inhibition of translation initiation is the hybridization of the sRNA with the mRNA's 5'-UTR blocks the ribosome binding site and therefore inhibits translation initiation ~\ref{fig:srna}. \\
+ 	Small regulatory RNAs (sRNAs) typically have a range of 50 to 500 nucleotides and are transcribed through intergenic bacterial genome regions. sRNAs work in trans and display complementarity with target mRNAs. Many sRNAs base pairs within the 5'-UTR of  mRNA's target and blocks the ribosome binding site, therefore stops the initiation of translation. ~\ref{fig:sRNA}. This process is called Inhibition of translation initiation. \\
  	
  	
  	 \begin{figure}[tb]
  		\includegraphics[width=0.8\linewidth]{sRNA}
  		\centering
- 		\caption{sRNA translation inhibition. sRNAs bind to ribosomal binding site (RBS) by complementary RNA-RNA interactions, which avoid ribosome binding. Figure is inspired from the site (biozentrum uni-wuerzburg)\\}
+ 		\caption{sRNA translation inhibition. sRNAs bind to ribosomal binding site (RBS) by complementary RNA-RNA interactions, which avoid ribosome binding.}
  		\label{fig:sRNA}
  	\end{figure}
  	
@@ -769,7 +769,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	We get the time and space complexity of $O(n^2m^2)$ by limiting the loop size, which is still very high. When we limit the interaction length to $l$, it has a complexity of $O(nml^2)$ time and $O(nml^2)$ space. The interaction with the minimum estimated free energy (mfe) is probably the most stable structure and thus the structure fulfills the RNA molecule function. Therefore, we are interested in \\
 	
 	 \begin{equation*}
-	mfe = \argmin_{i,j,k,l} C(i,j,k,l)
+	mfe = \min_{i,j,k,l} C(i,j,k,l)
 	\end{equation*}
 
 	
@@ -955,7 +955,7 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	 \begin{itemize}
 	
 	\item Step 1: Iterative Accumulation : Here, We iterate the empty list of constrained prediction and predict the minimum free energy (mfe). Every iteration returns us a list of blocks $C$. Check for mfe ($C$) exists? then, we add a new block $C=C \cup \{B_{mfe}(C)\}$. Empty list of constraints are iterated until we don't get a new block. $C' = \{C\}$. In the end, we get a list of constraints.
-	\item Step 2: Iterative Refinement :For every new block (ie., $\forall b \in C$ : $b= B_{mfe}(C') where $$C'=C\setminus\{b\}$), we need to check if it is preserved or not. If preserved, for all $C$, then we stop the iteration. If not, then we need to alter the set of blocks ie.,$C=C' \cup \{B_{mfe} (C')\}$ .
+	\item Step 2: Iterative Refinement :For every new block (ie., $\forall b \in C$ : $b= B_{mfe}(C')$ $where$ $C'=C\setminus\{b\}$), we need to check if it is preserved or not. If preserved, for all $C$, then we stop the iteration. If not, then we need to alter the set of blocks ie.,$C=C' \cup \{B_{mfe} (C')\}$ .
 	
 \end{itemize}
 
@@ -976,7 +976,7 @@ minimum height=2em]
 \node [block, right of=empty, node distance=2.5cm , text width=4em] (iterate) {predict mfe ($C$)};
 \node [decision, right of=iterate, node distance=2.5cm, text width=4.8em] (decide1) {mfe ($C$) exists ?};
 \node [block, below of=decide1, node distance=3.2cm , text width=4.8em] (check1) {$C=C \cup \{B_{mfe}(C)\}$};
-\node [decision, right of=decide1, node distance=3.2cm, text width=5.2em] (decide2) {$\forall b \in C$ : $b$= $B_{mfe}(C') | C' = C \setminus \{b\}$};
+\node [decision, right of=decide1, node distance=3.4cm, text width=4em] (decide2) {$\forall b \in C$ : $b$ == $B_{mfe}(C') \mid C' = C \setminus \{b\}$};
 \node [block, below of=decide2, node distance=3.2cm] (check2) {$C=C' \cup \{B_{mfe} (C')\}$};
 \node [cloud, right of=decide2, node distance=2.7cm] (stop) {stop};
 % Draw edges
@@ -1169,24 +1169,108 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 
 When we run with IntaRNA first, we observed that the Spot42 (34 - 55) interacts with sthA (15 - 40), ie.,55:15\&34:40 is the block that is predicted which refers to region III and the mfe is -7.85. Then, we run them with our tool here when Spot42 interacts with sthA, we observed that the total energy value is -26.38. The prediction provides a model for the concurrent interaction of region I and III. If we need to have the same ED values, then we can use the --energyNoDangles option. Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}}. From the right side figure ~\ref{fig:be}, we can clearly see, mutating sites I and III showed the highest effect while region II mutation showed only small effects. This is because, I and III are close in structure though they are far away within the sequence.\\
 
-We tried manually generating the third site for that we run the IntaRNA with seedbp=6 while blocking the two first interaction sites ( I and III), we get the interaction with site (II). Fig ~\ref{fig:thirdsite} shows that all three sites contribute to the interaction as observed within the experiment of right side of Fig ~\ref{fig:be}.  \\
+As our model shows only two interacting sites, we tried manually generating the third-site for that we run the IntaRNA with seedbp=6 while blocking the two first interaction sites ( I and III). As a result, we get the interaction with site (II) (ie., Spot42 (20 - 25) interacts with sthA (-19 - -14)) with the mfe of -2.02. Thus the total interaction energy for all the three blocks is -15.07.  Fig ~\ref{fig:thirdsite} shows that all three sites can contribute to the interaction as observed within the experiment of right side of Fig ~\ref{fig:be}. As the interaction sites I and II are close to the start codon, they block the RBS which are called Inhibition of translation initiation. Refer to the Fig ~\ref{fig:sRNA} for the sRNA translation inhibition. \\
 
 
-\begin{figure}[h!tb]
-	\includegraphics[width=1.0\linewidth]{twosite.pdf}
-	\centering
-	\caption{ The figure shows the predicted interaction sites I and III } 
-	\label{fig:twosite}
-\end{figure}
+%\begin{figure}[h!tb]
+%	\includegraphics[width=1.0\linewidth]{twosite.pdf}
+%	\centering
+%	\caption{ The figure shows the predicted interaction sites I and III } 
+%	\label{fig:twosite}
+%\end{figure}
 
 	\begin{figure}[h!tb]
 	\includegraphics[width=1.0\linewidth]{thirdsite.pdf}
 	\centering
-	\caption{ By blocking the interacting sites I and III we got the third site II. } 
+	\caption{ Spot42 interacts with sthA has three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites I and II, they stop the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with sthA (blue colour).  } 
 	\label{fig:thirdsite}
 \end{figure}
 
+Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF). The mutation in region I affected the repression of gltA, xylF and nanC. From the Figure ~\ref{fig:all} ( except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from the Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. \\
 
+ Now, we tried manually getting the third-site. For gltA, we got the interaction site II(ie., Spot42 (25 - 30) interacts with gltA(80 - 85)) with the mfe of -0.47. Thus the total interaction energy for all three blocks of gltA is -12.21.  For srlA, we got the interaction site I(ie., Spot42 (1 - 7) interacts with srlA(-166 - -160)) with the mfe of -3.94. Thus the total interaction energy for all three blocks of srlA is -17.25. For nanC, we got the interaction site II(ie., Spot42 (26 - 31) interacts with nanC(-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31.\\
+
+ xylF results were quite different from other target mRNAs. When we were running this RNA in our tool, we got the block 1 interacting in mutation site I and II ~\ref{fig:all1} ( bottom right ). The block 2 in mutation site III. Though xylF is interacting in both the mutation site I and II, it has its highest effect in mutation site I compared to site II. After that when we tried running for the third site manually using IntaRNA tool, we didn't get the third site. Thus the total interaction energy for two blocks of xylF is -14.15. These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Below table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites.\\
+
+ \begin{figure}[h!tb]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{gltA}	
+		\label{fig:gltA}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{srlA}
+		
+		\label{fig:srlA}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{nanC}
+		\label{fig:nanC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{xylF}
+	
+		\label{fig:xylF}
+	\end{subfigure}
+	\
+	\caption{The figure shows the mutational analysis of base-pairing interactions of Spot42 with its target mRNAs. The black bar shows the translation product measure of sthA gene and the white one is a control molecule to compare for the different experiments (translational reference). Figure is taken from the paper \citep{beisel2011base} .\\ }
+	\label{fig:all}
+\end{figure}
+
+
+\begin{table}[h!]
+\centering
+	\begin{tabular}{||c |c |c |c |c ||} 
+		\hline
+		Target mRNAs & mutation site I & mutation site II & mutation site III & Order of blocks \\ [0.2ex] 
+		\hline\hline
+		sthA & $B_2$ & $B_3$ & $B_1$ & $B_3 < B_1 < B_2$\\ 
+		\hline
+		gltA & $B_1$ & $B_3$ &  $B_2$ & $B_1 < B_3 < B_2$\\
+		\hline
+		srlA & $B_3$ & $B_1$ &  $B_2$ & $B_2 < B_3 < B_1 $\\
+		\hline
+		nanC & $B_1$ & $B_3$ &  $B_2$ & $B_1 < B_3 < B_2$\\
+		\hline
+		xylF & $B_1$ & $B_1$ & $B_2$ & $B_1 < B_2$ \\  
+	\hline
+	\end{tabular}
+	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site, along with the order of blocks in target.}
+	\label{table:last}
+\end{table}
+
+\begin{figure}[h!tb]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{gltA2}	
+		\label{fig:gltA2}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{srla2}
+		
+		\label{fig:srla2}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{nanc2}
+		\label{fig:nanc2}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{xylf2}
+		
+		\label{fig:xylf2}
+	\end{subfigure}
+	\
+	\caption{ The figure shows the base-pairing interactions with Spot 42 predicted by the folding algorithm NUPACK. It shows the mutation region sites for the target mRNAs. Here spf is referred to as Spot42. Figure is taken from the paper \citep{beisel2011base} \\ }
+	\label{fig:all1}
+\end{figure}
 
 \clearpage
 
