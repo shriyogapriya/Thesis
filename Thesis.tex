@@ -95,9 +95,9 @@ I want to thank my friends for being helpful and friendly, which contributed pos
 
 Ribonucleic acid (RNA) is an essential biological macromolecule in all biological cells. Computational prediction techniques may be used to determine how two RNA molecules will form intermolecular base pairing. A variety of biophysical and biochemical approaches are there to test the RNA-RNA interactions (RRIs). At very large computational expense, there are a range of algorithms in the literature that can anticipate a lot of these interactions.\\
 
- The identification of non-coding (nc)RNA targets is largely regulated by two factors, namely the consistency of the duplex between the two interacting RNAs and the internal structure of both mRNA and ncRNA. Approaches may also be divided between various major categories based on whether they consider the inter- and intramolecular structure. One such approach is accessibility based interaction prediction model, which helps us in finding the single-site interaction of two RNAs. IntaRNA is a tool for rapid and precise prediction of interactions for accessibility based approach.  \\
+ The identification of non-coding (nc)RNA targets is largely regulated by two factors, namely the consistency of the duplex between the two interacting RNAs and the internal structure of both mRNA and ncRNA. Approaches may also be divided between various major categories based on whether they consider the inter- and intramolecular structure. One such approach is the accessibility based interaction prediction model, which helps us in finding the single-site interaction of two RNAs. IntaRNA is a tool for rapid and precise prediction of interactions for an accessibility based approach.  \\
 
- Within this thesis, we developed a model using an iterative scheme which predicts concurrent blocks of interactions within an accessibility based prediction model and provides us with the prediction of  joint structure for the interacting RNAs and total energy. The proof for the energy of an respective Multi-site RRI are computed from the two energies is also shown. The respective extensions of the IntaRNA package will be included in the main package for external usage and further development. The comparison between various RNAs molecules have been tested and the output is been provided with polygon plots. Further to that, alternative RRIs prediction approaches and advance improvements and drawbacks are discussed within the thesis. \\
+ Within this thesis, we developed a model using an iterative scheme that predicts concurrent blocks of interactions within an accessibility based prediction model and provides us with the prediction of joint structure for the interacting RNAs and total energy. The proof for the energy of a respective Multi-site RRI is computed from the two energies is also shown. The respective extensions of the IntaRNA package will be included in the main package for external usage and further development. The comparison between various RNAs molecules have been tested and the output is been provided with polygon plots. Further to that, alternative RRIs prediction approaches and advance improvements and drawbacks are discussed within the thesis. \\
 
 
 
@@ -120,14 +120,14 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
 	 	
 	\chapter{Introduction}
 	\pagenumbering{arabic}
-	RNA molecules play important roles in various biological processes. Their regulation and function are mediated by interacting with other molecules, e.g by forming base pairs between two RNAs, called RNA-RNA interactions (RRI).  Many RNAs interact via multiple synchronous, non-overlapping subinteractions (M-RRI), e.g. OxyS-fhlA. There are fast and reliable single interaction site (S-RRI) prediction tools like IntaRNA, which helps us in predicting mRNA target sites for given non-coding RNAs (ncRNAs) , also they are capable of modelling all sites individually but not in a joint prediction. The simultaneous prediction of both intra- and inter-molecular base pairing allowing for multiple sites is computationally expensive. Some known approaches are IRIS, piRNA, NUPACK. Here we use a S-RRI prediction tool (namely IntaRNA) for the prediction of M-RRI.
+	RNA molecules play important roles in various biological processes. Their regulation and function are mediated by interacting with other molecules, e.g by forming base pairs between two RNAs, called RNA-RNA interactions (RRI).  Many RNAs interact via multiple synchronous, non-overlapping sub-interactions (M-RRI), e.g. OxyS-fhlA. There are fast and reliable single interaction site (S-RRI) prediction tools like IntaRNA, which helps us in predicting mRNA target sites for given non-coding RNAs (ncRNAs), also they are capable of modeling all sites individually but not in a joint prediction. The simultaneous prediction of both intra- and inter-molecular base-pairing allowing for multiple sites is computationally expensive. Some known approaches are IRIS, piRNA, NUPACK. Here we use a S-RRI prediction tool (namely IntaRNA) for the prediction of M-RRI.
 	
 	\section{Biological Background of RNA}
-	In this thesis, I will focus on Ribonucleic acids (RNA). First of all, I would like to provide the basic biological background that is essential for the thesis. Ribonucleic acid, or RNA is one of the three major biological macromolecules that are important for all known forms of life (along with DNA (deoxyribonucleic acid) and proteins). The interaction between two RNAs plays a vital role in the basic cellular activities like transcription, RNA processing and translation. The process by which DNA is copied to RNA is called \textit{transcription}, and that by which RNA is used to produce proteins is called \textit{translation}. RNAs also play an important role in protein synthesis. \\
+	In this thesis, I will focus on Ribonucleic acids (RNA). First of all, I would like to provide the basic biological background that is essential for the thesis. Ribonucleic acid or RNA, DNA (deoxyribonucleic acid) and proteins are the three major biological macromolecules that are important for all known forms of life. The interaction between the two RNAs plays a vital role in basic cellular activities like transcription, RNA processing, and translation. \textit{Transcription} is the process in which DNA is copied to RNA. The \textit{Translation} is the process in which RNA is used to produce proteins. RNAs also play a vital role in protein synthesis. \\
 	
-	 DNA is double stranded and RNA is a single-stranded molecule. Each strand of RNA is a sequence of four building blocks called \textit{nucleotides}. Each nucleotide contains sugar, phosphate and nitrogen containing bases. The sugar and phosphate groups form the backbone of RNA strand and the bases bond to each other. The RNA molecules are represented as a sequence $S \in \{A, C, G, U\} ^*$, where A (adenine), C (cytosine), G (guanine), U (uracil) are the bases of the nucleotide chain.\\
+	 The main difference between DNA and RNA is that, DNA is double-stranded and RNA is a single-stranded molecule. Each strand of RNA is a sequence of four building blocks called \textit{nucleotides}. Each nucleotide contains sugar, phosphate and nitrogen containing bases. The sugar and phosphate groups form the backbone of the RNA strand and the bases bond to each other. The RNA molecules are represented as a sequence $S \in \{A, C, G, U\} ^*$, where A (adenine), C (cytosine), G (guanine), U (uracil) are the bases of the nucleotide chain.\\
 	 
-	According to their potential for coding, RNA's are classified into two major categories i.e., coding RNAs and noncoding RNAs. Coding RNAs mostly refers to mRNA that encodes protein to act as different components including cell structures, signal transductors and enzymes. Noncoding RNAs act as cellular regulators with no protein encoding.\\
+	According to their potential for coding, RNAs are classified into two major categories i.e., coding RNAs and non coding RNAs. Coding RNAs mostly refer to mRNA that encodes protein to act as different components including cell structures, signal transductors, and enzymes. Non coding RNAs act as cellular regulators with no protein encoding.\\
 	Complementary bases $C$-$G$ and $A$-$U$ form stable base pairs with each other using hydrogen bonds. These are called Watson-Crick pairs. Also important are the weaker $U$-$G$ wobble pairs. Together they are called \textit{canonical base pairs}. In general, isolated base pairs are unstable. If interacting bases belong to the same molecule of RNA, they form \textit{intra-molecular} structures and if they belong to different molecules of RNA, they form \textit{inter-molecular} structures.\\
 	
 	The prediction of RNA-RNA interaction is intended to predict these intermolecular structures between two RNA molecules, an extremely important step in understanding the role of ncRNAs. However, intramolecular and intermolecular structures are not mutually exclusive.\\
@@ -135,12 +135,12 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
 	\begin{figure}[h]
 	\includegraphics[width=0.7\linewidth]{secondary_structure}
 	\centering
-	\caption{Schematic representation of the secondary structure (a set of base pairs) for the RNase P RNA molecule of Methanococcus marapaludis from the RNase P Database. Thick blue dots represents base pairs and red dashed boxes represent structural features such as stacking, bulges, hairpin , interior, multi loops and pseduoknot structure. This figure was taken from the RNAStrand webpage.
+	\caption{Schematic representation of the secondary structure (a set of base pairs) for the RNase P RNA molecule of Methanococcus marapaludis from the RNase P Database. Thick blue dots represents base pairs and red dashed boxes represent structural features such as stacking, bulges, hairpin , interior, multi loops and pseduoknot structure. This figure was taken from the RNA Strand webpage.
 	\label{fig:secondarystructure} 
     \citep{andronescu2008rna}}
 	\end{figure}
 
-	Single stranded nucleic acid sequences contain many complementary regions that can form double helices when the molecule is folded back onto itself. The resulting pattern of double helical stretches interspersed with loops is called the \textit{secondary} structure of an RNA.\\
+	Single-stranded nucleic acid sequences contain many complementary regions that can form double helices when the molecule is folded back onto itself. The resulting pattern of double helical stretches interspersed with loops is called the \textit{secondary} structure of an RNA.\\
 	
 	\section{Formal background of RNA}
 	Here in this section, I would like to bring up the formal definitions of ribonucleic acid.
@@ -155,8 +155,8 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
 	$(i = i' \Leftrightarrow j = j')$ and $ i \neq j'$ \\
 	\end{center}
 
-	To form a valid secondary structure, the base pairs must satisfy a number of limitations. Let the bases be numbered from 1 to n in a sequence. If the bases are complementary, a base pair may form between positions $i$ and $j$ ,  if $|j - i | \geq 4$, since there must usually be at least three unpaired bases in a hairpin loop. Let bases $k$ and $l$ form another allowed pair. The pair $(k,l)$ is said to be compatible with the pair $(i,j)$ if the two pairs can be present in a structure simultaneously. Pairs are compatible if they are non-overlapping (e.g. $i<j<k<l$ ) or if one is nested within the other (e.g. $i<k<l<j$ ). The Final case, where the pairs are interlocking or crossing (e.g. $i<k<j<l$ ) is called  pseudo-knot. These pairs are assumed to be incompatible with
-	most programs. An allowed secondary structure is a set of base pairs that are all compatible with each other.\\
+	To form a valid secondary structure, the base pairs must satisfy some limitations. Let the bases be numbered from 1 to $N$ in a sequence. If the bases are complementary, a base pair may form between positions $i$ and $j$, if $|j - i | \geq 4$, since there must usually be at least three unpaired bases in a hairpin loop. Let $k$ and $l$ bases form another permissible  pair. If the two pairs can be present in a structure simultaneously, then the pair $(k,l)$ is said to be compatible with the pair $(i,j)$ . If they are non-overlapping (e.g. $i<j<k<l$ ) or if one is nested within the other (e.g. $i<k<l<j$ ) then the pairs are said to be compatible. The Final case, where the pairs are interlocking or crossing (e.g. $i<k<j<l$ ) is called  pseudo-knot. These pairs are taken to be incompatible with
+	most programs. A permitted secondary structure is a set of base pairs, all compatible with one another.\\
 	
 	They are different types of RNA secondary structure. i.e. nested
 	and crossing structures. Crossing structures contain pseudo-knots, where two structure parts overlap. Nested structures doesn't have any crossing arcs.\\
@@ -1167,7 +1167,7 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 \label{fig:bei2}
 \end{figure}
 
-When we run with IntaRNA first, we observed that the Spot42 (34 - 55) interacts with sthA (15 - 40), ie.,55:15\&34:40 is the block that is predicted which refers to region III and the mfe is -7.85. Then, we run them with our tool here when Spot42 interacts with sthA, we observed that the total energy value is -26.38. The prediction provides a model for the concurrent interaction of region I and III. If we need to have the same ED values, then we can use the --energyNoDangles option. Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}}. From the right side figure ~\ref{fig:be}, we can clearly see, mutating sites I and III showed the highest effect while region II mutation showed only small effects. This is because, I and III are close in structure though they are far away within the sequence.\\
+When we run with IntaRNA first, we observed that the Spot42 (34 - 55) interacts with sthA (15 - 40), ie.,55:15\&34:40 is the block that is predicted which refers to region III and the mfe is -7.85. Then, we run them with our tool here when Spot42 interacts with sthA, we observed that the total energy value is -13.05. The prediction provides a model for the concurrent interaction of region I and III.  Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}}. From the right side figure ~\ref{fig:be}, we can clearly see, mutating sites I and III showed the highest effect while region II mutation showed only small effects. We can also say that even if the sites are far in sequence they are close if the structure (I and III) is formed.\\
 
 As our model shows only two interacting sites, we tried manually generating the third-site for that we run the IntaRNA with seedbp=6 while blocking the two first interaction sites ( I and III). As a result, we get the interaction with site (II) (ie., Spot42 (20 - 25) interacts with sthA (-19 - -14)) with the mfe of -2.02. Thus the total interaction energy for all the three blocks is -15.07.  Fig ~\ref{fig:thirdsite} shows that all three sites can contribute to the interaction as observed within the experiment of right side of Fig ~\ref{fig:be}. As the interaction sites I and II are close to the start codon, they block the RBS which are called Inhibition of translation initiation. Refer to the Fig ~\ref{fig:sRNA} for the sRNA translation inhibition. \\
 
@@ -1180,17 +1180,35 @@ As our model shows only two interacting sites, we tried manually generating the 
 %\end{figure}
 
 	\begin{figure}[h!tb]
-	\includegraphics[width=1.0\linewidth]{thirdsite.pdf}
+	\includegraphics[width=0.85\linewidth]{thirdsite.pdf}
 	\centering
-	\caption{ Spot42 interacts with sthA has three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites I and II, they stop the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with sthA (blue colour).  } 
+	\caption{ Spot42 interacts with sthA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites I and II, they block the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with sthA (blue colour) can be formed concurrently.  } 
 	\label{fig:thirdsite}
 \end{figure}
 
-Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF). The mutation in region I affected the repression of gltA, xylF and nanC. From the Figure ~\ref{fig:all} ( except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from the Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. \\
+Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF) studied in the paper \citep{beisel2011base}. The mutation in region I affected the repression of gltA, xylF and nanC. From the Figure ~\ref{fig:all} (except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from the Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. \\
 
- Now, we tried manually getting the third-site. For gltA, we got the interaction site II(ie., Spot42 (25 - 30) interacts with gltA(80 - 85)) with the mfe of -0.47. Thus the total interaction energy for all three blocks of gltA is -12.21.  For srlA, we got the interaction site I(ie., Spot42 (1 - 7) interacts with srlA(-166 - -160)) with the mfe of -3.94. Thus the total interaction energy for all three blocks of srlA is -17.25. For nanC, we got the interaction site II(ie., Spot42 (26 - 31) interacts with nanC(-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31.\\
+ Now, we tried manually getting the third-site. For gltA, we got the interaction site II (ie., Spot42 (25 - 30) interacts with gltA (80 - 85)) with the mfe of -0.47. Thus the total interaction energy for all three blocks of gltA is -12.21.  For srlA, we got the interaction site I (ie., Spot42 (1 - 7) interacts with srlA (-166 - -160)) with the mfe of -3.94. Thus the total interaction energy for all three blocks of srlA is -17.25. For nanC, we got the interaction site II (ie., Spot42 (26 - 31) interacts with nanC (-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31.\\
+ 
+ \begin{figure}[h!]
+ 	\includegraphics[width=0.85\linewidth]{gltathirdsite.pdf}
+ 	\centering
+ 	\caption{ Spot42 interacts with gltA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites III and II, they block the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with gltA (blue colour) can be formed concurrently.  } 
+ 	\label{fig:gltathirdsite}
+ \end{figure}
 
- xylF results were quite different from other target mRNAs. When we were running this RNA in our tool, we got the block 1 interacting in mutation site I and II ~\ref{fig:all1} ( bottom right ). The block 2 in mutation site III. Though xylF is interacting in both the mutation site I and II, it has its highest effect in mutation site I compared to site II. After that when we tried running for the third site manually using IntaRNA tool, we didn't get the third site. Thus the total interaction energy for two blocks of xylF is -14.15. These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Below table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites.\\
+ xylF results were quite different from other target mRNAs. When we were running this RNA in our tool, we got the block 1 interacting in mutation site I and II, Fig ~\ref{fig:all1} (bottom right). The block 2 in mutation site III. Though xylF is interacting in both the mutation site I and II, it has its highest effect in mutation site I compared to site II. After that when we tried running for the third RRI manually using IntaRNA tool, we didn't get another block of interaction. Thus the total interaction energy for two blocks of xylF is -14.15. These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Below Table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites.\\
+ 
+ The order of block predictions ($B_1-B_3$) are nicely correlated with the experimental effect of respective mutations, refer to Fig ~\ref{fig:all} for the same. ie.,the first block $B_1$ correlates with the mutation of highest impact , $B_3$ has the lowest for gltA, xylF, nanC and srlA.\\
+ 
+ 	
+
+	\begin{figure}[h!tb]
+	\includegraphics[width=0.85\linewidth]{srlathirdsite.pdf}
+	\centering
+	\caption{ Spot42 interacts with srlA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites II and III and got the third interacting site I. The Figure shows the all the three interaction sites of Spot42 (black colour) with srlA (blue colour) can be formed concurrently.  } 
+	\label{fig:slrathirdsite}
+\end{figure}
 
  \begin{figure}[h!tb]
 	\centering
@@ -1217,7 +1235,7 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 		\label{fig:xylF}
 	\end{subfigure}
 	\
-	\caption{The figure shows the mutational analysis of base-pairing interactions of Spot42 with its target mRNAs. The black bar shows the translation product measure of sthA gene and the white one is a control molecule to compare for the different experiments (translational reference). Figure is taken from the paper \citep{beisel2011base} .\\ }
+	\caption{The figure shows the mutational analysis of base-pairing interactions of Spot42 with its target mRNAs. The black bar shows the translation product measure of each gene and the white one is a control molecule to compare for the different experiments (translational reference). Figure is taken from the paper \citep{beisel2011base} .\\ }
 	\label{fig:all}
 \end{figure}
 
@@ -1226,20 +1244,20 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 \centering
 	\begin{tabular}{||c |c |c |c |c ||} 
 		\hline
-		Target mRNAs & mutation site I & mutation site II & mutation site III & Order of blocks \\ [0.2ex] 
+		Target mRNAs & mutation site I & mutation site II & mutation site III & site order wrt mRNA \\ [0.2ex] 
 		\hline\hline
-		sthA & $B_2$ & $B_3$ & $B_1$ & $B_3 < B_1 < B_2$\\ 
+		sthA & $B_2$ (-5.20) & $B_3$ (-2.02) & $B_1$ (-7.85) & II < I < III\\ 
 		\hline
-		gltA & $B_1$ & $B_3$ &  $B_2$ & $B_1 < B_3 < B_2$\\
+		gltA & $B_1$ (8.98) & $B_3$ (-0.47)&  $B_2$ (-2.76)& II < III < I\\
 		\hline
-		srlA & $B_3$ & $B_1$ &  $B_2$ & $B_2 < B_3 < B_1 $\\
+		srlA & $B_3$ (-3.94) & $B_1$ (-7.58) &  $B_2$ (-5.73) & I < III < II\\
 		\hline
-		nanC & $B_1$ & $B_3$ &  $B_2$ & $B_1 < B_3 < B_2$\\
+		nanC & $B_1$ (-12.94) & $B_3$ (-1.09) &  $B_2$ (-7.28)& II < III < I \\
 		\hline
-		xylF & $B_1$ & $B_1$ & $B_2$ & $B_1 < B_2$ \\  
+		xylF & \multicolumn{2}{|c|}{$B_1$(-9.92)} & $B_2$ (-4.23)& II < III < I \\  
 	\hline
 	\end{tabular}
-	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site, along with the order of blocks in target.}
+	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site with each blocks mfe, and also the order of blocks in target.}
 	\label{table:last}
 \end{table}
 
@@ -1431,41 +1449,53 @@ Below is the table for the comparison between the different interacting RNAs tha
 \begin{table}[H]
 	
 
-	\begin{tabular}{ |p{2cm}|p{2.8cm}|p{2.8cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
+	\begin{tabular}{ |p{2cm}|p{2.5cm}|p{2.2cm}|p{0.8cm}|p{0.9cm}|p{0.9cm}|p{0.8cm}|p{1cm}|}
 	
 		\hline
-		query:target& original& prediction& \rotatebox[origin=c]{90} {E(B1)}  &\rotatebox[origin=c]{90}{E(B1+B2)}  &\rotatebox[origin=c]{90}{1st index}  &\rotatebox[origin=c]{90}{length} \\
+		query:target& original& prediction& \rotatebox[origin=c]{90} {E($B_1$)}  &\rotatebox[origin=c]{90}{E($B_1+B_2$)} &\rotatebox[origin=c]{90}{E($B_1+B_2+B_3$)}  &\rotatebox[origin=c]{90}{1st index}  &\rotatebox[origin=c]{90}{length} \\
 		\hline
 		\hline
 		OxyS:fhlA&104:-15\&98:-9 30:34\&22:42
-		&104:-15\&98:-9 30:24\&24:40&-4.37 &-7.99 &1:-53&109:113\\
+		&104:-15\&98:-9 30:24\&24:40&-4.37 &-7.99 &NA &1:-53&109:113\\
 		\hline
-		Spot42:sthA&55:15\&48:22  7:NA\&5:NA & 55:15\&34:40 7:-8\&1:-2
-		& -7.85 &-13.05 & 1:-75 &109:150 \\
+		Spot42:sthA&55:15\&48:22  7:NA\&5:NA & 55:15\&34:40 \hbox{7:-8\&1:-2} \hbox{25:-19\&20:-14}
+		& -7.85 & \hbox{-13.05} & \hbox{-15.07} & 1:-75 &109:150 \\
+		\hline
+		Spot42:gltA& 13:-131\&4:-122  & \hbox{12:-130\&4:-122} \hbox{64:-93\&31:-62} \hbox{30:80\&25:85}
+		& -8.98 & \hbox{-11.74} & \hbox{-12.21 } & \hbox{1:-200}&109:300 \\
+		\hline
+		Spot42:srlA& 34:-15\&20:-1 & 34:-15\&20:-1 \hbox{59:-60\&50:-51} \hbox{7:-166\&1:-160}
+		& -7.58 & \hbox{-13.31} & \hbox{-17.25} & \hbox{1:-200} & 109:300 \\
+		\hline
+		Spot42:nanC& 17:-24\&1:-7 & 10:-25\&1:-16 \hbox{74:-124\&49:-104} \hbox{31:-160\&26:-155}
+		& \hbox{-12.94} & \hbox{-20.22} & \hbox{-21.31} & \hbox{1:-200} & 109:300 \\
+		\hline
+		Spot42:xylF& 33:2\&1:40 & 33:2\&1:40 \hbox{53:-175\&34:-148}
+		& -9.92 & \hbox{-14.15} & \hbox{NA} & \hbox{1:-200}&109:300 \\
 		\hline
 		oppA:GcvB &-95:163\&-64:151 -17:142\&-11:136 -3:84\&19:49 39:18\&64:1  &14:67\&-9:89 63:152\&57:158
 		
-		& -14.57 &-26.38 & -95:3 &159:160\\
+		& \hbox{-14.57} & \hbox{-26.38} &NA & -95:3 &159:160\\
 		\hline
 		%			GcvB:cycA&  &161:175\&62:277 40:91\&34:97	& -18.88 &-23.19 & &201:300 \\
 		%			\hline
-		DicF:ftsZ&52:55\&39:69   \hbox{36:-12\&5:25}  &52:55\&35:73 12:82\&18:76	& -6.89 &-13.86 &1:-73 &70:227 \\
+		DicF:ftsZ&52:55\&39:69   \hbox{36:-12\&5:25}  &52:55\&35:73 12:82\&18:76	& -6.89 & \hbox{-13.86} &NA &1:-73 &70:227 \\
 		\hline
 		mRNA:EGSS-SER &16:7\&10:13 7:46\&1:52
 		  &-1:53\&7:46 \hbox{-9:13\&-3:7}
-		 & -8.41 &-16.0 & -60:1 &129:156 \\
+		 & -8.41 &-16.0 &NA & -60:1 &129:156 \\
 		\hline
 		mRNA:EGSS-SER-C &16:7\&10:13 7:46\&1:52
 		  &-1:53\&7:46 \hbox{-9:13\&-3:7}
-		 & -8.41 &-16.0 & -60:1 &129:156 \\
+		 & -8.41 &-16.0 &NA & -60:1 &129:156 \\
 		\hline
 		mRNA:EGS S-C386 &1:46\&7:40 10:13\&16:7 &
 		47:48\&63:31 10:13\&16:7
-		  & -8.15&-14.14 & -60:1 &129:150 \\
+		  & -8.15& \hbox{-14.14} &NA & -60:1 &129:150 \\
 		\hline
 		mRNA:EGS S-C386-C &1:46\&7:40 10:13\&16:7
 		 &-1:47\&6:41 \hbox{-10:14\&-3:7}
-		  & -8.67 &-13.24 & -60:1 &129:150 \\
+		  & -8.67 & \hbox{-13.24} &NA & -60:1 &129:150 \\
 		\hline
 	\end{tabular}
 	\caption{Collections of multisite RNA interaction. The query and target are the RNAs interacting. ":" is used to differentiate between the query and target , "\&" is used for the differentiate between start and end of the blocks.  }	
@@ -1513,8 +1543,9 @@ Below is the table for the comparison between the different interacting RNAs tha
 	\bibliographystyle{plainnat}
 	\bibliography{ref}
 	
-\begin{appendices}
 
+%\chapter*{Appendix}
+\begin{appendices}
 	\chapter{RNA Sequences}
 	
 	\begin{table}[H]
@@ -1539,7 +1570,21 @@ Below is the table for the comparison between the different interacting RNAs tha
 		sthA&
 		GGGATCAATTGGCTTACCCGCGATAAAATGTTACCATTCTGTTGCTTTTATGTATAAGAACAGGTAAGCCCTACCA
 		\\&TGCCACATTCCTACGATTACGATGCCATAGTAATAGGTTCCGGCCCCGGCGGCGAAGGCGCTGCAATGGGCCTG\\
-			\hline	
+			\hline
+			
+		gltA &
+		CGGATTGCTAAGTACTTGATTCGCCATTTATTCGTCATCAATGGATCCTTTACCTGCAAGCGCCCAGAGCTCTGT \\&ACCCAGGTTTTCCCCTCTTTCACAGAGCGGCGAGCCAAATAAAAAACGGGTAAAGCCAGGTTGATGTGCGAAG \\&GCAAATTTAAGTTCCGGCAGTCTTACGCAATAAGGCGCTAAGGAGACCTTAAATGGCTGATACAAAAGCAA \\&AACTCACCCTCAACGGGGATACAGCTGTTGAACTGGATGTGCTGAAAGGCACGCTGGGTCAAGATGTTATT \\&GATATCCGTA\\
+		\hline
+		srlA &
+		CGCACAAGGAAGCGGTAGTCACTGCCCGATACGGACTTTACATAACTCAACTCATTCCCCTCGCTATCCTTTTA \\&TTCAAACTTTCAAATTAAAATATTTATCTTTCATTTTGCGATCAAAATAACACTTTTAAATCTTTCAATC \\&TGATTAGATTAGGTTGCCGTTTGGTAATAAAACAATAAATCCTGAAGGAGAGAACAATGATAGAAACCATTACT\\&CATGGTGCAGAGTGGTTTATCGGGCTGTTCCAAAAGGGCGGAGAGGTGTTTACCGGGATGGTGACCGGCATTCT\\&TCCGCTGT	\\
+		\hline
+		nanC&
+		GTATTTAATCTGGATCTCTGTTTATTTAAATAATGTGAAAAGAGATTTTTCACAGGAGACCTTATACAAAAAA 	\\&ATATAAAATACAGCTACCGGTTGCCAAAGACACTATAAGCCTGGCAAAAAAATATTACACAACATAAATG 	\\&CTAATTGTTTATGCGGGCTTTGTATTGCTTTCTGTATCCTACAAATGAGTGAAATTTATGAAAAAGGCTA 	\\&AAATACTTTCTGGCGTATTATTACTGTGCTTTTCGTCCCCATTAATTTCTCAGGCTGCGACACTGGACG	\\&TACGTGGTGGATATCGTA\\
+		\hline
+		xylF&
+		CGAAGAGAAAAATGCAATAAGTACAATTGCGCAACAAAAGTAAGATCTCGGTCATAAATCAAGAAATAAA \\&CCAAAAATCGTAATCGAAAGATAAAAATCTGTAATTGTTTTCCCCTGTTTAGTTGCTAAAAATTGGT \\&TACGTTTATCGCGGTGATTGTTACTTATTAAAACTGTCCTCTAACTACAGAAGGCCCTACACCATGA \\&AAATAAAGAACATTCTACTCACCCTTTGCACCTCACTCCTGCTTACCAACGTTGCTGCACACGCCAA \\&AGAAGTCAAAATAGGTATGGCGATTGATG
+		\\
+		\hline
 		gcvB &
 		TTCCTGAGCCGGAACGAAAAGTTTTATCGGAATGCGTGTTCTGATGGGCTTTTGGCTTACGGTTGTGATGTTGTGT
 		\\&
