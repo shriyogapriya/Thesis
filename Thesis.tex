@@ -123,9 +123,9 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
 	RNA molecules play important roles in various biological processes. Their regulation and function are mediated by interacting with other molecules, e.g by forming base pairs between two RNAs, called RNA-RNA interactions (RRI).  Many RNAs interact via multiple synchronous, non-overlapping sub-interactions (M-RRI), e.g. OxyS-fhlA. There are fast and reliable single interaction site (S-RRI) prediction tools like IntaRNA, which helps us in predicting mRNA target sites for given non-coding RNAs (ncRNAs), also they are capable of modeling all sites individually but not in a joint prediction. The simultaneous prediction of both intra- and inter-molecular base-pairing allowing for multiple sites is computationally expensive. Some known approaches are IRIS, piRNA, NUPACK. Here we use a S-RRI prediction tool (namely IntaRNA) for the prediction of M-RRI.
 	
 	\section{Biological Background of RNA}
-	In this thesis, I will focus on Ribonucleic acids (RNA). First of all, I would like to provide the basic biological background that is essential for the thesis. Ribonucleic acid or RNA, DNA (deoxyribonucleic acid) and proteins are the three major biological macromolecules that are important for all known forms of life. The interaction between the two RNAs plays a vital role in basic cellular activities like transcription, RNA processing, and translation. \textit{Transcription} is the process in which DNA is copied to RNA. The \textit{Translation} is the process in which RNA is used to produce proteins. RNAs also play a vital role in protein synthesis. \\
+	In this thesis, I am focusing on Ribonucleic Acids (RNA). First of all, I would like to provide the basic biological background that is essential for the thesis. Ribonucleic acid or RNA, DNA (deoxyribonucleic acid) and proteins are the three major biological macromolecules that are important for all known forms of life. The interaction between the two RNAs plays a vital role in basic cellular activities like transcription, RNA processing, and translation. \textit{Transcription} is the process in which DNA is copied to RNA. The \textit{Translation} is the process in which RNA is used to produce proteins. RNAs also play a vital role in protein synthesis. \\
 	
-	 The main difference between DNA and RNA is that, DNA is double-stranded and RNA is a single-stranded molecule. Each strand of RNA is a sequence of four building blocks called \textit{nucleotides}. Each nucleotide contains sugar, phosphate and nitrogen containing bases. The sugar and phosphate groups form the backbone of the RNA strand and the bases bond to each other. The RNA molecules are represented as a sequence $S \in \{A, C, G, U\} ^*$, where A (adenine), C (cytosine), G (guanine), U (uracil) are the bases of the nucleotide chain.\\
+	 The main difference between DNA and RNA is that, DNA is double-stranded and RNA is a single-stranded molecule. Each strand of RNA is a sequence of four building blocks called \textit{Nucleotides}. Each nucleotide contains sugar, phosphate and nitrogen containing bases. The sugar and phosphate groups form the backbone of the RNA strand and the bases bond to each other. The RNA molecules are represented as a sequence $S \in \{A, C, G, U\} ^*$, where A (adenine), C (cytosine), G (guanine), U (uracil) are the bases of the nucleotide chain.\\
 	 
 	According to their potential for coding, RNAs are classified into two major categories i.e., coding RNAs and non coding RNAs. Coding RNAs mostly refer to mRNA that encodes protein to act as different components including cell structures, signal transductors, and enzymes. Non coding RNAs act as cellular regulators with no protein encoding.\\
 	Complementary bases $C$-$G$ and $A$-$U$ form stable base pairs with each other using hydrogen bonds. These are called Watson-Crick pairs. Also important are the weaker $U$-$G$ wobble pairs. Together they are called \textit{canonical base pairs}. In general, isolated base pairs are unstable. If interacting bases belong to the same molecule of RNA, they form \textit{intra-molecular} structures and if they belong to different molecules of RNA, they form \textit{inter-molecular} structures.\\
@@ -183,9 +183,9 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
  	 
  	 \subsection{Nearest neighbor model and energy contributions }
  	 
- 	 \citet{DeVoe1962TheSO} said vertical stacking of bases gives largest contribution to the stability of the RNA helix. The stacking of unpaired bases is less predictable and stable than the paired bases. Hence, the directly neighboured bases must be taken into account while estimating the energy contribution of a  base pair, that results in the \textit{Nearest Neighbor Model} \citep{borer1974stability}.\\
+ 	 \citet{DeVoe1962TheSO} said vertical stacking of bases gives the largest contribution to the stability of the RNA helix. The stacking of unpaired bases is less predictable and stable than the paired bases. Hence, the directly neighboured bases must be taken into account while estimating the energy contribution of a  base pair, which results in the \textit{Nearest Neighbor Model} \citep{borer1974stability}.\\
  	 
- 	 The Nearest Neighbor Model enables the calculation of a free energy estimate for a given RNA secondary structure. The free energy can be taken as the amount of energy stored in a system. The system is more stable when the energy is lower. Hence, for the \textit{most stable structure} of RNA, we go for \textit{minimum free energy (MFE)}. The energy difference between the reference state to the system is measured. We have a reference system which we use to understand the stability of the system. The reference is an RNA strcuture with no base pairing(the open chain) ie., $ E(\phi) =0 $. Hence, we need to check not only the hydrogen bonds but also the stacking stability. The Nearest Neighbor Model uses a loop-based structure decomposition. To avoid the duplication of stacking, only inner stacking are taken into account. \\
+ 	 The Nearest Neighbor Model helps to measure a free energy estimate for a given RNA secondary structure. The free energy can be taken as the amount of energy stored in a system. The system is more stable when the energy is lower. Hence, for the \textit{most stable structure} of RNA, we go for \textit{minimum free energy (MFE)}. The energy difference between the reference state to the system is measured. We have a reference system that we use to understand the stability of the system. The reference is an RNA structure with no base pairing(the open chain) ie., $ E(\phi) =0 $. Hence, we need to check not only the hydrogen bonds but also the stacking stability. The Nearest Neighbor Model uses a loop-based structure decomposition. To avoid the duplication of stacking, only inner stacking is taken into account. \\
  	 
  	 \textit{The terminal mismatch} consists of the first unpaired bases immediately after the stacking. The identity of the terminal mismatch provides the energy of the loop. In Bulge or Internal loop also we have the same energy contribution. Energy contributions for external base pairs, which are not enclosed by any other base pairs, are referred to as \textit{dangling end contributions}.\\ 
  	 The energy $E(P)$ ~\ref{eq:1} of a nested secondary structure $P$ can be estimated by the sum of loop contributions (see Figure ~\ref{fig:energycontribution})\\
@@ -199,7 +199,7 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
  	 \end{cases}
  	 \end{equation}
  	 
- 	 Where $e^H$, $e^{SBI}$ and $e^M$ tells the context sensitive energy contributions of the loops. $(k,l)$ represents the enclosed base pair of stack, bulge or internal and $x$ represent the unpaired bases and $x'$ represents the helices enclosed in the multi loop. There is an exponential number of possible multi loop composition. The energy for them can be estimated as below \\
+ 	 Where $e^H$, $e^{SBI}$, and $e^M$ tell the context sensitive energy contributions of the loops. $(k,l)$ represents the enclosed base pair of the stack, bulge or internal and $x$ represent the unpaired bases and $x'$ represents the helices enclosed in the multi loop. There is an exponential number of possible multi loop composition. The energy for them can be estimated as below \\
  	 \begin{center}
  	 $e^M(i,j,x,x')= e^M_a+e^M_bx+e^M_cx'$\\
  	\end{center}
@@ -209,7 +209,7 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
  	 \begin{figure}[h]
  	 	\includegraphics[width=0.9\linewidth]{energy}
  	 	\centering
- 	 	\caption{Energy contributions of loops. Figure is taken from \citep{andronescu2010computational}}
+ 	 	\caption{Energy contributions of loops. The Figure is taken from \citep{andronescu2010computational}}
  	 	\label{fig:energycontribution}
  	 \end{figure}
  	 
@@ -319,9 +319,9 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\section{RNA-RNA Interaction}
  	The interaction of RNA molecules is an essential factor for regulatory processes in all organisms. Computational prediction of RNA-RNA interactions (RRI) is a central methodology for the specific investigation of inter-molecular RNA interactions and regulatory effects of non-coding RNAs. RNA–RNA interactions are fast emerging as a major functional component in many newly discovered non-coding RNAs. They are important in many basic cellular activities including transcription, RNA processing, localization, and translation.  Many RNA species function is guided by their structure, which is defined by intramolecular base pair formation. Small prokaryotic RNAs display evolutionary unstructured regions that control the expression of their target mRNAs by intermolecular base pairing \citep{wright2013comparative}. Hence, the prediction of both functional intramolecular and intermolecular structure of RNAs are important bioinformatics tasks. \\
  	
- 	Let's see about some simple RNA-RNA interactions. In \textit{splicing}, small nuclear RNA's (snRNA) can recognize intronic regions of precursor messenger RNA(mRNA) which is the important step in identifying the RNA splicing products \citep{modrek2002genomic}. In \textit{translation} transfer RNA(tRNA) interact with (mRNA) by "reading" the three letter code and define amino acid sequence \citep{selmer2006structure}, \citep{ibba2000aminoacyl}. In RNA modification, small nucleolar RNA(snoRNA) guide the modification of ribosomal RNA(rRNA) \citep{kiss2002small}. In microRNA (miRNA) targeting, the base pairing between  miRNA and mRNA leads to degradation or translation inhibition of the mRNA \citep{bartel2004micrornas}. For RNA function and regulation these examples show us the importance of the RNA-RNA interaction. \\
+ 	Let's see about some simple RNA-RNA interactions. In \textit{splicing}, small nuclear RNAs (snRNA) can recognize intronic regions of precursor messenger RNA(mRNA) which is the important step in identifying the RNA splicing products \citep{modrek2002genomic}. In \textit{translation} transfer RNA(tRNA) interact with (mRNA) by "reading" the three letter code and define amino acid sequence \citep{selmer2006structure}, \citep{ibba2000aminoacyl}. In RNA modification, small nucleolar RNA(snoRNA) guide the modification of ribosomal RNA(rRNA) \citep{kiss2002small}. In microRNA (miRNA) targeting, the base pairing between  miRNA and mRNA leads to degradation or translation inhibition of the mRNA \citep{bartel2004micrornas}. For RNA function and regulation these examples show us the importance of the RNA-RNA interaction. \\
  		
- 	In order to allow highly accurate predictions, state-of-the-art methods not only take into account the stability (energy) of possible RNA–RNA interactions, but they also consider the accessibility of the interacting subsequences \citep{umu2017comprehensive}, i.e., the intramolecular structure pattern.\\
+ 	In order to allow highly accurate predictions, state-of-the-art methods not only taken into account the stability (energy) of possible RNA–RNA interactions, but they also consider the accessibility of the interacting subsequences \citep{umu2017comprehensive}, i.e., the intramolecular structure pattern.\\
  	
  	Small regulatory RNAs (sRNAs) typically have a range of 50 to 500 nucleotides and are transcribed through intergenic bacterial genome regions. sRNAs work in trans and display complementarity with target mRNAs. Many sRNAs base pairs within the 5'-UTR of  mRNA's target and blocks the ribosome binding site, therefore stops the initiation of translation. ~\ref{fig:sRNA}. This process is called Inhibition of translation initiation. \\
  	
@@ -1186,29 +1186,76 @@ As our model shows only two interacting sites, we tried manually generating the 
 	\label{fig:thirdsite}
 \end{figure}
 
-Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF) studied in the paper \citep{beisel2011base}. The mutation in region I affected the repression of gltA, xylF and nanC. From the Figure ~\ref{fig:all} (except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from the Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. \\
+Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF) studied in the paper \citep{beisel2011base}. The mutation in region I affected the repression of gltA, xylF and nanC. From the Figure ~\ref{fig:all} (except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from the Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. Below subsection gives us the interaction of Spot-42 with target mRNAs. \\
 
- Now, we tried manually getting the third-site. For gltA, we got the interaction site II (ie., Spot42 (25 - 30) interacts with gltA (80 - 85)) with the mfe of -0.47. Thus the total interaction energy for all three blocks of gltA is -12.21.  For srlA, we got the interaction site I (ie., Spot42 (1 - 7) interacts with srlA (-166 - -160)) with the mfe of -3.94. Thus the total interaction energy for all three blocks of srlA is -17.25. For nanC, we got the interaction site II (ie., Spot42 (26 - 31) interacts with nanC (-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31.\\
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{||c |c |c |c |c ||} 
+		\hline
+		Target mRNAs & mutation site I & mutation site II & mutation site III & site order wrt mRNA \\ [0.2ex] 
+		\hline\hline
+		sthA & $B_2$ (-5.20) & $B_3$ (-2.02) & $B_1$ (-7.85) & II < I < III\\ 
+		\hline
+		gltA & $B_1$ (-8.98) & $B_3$ (-0.47)&  $B_2$ (-2.76)& I < III < II\\
+		\hline
+		srlA & $B_3$ (-3.94) & $B_1$ (-7.58) &  $B_2$ (-5.73) & I < III < II\\
+		\hline
+		nanC & $B_1$ (-12.94) & $B_3$ (-1.09) &  $B_2$ (-7.28)& II < III < I \\
+		\hline
+		xylF & \multicolumn{2}{|c|}{$B_1$(-9.92)} & $B_2$ (-4.23)& III < II < I \\  
+		\hline
+	\end{tabular}
+	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site with each blocks mfe, and also the order of respective mutations site interactions in target.}
+	\label{table:last}
+\end{table}
+
+\subsection{Spot-42 - gltA}
+ Now we manually generated the third-site for gltA by blocking the interacting sites I and III and got the third interacting site II. We got the interaction site II (ie., Spot42 (25 - 30) interacts with gltA (80 - 85)) with the mfe of -0.47. Thus the total interaction energy for all three blocks of gltA is -12.21. Refer to Fig ~\ref{fig:gltathirdsite}. Start codon is very close to the interacting sites III and II, they block the RBS.\\
  
- \begin{figure}[h!]
+  \begin{figure}[h!]
  	\includegraphics[width=0.85\linewidth]{gltathirdsite.pdf}
  	\centering
- 	\caption{ Spot42 interacts with gltA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites III and II, they block the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with gltA (blue colour) can be formed concurrently.  } 
+ 	\caption{ Spot42 interacts with gltA at three interacting sites (grey colour). As, our model shows only two interacting sites, As the start codon (orange colour) is very close to the interacting sites III and II, they block the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with gltA (blue colour) can be formed concurrently.  } 
  	\label{fig:gltathirdsite}
  \end{figure}
-
- xylF results were quite different from other target mRNAs. When we were running this RNA in our tool, we got the block 1 interacting in mutation site I and II, Fig ~\ref{fig:all1} (bottom right). The block 2 in mutation site III. Though xylF is interacting in both the mutation site I and II, it has its highest effect in mutation site I compared to site II. After that when we tried running for the third RRI manually using IntaRNA tool, we didn't get another block of interaction. Thus the total interaction energy for two blocks of xylF is -14.15. These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Below Table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites.\\
  
- The order of block predictions ($B_1-B_3$) are nicely correlated with the experimental effect of respective mutations, refer to Fig ~\ref{fig:all} for the same. ie.,the first block $B_1$ correlates with the mutation of highest impact , $B_3$ has the lowest for gltA, xylF, nanC and srlA.\\
+ \subsection{Spot-42 - srlA}
  
- 	
+  We manually generated the third-site for srlA by blocking the interacting sites II and III and got the third interacting site I.  We got the interaction site I (ie., Spot42 (1 - 7) interacts with srlA (-166 - -160)) with the mfe of -3.94. Thus the total interaction energy for all three blocks of srlA is -17.25. Refer to Fig ~\ref{fig:srlathirdsite} \\
+  
+  	\begin{figure}[h!]
+  	\includegraphics[width=0.85\linewidth]{srlathirdsite.pdf}
+  	\centering
+  	\caption{ Spot42 interacts with srlA at three interacting sites (grey colour).  The Figure shows the all the three interaction sites of Spot42 (black colour) with srlA (blue colour) can be formed concurrently.  } 
+  	\label{fig:srlathirdsite}
+  \end{figure}
+  
+  
+   \subsection{Spot-42 - nanC}
+   As, our model shows only two interacting sites, we manually generated the third-site for nanC by blocking the interacting sites I and III and got the third interacting site II. We got the interaction site II (ie., Spot42 (26 - 31) interacts with nanC (-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31. Refer to Fig ~\ref{fig:nancthirdsite}\\
+ 
 
-	\begin{figure}[h!tb]
-	\includegraphics[width=0.85\linewidth]{srlathirdsite.pdf}
+\begin{figure}[h!]
+	\includegraphics[width=0.65\linewidth]{nancthirdsite.pdf}
 	\centering
-	\caption{ Spot42 interacts with srlA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites II and III and got the third interacting site I. The Figure shows the all the three interaction sites of Spot42 (black colour) with srlA (blue colour) can be formed concurrently.  } 
-	\label{fig:slrathirdsite}
+	\caption{ Spot42 interacts with nanC at three interacting sites (grey colour). The Figure shows the all the three interaction sites of Spot42 (black colour) with nanC (blue colour) can be formed concurrently.  } 
+	\label{fig:nancthirdsite}
 \end{figure}
+
+  \subsection{Spot-42 - xylF}
+
+ xylF results were quite different from other target mRNAs. When we were running this RNA in our tool, we got the block 1 interacting in mutation site I and II, Fig ~\ref{fig:all1} (bottom right). The block 2 in mutation site III. Though xylF is interacting in both the mutation site I and II, it has its highest effect in mutation site I compared to site II. After that when we tried running for the third RRI manually using IntaRNA tool, we didn't get another block of interaction. Thus the total interaction energy for two blocks of xylF is -14.15.  Refer to Fig ~\ref{fig:xylfthirdsite}\\
+ 
+ \begin{figure}[h!]
+ 	\includegraphics[width=0.7\linewidth]{xylfthirdsite.pdf}
+ 	\centering
+ 	\caption{ Spot42 interacts with xylF at three interacting sites (grey colour). In xylF, the block 1 interacts in both mutation site I and II and block 2 in site III. The Figure shows the all the three interaction sites of Spot42 (black colour) with xylF (blue colour) can be formed concurrently.  } 
+ 	\label{fig:xylfthirdsite}
+ \end{figure}
+ 
+  These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites. The order of block predictions ($B_1-B_3$) are nicely correlated with the experimental effect of respective mutations, refer to Fig ~\ref{fig:all} and ~\ref{table:last} for the same. ie.,the first block $B_1$ correlates with the mutation of highest impact, $B_3$ has the lowest for gltA, xylF, nanC and srlA.\\
+ 
+ 
 
  \begin{figure}[h!tb]
 	\centering
@@ -1240,26 +1287,7 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 \end{figure}
 
 
-\begin{table}[h!]
-\centering
-	\begin{tabular}{||c |c |c |c |c ||} 
-		\hline
-		Target mRNAs & mutation site I & mutation site II & mutation site III & site order wrt mRNA \\ [0.2ex] 
-		\hline\hline
-		sthA & $B_2$ (-5.20) & $B_3$ (-2.02) & $B_1$ (-7.85) & II < I < III\\ 
-		\hline
-		gltA & $B_1$ (8.98) & $B_3$ (-0.47)&  $B_2$ (-2.76)& II < III < I\\
-		\hline
-		srlA & $B_3$ (-3.94) & $B_1$ (-7.58) &  $B_2$ (-5.73) & I < III < II\\
-		\hline
-		nanC & $B_1$ (-12.94) & $B_3$ (-1.09) &  $B_2$ (-7.28)& II < III < I \\
-		\hline
-		xylF & \multicolumn{2}{|c|}{$B_1$(-9.92)} & $B_2$ (-4.23)& II < III < I \\  
-	\hline
-	\end{tabular}
-	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site with each blocks mfe, and also the order of blocks in target.}
-	\label{table:last}
-\end{table}
+
 
 \begin{figure}[h!tb]
 	\centering
@@ -1444,9 +1472,11 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 
 \section{Details of studied RRIs}
 
-Below is the table for the comparison between the different interacting RNAs that are used for the study purpose within this thesis. The table provides us with the original interaction from the paper and the prediction's from the tool. The table also clearly tells us that $E(B1+ B2)$ the multi-site energy is almost double the single site energy $E(B1)$. 1st Index gives us with the index positions and the length determines the sequence length.\\
+Below is the table for the comparison between the different interacting RNAs that are used for the study purpose within this thesis. First column gives us the query and target that is interacting. Original column gives us the interaction detail of the query and target from the paper. The details of the paper are given in the respective RRI sections. Prediction column gives us the result of the interactions using our tool. For getting the 3rd block for Spot-42 interactions with its target mRNAs are done by blocking manually using IntaRNA tool. $E(B1)$ column gives us the minimum free energy for the single-site interaction. $E(B_1+B_2)$ column gives us the minimum free energy for the double-site interaction, similarly $E(B_1+B_2+B_3)$ column gives us the total mfe of all the three blocks. 1st Index gives us with the index positions for the respective query and target and the length determines the sequence length of the query and target. \\
+
+The table also clearly tells us that $E(B_1+B_2)$ the double-site energy is almost double the single-site energy $E(B1)$. For Spot-42-sthA interaction, the original interaction from the paper doesn't have the target interaction details for the second block, hence they are written as "NA". As, we know only for the Spot-42 interactions with its target mRNAs has three blocks, the respective values of the minimum free energy has been filled and for the rest all the interactions it is "NA". We also know from the subsection 3.3.4 the interaction between Spot-42 and xylF has only two blocks, hence the $E(B_1+B_2+B_3)$ value is "NA".  \\
 	
-\begin{table}[H]
+\begin{table}[h!]
 	
 
 	\begin{tabular}{ |p{2cm}|p{2.5cm}|p{2.2cm}|p{0.8cm}|p{0.9cm}|p{0.9cm}|p{0.8cm}|p{1cm}|}
@@ -1532,9 +1562,9 @@ Below is the table for the comparison between the different interacting RNAs tha
 	
 	 The proof and implementation of double-site interaction model has been developed within this thesis. The theory proof of energy of an respective Multi-site RNA-RNA interaction can be computed from the two energies was developed and shown in the section 2.3. Then the idea has been implemented by using python based on IntaRNA calls. The double-site interaction study says that interaction energy for two blocks B1 and B2 together often double the minimum free energy. The detailed study of such examples are given in a table ~\ref{table:2} for the easy comparison. \\
 	 
-	  We collected some sample Multi-site RNA-RNA interaction examples from literature. The examples with the crossing interaction (pseudoknot), with two intermolecular helices, kissing interaction,etc., are used for the study purpose. We used the python polygon plots for plotting the blocks that are predicted. Then, we compared the outcome with extracted data from literatures. Each example shows its own structure, but most of them were very well close to the original one's that is taken from the literature. The brief explanation of the each study has been given in the chapter 3. \\ 
+	  We collected some sample Multi-site RNA-RNA interaction examples from literature. The examples with the crossing interaction (pseudoknot), with two intermolecular helices, kissing interaction,etc., are used for the study purpose. We used the python polygon plots for plotting the blocks that are predicted. Then, we compared the outcome with extracted data from literatures. Each example shows its own structure, but most of them were very well close to the original one's that is taken from the literature. The explanation of the each study has been given in the chapter 3. \\ 
 	  
-	  
+	  We also manually generated the third-site for few Spot-42 interactions with its target mRNAs using IntaRNA tool. It tells us which mutation site has the highest effect and which has the lowest effect along with the minimum free energy for all the three blocks. We also observed that the order of predictions of the blocks are correctly correlated with the original effect of the respective mutations. Table ~\ref{table:last} gives us the details of the mfe of each block corresponding to its mutation site along with the site order with respect to the mRNA.\\
 	
 	
 %	RNA interaction prediction is still an expanding field. The future work that can extended beyond this thesis, one possible idea would be the multi-site prediction. For multi-site interaction, we need to fix two conditional site and iterate it until it converges.  \\
