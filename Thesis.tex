@@ -82,7 +82,7 @@ I would like to thank Prof. Dr. Rolf Backofen so much for offering me this great
 I owe a lot to my supervisor Dr. Martin Raden, this thesis would not have been possible without his continuous guidance and support with both knowledge and ideas throughout the research. I want to thank him a lot for all his efforts, for providing me with thorough feedback and help throughout my work. Working with him was a great pleasure for me.\\
 
 I am also grateful to my respectful parents for their great support along my stay,
-without whom I wouldn’t have been able to stay abroad.\\
+without whom I wouldn’t have been able to stay abroad. A special thanks goes to my father for taking his time to thoroughly proof-read my thesis.\\
 
 I want to thank my friends for being helpful and friendly, which contributed positively to my work.
  \\
@@ -128,7 +128,7 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
 	 The main difference between DNA and RNA is that, DNA is double-stranded and RNA is a single-stranded molecule. Each strand of RNA is a sequence of four building blocks called \textit{Nucleotides}. Each nucleotide contains sugar, phosphate and nitrogen containing bases. The sugar and phosphate groups form the backbone of the RNA strand and the bases bond to each other. The RNA molecules are represented as a sequence $S \in \{A, C, G, U\} ^*$, where A (adenine), C (cytosine), G (guanine), U (uracil) are the bases of the nucleotide chain.\\
 	 
 	According to their potential for coding, RNAs are classified into two major categories i.e., coding RNAs and non coding RNAs. Coding RNAs mostly refer to mRNA that encodes protein to act as different components including cell structures, signal transductors, and enzymes. Non coding RNAs act as cellular regulators with no protein encoding.\\
-	Complementary bases $C$-$G$ and $A$-$U$ form stable base pairs with each other using hydrogen bonds. These are called Watson-Crick pairs. Also important are the weaker $U$-$G$ wobble pairs. Together they are called \textit{canonical base pairs}. In general, isolated base pairs are unstable. If interacting bases belong to the same molecule of RNA, they form \textit{intra-molecular} structures and if they belong to different molecules of RNA, they form \textit{inter-molecular} structures.\\
+	Complementary bases $C$-$G$ and $A$-$U$ form stable base pairs with each other using hydrogen bonds. These are called \textit{Watson-Crick pairs}. $U$-$G$ base pairs is the weaker wobble pairs. Together they are called \textit{canonical base pairs}. In general, isolated base pairs are unstable. If interacting bases belong to the same molecule of RNA, they form \textit{intra-molecular} structures and if they belong to different molecules of RNA, they form \textit{inter-molecular} structures.\\
 	
 	The prediction of RNA-RNA interaction is intended to predict these intermolecular structures between two RNA molecules, an extremely important step in understanding the role of ncRNAs. However, intramolecular and intermolecular structures are not mutually exclusive.\\
 	
@@ -155,7 +155,7 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
 	$(i = i' \Leftrightarrow j = j')$ and $ i \neq j'$ \\
 	\end{center}
 
-	To form a valid secondary structure, the base pairs must satisfy some limitations. Let the bases be numbered from 1 to $N$ in a sequence. If the bases are complementary, a base pair may form between positions $i$ and $j$, if $|j - i | \geq 4$, since there must usually be at least three unpaired bases in a hairpin loop. Let $k$ and $l$ bases form another permissible  pair. If the two pairs can be present in a structure simultaneously, then the pair $(k,l)$ is said to be compatible with the pair $(i,j)$ . If they are non-overlapping (e.g. $i<j<k<l$ ) or if one is nested within the other (e.g. $i<k<l<j$ ) then the pairs are said to be compatible. The Final case, where the pairs are interlocking or crossing (e.g. $i<k<j<l$ ) is called  pseudo-knot. These pairs are taken to be incompatible with
+	To form a valid secondary structure, the base pairs must satisfy some limitations. Let the bases be numbered from 1 to $N$ in a sequence. If the bases are complementary, a base pair may form between positions $i$ and $j$, if $|j - i | \geq 4$, since there must usually be at least three unpaired bases in a hairpin loop. Let $k$ and $l$ bases form another permissible  pair. If the two pairs can be present in a structure simultaneously, then the pair $(k,l)$ is said to be compatible with the pair $(i,j)$ . If they are non-overlapping (e.g. $i<j<k<l$ ) or if one is nested within the other (e.g. $i<k<l<j$ ) then the pairs are said to be compatible. The final case, where the pairs are interlocking or crossing (e.g. $i<k<j<l$ ) is called  pseudo-knot. These pairs are taken to be incompatible with
 	most programs. A permitted secondary structure is a set of base pairs, all compatible with one another.\\
 	
 	They are different types of RNA secondary structure. i.e. nested
@@ -185,7 +185,7 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
  	 
  	 \citet{DeVoe1962TheSO} said vertical stacking of bases gives the largest contribution to the stability of the RNA helix. The stacking of unpaired bases is less predictable and stable than the paired bases. Hence, the directly neighboured bases must be taken into account while estimating the energy contribution of a  base pair, which results in the \textit{Nearest Neighbor Model} \citep{borer1974stability}.\\
  	 
- 	 The Nearest Neighbor Model helps to measure a free energy estimate for a given RNA secondary structure. The free energy can be taken as the amount of energy stored in a system. The system is more stable when the energy is lower. Hence, for the \textit{most stable structure} of RNA, we go for \textit{minimum free energy (MFE)}. The energy difference between the reference state to the system is measured. We have a reference system that we use to understand the stability of the system. The reference is an RNA structure with no base pairing(the open chain) ie., $ E(\phi) =0 $. Hence, we need to check not only the hydrogen bonds but also the stacking stability. The Nearest Neighbor Model uses a loop-based structure decomposition. To avoid the duplication of stacking, only inner stacking is taken into account. \\
+ 	 The Nearest Neighbor Model helps to measure a free energy estimate for a given RNA secondary structure. The free energy can be taken as the amount of energy stored in a system. The system is more stable, when the energy is lower. Hence, for the most stable structure of RNA, we go for \textit{minimum free energy (MFE)}. The energy difference between the reference state to the system is measured. We have a reference system that we use to understand the stability of the system. The reference is an RNA structure with no base pairing (the open chain) ie., $ E(\phi) =0 $. Hence, we need to check not only the hydrogen bonds but also the stacking stability. The Nearest Neighbor Model uses a loop-based structure decomposition. To avoid the duplication of stacking, only inner stacking is taken into account. \\
  	 
  	 \textit{The terminal mismatch} consists of the first unpaired bases immediately after the stacking. The identity of the terminal mismatch provides the energy of the loop. In Bulge or Internal loop also we have the same energy contribution. Energy contributions for external base pairs, which are not enclosed by any other base pairs, are referred to as \textit{dangling end contributions}.\\ 
  	 The energy $E(P)$ ~\ref{eq:1} of a nested secondary structure $P$ can be estimated by the sum of loop contributions (see Figure ~\ref{fig:energycontribution})\\
@@ -199,11 +199,11 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
  	 \end{cases}
  	 \end{equation}
  	 
- 	 Where $e^H$, $e^{SBI}$, and $e^M$ tell the context sensitive energy contributions of the loops. $(k,l)$ represents the enclosed base pair of the stack, bulge or internal and $x$ represent the unpaired bases and $x'$ represents the helices enclosed in the multi loop. There is an exponential number of possible multi loop composition. The energy for them can be estimated as below \\
+ 	 Where $e^H$, $e^{SBI}$, and $e^M$ are the context sensitive energy contributions of the loops. $(k,l)$ represents the enclosed base pair of the stack, bulge or internal and $x$ represents the unpaired bases and $x'$ represents the helices enclosed in the multi loop. There is an exponential number of possible multi loop composition. The energy for them can be estimated as below \\
  	 \begin{center}
  	 $e^M(i,j,x,x')= e^M_a+e^M_bx+e^M_cx'$\\
  	\end{center}
- 	 where the pseudo energy parameter $e^M_a$ scores the multi loop closing base pair $(i,j)$ , $e^M_b$ represents the penalty for $x$ directly enclosed unpaired bases $x$ and $e^M_c$ scores $x'$ enclosed helices .
+ 	 where the pseudo energy parameter $e^M_a$ scores the multi loop closing base pair $(i,j)$ , $e^M_b$ represents the penalty for $x$ directly enclosed unpaired bases $x$ and $e^M_c$ scores $x'$ enclosed helices.
  	 Thus the nearest neighbor model gives the energy contributions for the loop types. \\
  	 
  	 \begin{figure}[h]
@@ -214,9 +214,9 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
  	 \end{figure}
  	 
  	 
- 	 From the above energy model, We can define a recursive dynamic programming algorithm to compute the structure which minimizes the energy function, this is called minimum free energy (mfe) structure. This algorithm was introduced by \citet{zuker1981optimal}.\\
+ 	 From the above energy model, we can define a recursive dynamic programming algorithm to compute the structure which minimizes the energy function, this is called \textit{minimum free energy (mfe)} structure. This algorithm was introduced by \citet{zuker1981optimal}.\\
  	 
- 	 The basic substructures of the secondary structure of the RNA sequence (i.e., stack, hairpin, internal and multi loop) are independent of each other and the energy of the secondary structure is assumed to be the sum of the energies of the substructures. The algorithm is executed in two steps with a single RNA sequence as input. Firstly, the minimum free energy of the input RNA sequences is calculated, then traceback is used to recover the respective secondary structure with the base pairs. Thus given an RNA sequence $S$, Zuker’s algorithm predicts the non-crossing, minimal energy structure $P$ of $S$ in $O(n^3)$ time and $O(n^2)$ space.\\
+ 	 The basic substructures of the secondary structure of the RNA sequence (i.e., stack, hairpin, internal and multi-loop) are independent of each other and the energy of the secondary structure is assumed to be the sum of the energies of the substructures. The algorithm is executed in two steps with a single RNA sequence as input. Firstly, the minimum free energy of the input RNA sequences is calculated, then traceback is used to recover the respective secondary structure with the base pairs. Thus given an RNA sequence $S$, Zuker’s algorithm predicts the non-crossing, minimal energy structure $P$ of $S$ in $O(n^3)$ time and $O(n^2)$ space.\\
  	 
  	 The most commonly used are the Turner parameters (\citep{mathews1999expanded}, \citep{mathews2004incorporating}) which can be found in the Nearest Neighbor Data Base NNDB. There are significant differences in the loop energies especially in the multi-loop scoring. Below is the parameter sets from the Vienna RNA package.  \\
  	 
@@ -241,7 +241,7 @@ In dieser Arbeit haben wir ein Modell entwickelt, das gleichzeitig auftretende I
   \end{center}
  	 
  	 \subsection{Structure probabilities and McCaskill algorithm}
- 	 Let's discuss about the structural information in terms of probabilities. According to the principal of maximum entropy \citep{jaynes1957information} the best probability distribution for the calculation of the structure or base pair probability is the \textit{Boltzmann Distribution}. These probabilities are calculated according to the Boltzmann weight. For RNA structures the unit of the energy value is $\frac{kcal}{mol}$ or $\frac{J}{mol}$. The RNA structure energy is been rescaled for Boltzmann weight computation. i.e., we replace Boltzmann constant $k_B$ with the "mol-scaled" gas constant $R$ to get the Boltzmann weight $w(P)$ of a structure $P$ as:\\
+ 	 Let's discuss about the structural information in terms of probabilities. According to the principal of maximum entropy \citep{jaynes1957information} the best probability distribution for the calculation of the structure or base pair probability is the \textit{Boltzmann Distribution}. These probabilities are calculated according to the Boltzmann weight. For RNA structures, the unit of the energy value is $\frac{kcal}{mol}$ or $\frac{J}{mol}$. The RNA structure energy is been rescaled for Boltzmann weight computation. i.e., we replace Boltzmann constant $k_B$ with the "mol-scaled" gas constant $R$ to get the Boltzmann weight $w(P)$ of a structure $P$ as:\\
  	 
 % 	 %\begin{equation*}
 % 	
@@ -309,21 +309,21 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
  	 \begin{figure}[tb]
  	 	\includegraphics[width=0.8\linewidth]{unpaired}
  	 	\centering
- 	 	\caption{Examplary structures that are unpaired in the subsequence {i..j}. The Figure was inspired by the lecture material of RNA bioinformatics lecture.\\}
+ 	 	\caption{Exemplary structures that are unpaired in the subsequence {i..j}. The Figure was inspired by the lecture material of RNA bioinformatics lecture.\\}
  	 	\label{fig:unpaired}
  	 \end{figure}
   
- 	 Different probabilities can be calculated using McCaskill algorithm. The McCaskill algorithm \citep{mccaskill1990equilibrium} is used to calculate the partition function $Z$ for a given sequence $S$, which can be used to compute probabilities. It enables efficient computing of the probabilities of the structure of the RNA as well as the probability that a certain base pair is formed. In addition, unpaired probabilities for subsequences can be calculated that reflect the accessibility of RNA parts for other interactions.\\ 
+ 	 Different probabilities can be calculated using McCaskill algorithm. The McCaskill algorithm \citep{mccaskill1990equilibrium} is used to calculate the partition function $Z$ for a given sequence $S$, which can be used to compute probabilities. It enables efficient computing of the probabilities of the structure of the RNA as well as the probability that a certain base pair is formed. Also besides, unpaired probabilities for subsequences can be calculated that reflect the accessibility of RNA parts for other interactions.\\ 
  	
 	
 	\section{RNA-RNA Interaction}
- 	The interaction of RNA molecules is an essential factor for regulatory processes in all organisms. Computational prediction of RNA-RNA interactions (RRI) is a central methodology for the specific investigation of inter-molecular RNA interactions and regulatory effects of non-coding RNAs. RNA–RNA interactions are fast emerging as a major functional component in many newly discovered non-coding RNAs. They are important in many basic cellular activities including transcription, RNA processing, localization, and translation.  Many RNA species function is guided by their structure, which is defined by intramolecular base pair formation. Small prokaryotic RNAs display evolutionary unstructured regions that control the expression of their target mRNAs by intermolecular base pairing \citep{wright2013comparative}. Hence, the prediction of both functional intramolecular and intermolecular structure of RNAs are important bioinformatics tasks. \\
+ 	The interaction of RNA molecules is an essential factor for regulatory processes in all organisms. Computational prediction of RNA-RNA interactions (RRI) is a central methodology for the specific investigation of inter-molecular RNA interactions and regulatory effects of non-coding RNAs. RNA–RNA interactions are fast emerging as a major functional component in many newly discovered non-coding RNAs. They are important in many basic cellular activities including transcription, RNA processing, localization, and translation.  Many RNA species functions is guided by their structure, which is defined by intramolecular base pair formation. Small prokaryotic RNAs display evolutionary unstructured regions that control the expression of their target mRNAs by intermolecular base pairing \citep{wright2013comparative}. Hence, the prediction of both functional intramolecular and intermolecular structure of RNAs are important bioinformatics tasks. \\
  	
- 	Let's see about some simple RNA-RNA interactions. In \textit{splicing}, small nuclear RNAs (snRNA) can recognize intronic regions of precursor messenger RNA(mRNA) which is the important step in identifying the RNA splicing products \citep{modrek2002genomic}. In \textit{translation} transfer RNA(tRNA) interact with (mRNA) by "reading" the three letter code and define amino acid sequence \citep{selmer2006structure}, \citep{ibba2000aminoacyl}. In RNA modification, small nucleolar RNA(snoRNA) guide the modification of ribosomal RNA(rRNA) \citep{kiss2002small}. In microRNA (miRNA) targeting, the base pairing between  miRNA and mRNA leads to degradation or translation inhibition of the mRNA \citep{bartel2004micrornas}. For RNA function and regulation these examples show us the importance of the RNA-RNA interaction. \\
+ 	 In \textit{splicing}, small nuclear RNAs (snRNA) can recognize intronic regions of precursor messenger RNA(mRNA) which is an important step in identifying the RNA splicing products \citep{modrek2002genomic}. In \textit{translation} transfer RNA(tRNA) interact with (mRNA) by "reading" the three letter code and define amino acid sequence \citep{selmer2006structure}, \citep{ibba2000aminoacyl}. In RNA modification, small nucleolar RNA(snoRNA) guides the modification of ribosomal RNA(rRNA) \citep{kiss2002small}. In microRNA (miRNA) targeting, the base pairing between  miRNA and mRNA leads to degradation or translation inhibition of the mRNA \citep{bartel2004micrornas}. For RNA function and regulation these examples show us the importance of RNA-RNA interaction. \\
  		
- 	In order to allow highly accurate predictions, state-of-the-art methods not only taken into account the stability (energy) of possible RNA–RNA interactions, but they also consider the accessibility of the interacting subsequences \citep{umu2017comprehensive}, i.e., the intramolecular structure pattern.\\
+ 	In order to allow highly accurate predictions, state-of-the-art methods do not only take the stability (energy) of possible RNA–RNA interactions into account, but they also consider the accessibility of the interacting subsequences \citep{umu2017comprehensive}, i.e., the intramolecular structure pattern.\\
  	
- 	Small regulatory RNAs (sRNAs) typically have a range of 50 to 500 nucleotides and are transcribed through intergenic bacterial genome regions. sRNAs work in trans and display complementarity with target mRNAs. Many sRNAs base pairs within the 5'-UTR of  mRNA's target and blocks the ribosome binding site, therefore stops the initiation of translation. ~\ref{fig:sRNA}. This process is called Inhibition of translation initiation. \\
+ 	Small regulatory RNAs (sRNAs) typically have a range of 50 to 500 nucleotides and are transcribed through intergenic bacterial genome regions. sRNAs work in trans and display complementarity with target mRNAs. Many sRNAs base pairs within the 5'-UTR of mRNA's target and blocks the ribosome binding site, therefore stops the initiation of translation. Refer to Fig ~\ref{fig:sRNA}. This process is called the /textit{Inhibition of translation initiation}. \\
  	
  	
  	 \begin{figure}[tb]
@@ -338,7 +338,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
  	Here, we will see the formal background of RNA-RNA interactions.\\
  	In general RNA–RNA interaction prediction (RIP) problem, given two RNA sequences $S^1$ and $S^2$ (e.g., an antisense RNA and its target), the RIP problem asks one to predict their joint secondary structure. A joint secondary structure between $S^1$ and $S^2$ is a set of “pairings” where each nucleotide of $S^1$ and $S^2$ is paired with at most one other nucleotide, either from $S^1$ or $S^2$ \citep{alkan2006rna}.  \\
  	
- 	The RNA-RNA interaction is the combination of the set all of the base pairs in $S^1$, the set of all base pairs in $S^2$ and the total intermolecular base pairs between two sequences. Formally, the RRI can be modelled as RRI = $ \uplus $ bp ($S^1$) $ \cup $ $\uplus$ bp ($S^2$) $\cup$ $\uplus$ ($Inter$). Basically, the set of all base pairs of $S^1$ is $P^1$ and $S^2$ is $P^2$, then $Inter$ is $I$ which denotes the set of all intermolecular base pairs. \\
+ 	The RNA-RNA interaction is the combination of the set all of the base pairs in $S^1$, the set of all base pairs in $S^2$, and the total intermolecular base pairs between two sequences. Formally, the RRI can be modelled as RRI = $ \uplus $ bp ($S^1$) $ \cup $ $\uplus$ bp ($S^2$) $\cup$ $\uplus$ ($Inter$). The set of all base pairs of $S^1$ is $P^1$ and $S^2$ is $P^2$, then $Inter$ is $I$ which denotes the set of all intermolecular base pairs. \\
  	
  		\begin{center}
  		RRI =  $P^1$ $ \cup $  $P^2$ $\cup$ $I$
@@ -355,14 +355,14 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
  		\begin{figure}[tb]
  		\includegraphics[width=1.0\linewidth]{pseudoknot.pdf}
  		\centering
- 		\caption{ The left side figure shows the Positions are not paired within the loop. This problem starts with the pseudoknot which is shown in the right side figure where the same problem exists for the scoring of crossing structures. }
+ 		\caption{ The left side figure shows the positions are not paired within the loop. This problem starts with the pseudoknot which is shown on the right side figure where the same problem exists for the scoring of crossing structures. }
  		\label{fig:pseudoknot}
  	\end{figure}
  	
  	%The same problem we have for the scoring of crossing structure in a pseudoknot.\\
- 	Now, we further decompose $I$ into the sequence of subsets of consecutive base pairs that form interaction blocks $B$ which is depicted in the Figure ~\ref{fig:rnarna}, where $ I = (B_1 ,..., B_x)$. A block $B$ is the interaction block or interaction site.
+ 	Now, we further decompose $I$ into the sequence of subsets of consecutive base pairs that form interaction blocks $B$ which is depicted in Figure ~\ref{fig:rnarna}, where $ I = (B_1 ,..., B_x)$. A block $B$ is the interaction block or interaction site.
  
- 	Further, the interaction block or interaction site "B" can be represented as,
+ 	Further, the interaction block or interaction site "$B$" can be represented as,
  	
  	\begin{center}
  	 $B = \{ (i_1 , i_2)  \mid  S^1_{i_1}$ complementary to $ S^2_{i_2} \} \subseteq [ 1, n_1] * [1 , n_2] $
@@ -374,7 +374,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
  		$(i_1 < i_2) \iff  (j_1 > j_2)$
  	\end{center}
  	
- 	ie., They should be non-crossing.  The block region R(B) is $(i(B) , j(B))$ ie., left and right most base pairs of B concerning $S^1$.\\
+ 	ie., They should be non-crossing.  The block region $R(B)$ is $(i(B) , j(B))$ ie., left and right most base pairs of $B$ concerning $S^1$.\\
  	
  	\begin{equation*}
  		i(B) = \argmin_{i = (i_1, i_2 ) \in B } (i_1)
@@ -387,28 +387,28 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
  	\begin{figure}[tb]
  		\includegraphics[width=0.6\linewidth]{block.pdf}
  		\centering
- 		\caption{The block region $R(B)$ where the left and right most base pairs of $B$ concerning $S_1$}
+ 		\caption{The block region $R(B)$ where the left and rightmost base pairs of $B$ concerning $S_1$}
  		\label{fig:block}
  	\end{figure}
  
- 	 Furthermore, no intra molecular base pairs are allowed in block region R(B) of $P^1 , P^2$.\\
+ 	 Furthermore, no intramolecular base pairs are allowed in block region $R(B)$ of $P^1 , P^2$.\\
  	 ie.,
  	\begin{center}
  		 $\forall_{B\in I } : \left(\nexists_{(k,l) \in P^1} : i(B)_1 \le k \le j(B)_1  \vee   i(B)_1 \le l \le j(B)_1 \right) $ \\$\wedge $\\ 	$\left(\nexists_{(k',l') \in P^1} : i(B)_2 \le k' \le j(B)_2  \vee  i(B)_2 \le l' \le j(B)_2\right) $
  	\end{center}
  	
- 	where I is the union of all blocks (ie., all inter molecular base pairs)
+ 	where $I$ is the union of all blocks (ie., all intermolecular base pairs)
  	We compute the joint structure between $S_1$ and $S_2$ through minimizing their total free energy. 
 	
 	\begin{figure}[tb]
 		\includegraphics[width=0.5\linewidth]{break.pdf}
 		\centering
-		\caption{The interaction energy of RRI is the energy defined by the loops enclosed by all inter-molecular base pairs. $E(B_1)$ is the energy of block 1 and the $E(breaks)$ can be calculated from sum of all breaks.  }
+		\caption{The interaction energy of RRI is the energy defined by the loops enclosed by all inter-molecular base pairs. $E(B_1)$ is the energy of block 1 and the $E(breaks)$ can be calculated from the sum of all breaks.  }
 		\label{fig:break}
 	\end{figure}
 
 		
-	 The Energy for the block $E(B)$ can be calculated as  ,
+	 The Energy for the block $E(B)$ can be calculated as,
 	
 %	\begin{center}
 %	
@@ -435,12 +435,12 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{equation}	
 	
 	\begin{center}
-		where, $E(  \uplus  B) = \sum_B E(B) + E(breaks)$ and $E_{init}$ is fixed init score if $I$ $\neq$ $\phi$. $E_{init}$ is 4.1 as per turner 99. Refer to section 1.2.3 .
+		where $E(  \uplus  B) = \sum_B E(B) + E(breaks)$ and $E_{init}$ is fixed init score if $I$ $\neq$ $\phi$. $E_{init}$ is 4.1 as per turner 99. Refer to section 1.2.3 .
 	\end{center}
 
-	In the Fig ~\ref{fig:rnarna}, light violet colour represents the intramolecular loop with the intermolecular base pairs paired. We will need to find out, how to score them. Here, without further knowledge or energy parameters, we score it via standard loop scores ignoring the intermolecular pairings. The problem is similar to pseudoknot scoring. These also contain  the loops where the positions are not paired within the loop , see Figure ~\ref{fig:pseudoknot}.\\
+	In Fig ~\ref{fig:rnarna}, light violet colour represents the intramolecular loop with the intermolecular base pairs paired. We will need to find out, how to score them. Here, without further knowledge or energy parameters, we score it via standard loop scores ignoring the intermolecular pairings. The problem is similar to pseudoknot scoring. These also contain  the loops where the positions are not paired within the loop, see Figure ~\ref{fig:pseudoknot}.\\
 
-	$E(breaks)$ is defined by the sum over all individual breaks between blocks (Fig  ~\ref{fig:break} ). For the $E(breaks)$ it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea. Now, we will summarise the formal definition of energy of RRI. By using the above RRI equation, we can write overall energy of RRI as \\
+	$E(breaks)$ is defined by the sum over all individual breaks between blocks (Fig  ~\ref{fig:break} ). For the $E(breaks)$ it depends on the prediction model which is a tricky part and that will be discussed with the next section along with the approaches idea. Now, we will summarise the formal definition of the energy of RRI. By using the above RRI equation, we can write overall energy of RRI as \\
 	
 	\begin{equation}
 	\label{eq:rri}
@@ -450,9 +450,9 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	
 	\section{RNA-RNA Interaction Prediction Approaches}
 	There are several available methods, that can be classified according to their underlying prediction strategies, each implicating unique capabilities and restrictions often not transparent to the non-expert user.\\ 
-	Mostly for RNA-RNA interaction prediction methods are based on thermodynamic models and provide an efficient computation since Richard Bellman’s principle of optimality \citep{raden2018interactive} can be applied. RNA–RNA interaction prediction approaches are classified into hybrid-only interaction prediction, general interaction prediction, concatenation-based/cofolding interaction prediction, and accessibility-based interaction prediction. \\
+	Mostly for RNA-RNA interaction prediction methods are based on thermodynamic models and provide an efficient computation since Richard Bellman’s principle of optimality \citep{raden2018interactive} can be applied. RNA–RNA interaction prediction approaches are classified into hybrid-only interaction prediction, general interaction prediction, concatenation-based/co-folding interaction prediction, and accessibility-based interaction prediction. \\
 	
-	In the following subsections we will see about the approaches used for predicting the RNA-RNA interactions.\\
+	In the following subsections, we will see about the approaches used for predicting the RNA-RNA interactions.\\
 
 	
 	\subsection{Hybridization-only interaction prediction}
@@ -461,7 +461,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\begin{figure}[H]
 		\includegraphics[width=0.4\linewidth]{rnahybrid}
 		\centering
-		\caption{ A full duplex structure where no intramolecular base pairs are assumed. The figure is taken from the paper \citep{wright2018structure}} 
+		\caption{ A full-duplex structure where no intramolecular base pairs are assumed. The figure is taken from the paper \citep{wright2018structure}} 
 		\label{Fig:rnahybrid}
 	\end{figure}
 	
@@ -475,7 +475,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	H_{i,j-1} ,
 	\end{cases}
 	\end{equation}
-	Where $H_{ij}$ is the maximal number of intermolecular base pairs for the prefixes $S^1_1..i$	and $\overleftarrow{S^2_1..j}$ the reverse sequnce of $S^2$. The visual representation of the recursion scheme is given in Fig:~\ref{fig:hybrid} . The above equation is the variant of the global sequence alignment approach by \citet{needleman1970general} using scoring scheme i.e.,base pair instead of match/mismatch scoring for$S^1_i$, $\overleftarrow{S^2_j}$ no gap cost. Hence, when initialising $ H_{i,0} / H_{0,j} $ with 0, the $H_{n,m} $ gives the maximal number of intermolecular base pairs and we can trace them back. As stated above, this approach has very low runtime, which are preserved when extended to energy minimization.\\
+	Where $H_{ij}$ is the maximal number of intermolecular base pairs for the prefixes $S^1_1..i$	and $\overleftarrow{S^2_1..j}$ the reverse sequence of $S^2$. The visual representation of the recursion scheme is given in Fig:~\ref{fig:hybrid} . The above equation is the variant of the global sequence alignment approach by \citet{needleman1970general} using the scoring scheme i.e., base pair instead of match/mismatch scoring for$S^1_i$, $\overleftarrow{S^2_j}$ no gap cost. Hence, when initialising $ H_{i,0} / H_{0,j} $ with 0, the $H_{n,m} $ gives the maximal number of intermolecular base pairs and we can trace them back. As stated above, this approach has very low runtime, which is preserved when extended to energy minimization.\\
 	
 	 \begin{figure}[tb]
 		\includegraphics[width=0.8\linewidth]{hybrid}
@@ -484,12 +484,12 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 		\label{fig:hybrid}
 	\end{figure}
 
-	In order to compute the energy of an RRI using ~\ref{eq:2}, no intra-molecular structure is considered, i.e. $P^1=P^2= \emptyset $ .
+	To compute the energy of an RRI using ~\ref{eq:2}, no intra-molecular structure is considered, i.e. $P^1=P^2= \emptyset $ .
 	
-	Thus, eventually, only one block of inter-molecular base pairs is modelled ie., $(I = B)$ and no break is present. They are implemented in tools like TargetRNA, RNAhybrid. The main advantage of these approaches is they are very fast and easy to calculate the significance of hits.  Since,  intramolecular base pairing is ignored they are used for the identification of short RNA's and otherwise they overestimate the length of target sites. These disadvantages can be overcome by concatenation and accessibility based approaches.\\ 
+	Thus, only one block of inter-molecular base pairs is modelled ie., $(I = B)$ and no break is present. They are implemented in tools like TargetRNA, RNAhybrid. The main advantage of these approaches is they are very fast and easy to calculate the significance of hits.  Since,  intramolecular base pairing is ignored they are used for the identification of short RNAs and otherwise they overestimate the length of target sites. These disadvantages can be overcome by concatenation and accessibility based approaches.\\ 
 	
 	\subsection{General RNA–RNA interaction prediction}
-	One of the most general approaches that is used for predicting the RRI of two intermolecular RNA molecules is IRIS \citep{pervouchine2004iris} method. This method is basically implemented by dynamic programming where it is the product of the sequence alignment and two MFOLD type secondary structure prediction algorithms. It can predict \textit{general duplex structures}. This method is applied to some well known interactions such as OxyS with fhlA mRNA which basically forms a double kissing hairpin interactions as shown Fig ~\ref{fig:doublekiss}.\\
+	One of the most general approach that is used for predicting the RRI of two intermolecular RNA molecules is IRIS \citep{pervouchine2004iris} method. This method is implemented by dynamic programming where it is the product of the sequence alignment and two MFOLD type secondary structure prediction algorithms. It can predict \textit{general duplex structures}. This method is applied to some well known interactions such as OxyS with fhlA mRNA which basically forms a double kissing hairpin interactions as shown in Fig ~\ref{fig:doublekiss}.\\
 	
 	 \begin{figure}[tb]
 		\includegraphics[width=0.4\linewidth]{doublekiss}
@@ -499,32 +499,32 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 		\label{fig:doublekiss}
 	\end{figure}
 	
-	It shares most common features with pseudoknots, but is less computationally intensive. The input is made up of two sequences of RNA. Each sequence can form its own nested secondary structure and hybridize into the other molecule. The  time and space complexities are $O(n^3m^3)$ and $O(n^2m^2)$, where $n$ and $m$ are the lengths of the sequences. The configuration of the OxyS-fhlA complex proposed in \citep{argaman2000fhla} consists of four neighbouring stem loops, two in each of the molecules which connect, forming two stable kissing complexes. In this method, the main goal is the simultaneous optimization of intra- and inter-molecular base pairing.\\
+	It shares most common features with pseudoknots, but is less computationally intensive. The input is made up of two sequences of RNA. Each sequence can form its own nested secondary structure and hybridize it into the other molecule. The  time and space complexities are $O(n^3m^3)$ and $O(n^2m^2)$, where $n$ and $m$ are the lengths of the sequences. The configuration of the OxyS-fhlA complex proposed in \citep{argaman2000fhla} consists of four neighbouring stem-loops, two in each of the molecules which connect, forming two stable kissing complexes. In this method, the main goal is the simultaneous optimization of intra- and inter- molecular base pairing.\\
 
 	\begin{figure}[tb]
 		\includegraphics[width=0.9\linewidth]{iris.pdf}
 		\centering
 		\caption{ Depiction of the recursion $M^{i..k}_{j..l}$  which
-			handles intramolecular (a,b) and intermolecular (d,e) base pair extensions as well as a general decomposition (c) and crossing (f) case.  Figure is taken from the paper \citet{pervouchine2004iris}} 
+			handles intramolecular (a,b) and intermolecular (d,e) base pair extensions as well as a general decomposition (c) and crossing (f) case. The Figure is taken from the paper \citet{pervouchine2004iris}} 
 		
 		\label{fig:iris}
 	\end{figure}
 	
-	IRIS also supports crossing of consecutive blocks treated by the last recursion case in the lower right of Fig ~\ref{fig:iris}, which further complicates energy scoring of breaks. The energy contribution of general approach doesn't follow the interaction energy model instead they have pseudoknot energy. The energy associated with exterior pseudoknot can be given as \citep{xu2015physics} \\
+	IRIS also supports crossing of consecutive blocks treated by the last recursion case in the lower right of Fig ~\ref{fig:iris}, which further complicates the energy scoring of breaks. The energy contribution of the general approach doesn't follow the interaction energy model instead they have pseudoknot energy. The energy associated with exterior pseudoknot can be given as \citep{xu2015physics} \\
 	
 		\begin{equation}
 		G^{Pseudo} = \beta_1 + \beta_2 B^p + \beta_3 U^p
 		\end{equation}
 		
-	where $\beta_1$ represents penalty for introducing a pseudoknot, $B^p$ is the number of base pairs that border the interior of the pseudoknot (i.e. number of paired positions) and $U^p$ is the number of unpaired bases inside the pseudoknot ~\ref{fig:pseudoknot}(right). If a pseudoknot is inside a multiloop then they can be represented as $\beta_1^m$( by replacing the $\beta_1$) and if pseudoknot is inside another pseudoknot they can be  represented as $\beta_1^p$ (by replacing $\beta_1$).\\
+	where $\beta_1$ represents the penalty for introducing a pseudoknot, $B^p$ is the number of base pairs that border the interior of the pseudoknot (i.e. number of paired positions), and $U^p$ is the number of unpaired bases inside the pseudoknot ~\ref{fig:pseudoknot}(right). If a pseudoknot is inside a multiloop then they can be represented as $\beta_1^m$( by replacing the $\beta_1$) and if pseudoknot is inside another pseudoknot they can be  represented as $\beta_1^p$ (by replacing $\beta_1$).\\
 	
-	As an approximation, one could use $E(PK-loop)$ with such pseudoknot energy terms based on $G^{Pseudo}$ to score breaks. Note, to get an even more accurate overall energy scoring of an interaction, one would have to use pseudoknot energy terms also for such loops formed by intra-mol base pairs (refer ~\ref{fig:pseudoknot} (left)). For simplicity, ~\ref{eq:rri} uses only nested energy terms to assess intra-molecular energies. Thus, the exact energy computation of the general approach is not covered by the formalizations used within this thesis.\\
+	As an approximation, one could use $E(PK-loop)$ with such pseudoknot energy terms based on $G^{Pseudo}$ to score breaks. Note, to get an even more accurate overall energy scoring of interaction, one would have to use pseudoknot energy terms also for such loops formed by intra-molecular base pairs (refer ~\ref{fig:pseudoknot} (left)). For simplicity, ~\ref{eq:rri} uses only nested energy terms to assess intra-molecular energies. Thus, the exact energy computation of the general approach is not covered by the formalizations used within this thesis.\\
 
-	The time and space usage of IRIS are $ O(n^6)$ and $ O(n^4)$, respectively. The partition function version of RNA-RNA interaction prediction allows computation of probabilities of intermolecular interactions, which is used to access the stability. Due to its high complexity, several methods for reducing the requirements have been introduced. One such approach introduced by \citet{ chitsaz2009birna} called \textit{biRNA} is used to predict the multiple simultaneous binding site. \\
+	The time and space usage of IRIS is $ O(n^6)$ and $ O(n^4)$, respectively. The partition function version of RNA-RNA interaction prediction allows the computation of probabilities of intermolecular interactions, which is used to access the stability. Due to its high complexity, several methods for reducing the requirements have been introduced. One such approach introduced by \citet{ chitsaz2009birna} called \textit{biRNA} is used to predict the multiple simultaneous binding sites. \\
 	
 	 
 	\subsection{Concatenation-based RNA-RNA interaction prediction}
-	Concatenation or co-folding approach is used for predicting the interacting base pairs of two RNA molecules based on intramolecular structure prediction methods. Here, two or more sequences are concatenated  into a single sequence with special inter-spacing linker sequences. The final sequence is used within an adaptation of a standard structure prediction that takes  care of the linker sequences. \textit{mfold} was the first Concatenation-based prediction tool using the Nearest-Neighbor energy model, later implemented in \textit{Mutli RNAfold} and \textit{RNAcofold}.\\
+	Concatenation or co-folding approach is used for predicting the interacting base pairs of two RNA molecules based on intramolecular structure prediction methods. Here, two or more sequences are concatenated  into a single sequence with special inter-spacing linker sequences. The final sequence is used within an adaptation of a standard structure prediction that takes  care of the linker sequences. \textit{MFOLD} ~\citep{zuker2003mfold} was the first Concatenation-based prediction tool using the Nearest-Neighbor energy model, later implemented in \textit{MultiRNAfold} ~\citep{andronescu2005secondary} and \textit{RNAcofold} ~\citep{bernhart2006partition}.\\
 
 %	\begin{figure}[H]
 %		\includegraphics[width=0.3\linewidth]{concatenation}
@@ -533,21 +533,21 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 %		\label{fig:concatenation}
 %	\end{figure}
 	
-	 RNA sequences are concatenated by a linker of length $l+1$, where l is the minimal loop size, to ensure the concatenated sequence ends can form a base pair. We don't need any special energy treatment because the intra- and inter- molecular loops are treated equally. Hence the breaks are considered as multi loop and scored accordingly. \\
+	 RNA sequences are concatenated by a linker of length $l+1$, where $l$ is the minimal loop size, to ensure the concatenated sequence ends can form a base pair. We don't need any special energy treatment because the intra- and inter-  molecular loops are treated equally. Hence the breaks are considered as multi-loop and scored accordingly. \\
 		
-	Concatentation-based approaches overcome the disadvantage of hybrid-only approach by incorporating the competition of intra- and intermolecular base pairing. Still they cannot predict all interaction patterns because both intra- a d inter- molecular base pairs have to be nested. For example, interactions like kissing stem-loop or kissing hairpin-loop (as seen in fig ~\ref{Fig:concat}) cannot be predicted by standard tools because they form a pseudoknot in the concatenation model. \\
+	Concatenation-based approaches overcome the disadvantage of the hybrid-only approach by incorporating the competition of intra- and inter- molecular base pairing, still they cannot predict all interaction patterns because both intra- and inter- molecular base pairs have to be nested. For example, interactions like kissing stem-loop or kissing hairpin-loop (as seen in fig ~\ref{Fig:concat}) cannot be predicted by standard tools because they form a pseudoknot in the concatenation model. \\
 	
 	 \begin{figure}[tb]
 		\includegraphics[width=0.9\linewidth]{concat}
 		\centering
-		\caption{a) Pattern that can be predicated by Concatenation b)Kissing stem-loop and c) kissing hairpin interaction. Both (b) and (c) cannot be predicted as they form a crossing structure in the concatenated model. The blue and orange are the two different RNA's and the dotted green is the linker, black lines represents the base pairs. Figure inspired from paper \citep{raden2018interactive}} 
+		\caption{a) Pattern that can be predicated by Concatenation b)Kissing stem-loop and c) kissing hairpin interaction. Both (b) and (c) cannot be predicted as they form a crossing structure in the concatenated model. The blue and orange are the two different RNA's and the dotted green is the linker, black lines represent the base pairs. Figure inspired from the paper \citep{raden2018interactive}} 
 		\label{Fig:concat}
 	\end{figure}
 	
-	NUPACK which is a pseudoknot prediction tool that solves the problem but with the higher runtime. They are based on dynamic programming approaches for specific classes of pseudoknot structures, but does not seem to be a significant drawback in terms of the accuracy of predictions for shorter sequences. \citep{dirks2003partition}. \\
+	NUPACK is a pseudoknot prediction tool that solves the problem but with the higher runtime. They are based on dynamic programming approaches for specific classes of pseudoknot structures but does not seem to be a significant drawback in terms of the accuracy of predictions for shorter sequences. \citep{dirks2003partition}. \\
 	
 	\subsection{Accessibility-based interaction prediction }
-	 To overcome the drawbacks of concatenation approaches, Accessibility approaches have been introduced. The main aim of this approach is to integrate ensemble properties of the single sequences that are necessary for the interaction. It can predict single site interaction patterns of two respective RNA subsequences. Tools like RNAup and IntaRNA implement this strategy. Here we have to dissolve intra molecular structure before the intermolecular interaction is formed. That is, in order to form a stable interaction of intermolecular base pairs, the intra molecular base pairs have to be opened/broken. \\
+To overcome the drawbacks of concatenation approaches, Accessibility approaches have been introduced. The main aim of this approach is to integrate ensemble properties of the single sequences that are necessary for the interaction. It can predict single site interaction patterns of two respective RNA subsequences. Tools like RNAup ~\citep{muckstein2006thermodynamics} and IntaRNA ~\citep{mann2017intarna} implement this strategy. Here we have to dissolve intramolecular structure before the intermolecular interaction is formed. That is, to form a stable interaction of intermolecular base pairs, the intramolecular base pairs have to be opened/broken. \\
 	
 %	\begin{figure}[H]
 %		\includegraphics[width=0.2\linewidth]{acess}
@@ -556,17 +556,17 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 %		\label{fig:acess}
 %	\end{figure}
 
-	We can classify single-site RNA-RNA interactions based on the structural context of the respective subsequences, which are\\
+	Single-site RNA-RNA interactions can be classified based on the structural context of the respective subsequences.,\\
 	
 	\begin{itemize}
-	\item exterior - not enclosed by any base pair.
-	\item hairpin loop - directly enclosed by a base pair.
-	\item non-hairpin loop - subsequence enclosed by two base pairs forming a bulge, interior or multi-loop.\\
+	\item exterior - not bounded by any base pair.
+	\item hairpin loop - enclosed directly by a base pair.
+	\item non-hairpin loop - subsequence surrounded by two base pairs creating a bulge, a multi-loop or an interior.\\
     \end{itemize}
 		
-	IntaRNA can predict single-site interactions within any structural context of the respective subsequences, but concatenation-based approaches can only predict exterior-exterior context combinations. Energy scoring differs from normal $E(RRI)$, since intra-molecular structure is only considered implicitly via ensemble energies.\\
+IntaRNA can predict single-site interactions of the respective subsequences within any structural context, but concatenation-based approaches can only predict the exterior-exterior context combinations. Energy scoring differs from normal $E(RRI)$ since intramolecular structure is only considered implicitly via ensemble energies.\\
 	
-	The term \textit{ensemble} refers to the set of all secondary structures which can be formed through an RNA sequence. In an RNA sequence $S$, the accessibility energy of a region $[i, k]$ is determined by the energy difference (referred to as ED):
+	The term \textit{Ensemble} refers to the set of all secondary structures which can be formed through an RNA sequence. In an RNA sequence $S$, the accessibility energy of a region $[i, k]$ is determined by the energy difference (referred to as $ED$):
 	
 	 \begin{equation}
 	\label{eq:equ6}
@@ -633,7 +633,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{figure}
 	
 
-	The energy of accessibility approach has no break , since the interaction I forms only one interaction block. Approaches like RNAup and IntaRNA use precalculated ED values for all possible interaction regions. They gives us how much energy is needed to free of intramolecular base pairs. \\
+	The energy of the accessibility approach has no break, since the interaction $I$ form only one interaction block. Approaches like RNAup and IntaRNA use pre-calculated ED values for all possible interaction regions. They give us how much energy is needed to free of intramolecular base pairs. \\
 	
 		\begin{figure}[tb]
 		\includegraphics[width=0.4\linewidth]{doublestem}
@@ -643,7 +643,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{figure}
 	
 	
-	The main drawback of accessibility approach is, it can handle only one non-crossing block. These approaches cannot be modelled correctly for the double kissing hairpin interaction which has more than one crossing blocks of interaction ~\ref{Fig:doublestem}\\
+	The main drawback of the accessibility approach is, it can handle only one non-crossing block. These approaches cannot be modelled correctly for the double kissing hairpin interaction which has more than one crossing blocks of interaction ~\ref{Fig:doublestem}\\
 	
 	
 	\subsection{Comparison of approaches for RRI prediction}
@@ -651,13 +651,13 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 		\begin{table}[H]
 				\caption{ Comparison of RNA-RNA interaction prediction approaches for different interaction pattern}
 				\label{table:1}
-		\begin{tabularx}{\textwidth}{ p{2cm}p{4.5cm}p{1.5cm}p{1cm}p{1cm}p{1cm}p{1cm} }
+		\begin{tabularx}{\textwidth}{ p{2cm}p{4.5cm}p{1cm}p{1cm}p{1cm}p{1cm}p{1cm} }
 		\toprule
 		\multicolumn{7}{c}{\textbf{Comparison of RRI approaches}}\\  
 		\midrule
 		\multicolumn{3}{c}{\textbf{RRI Pattern}}  & \multicolumn{4}{c}{\textbf{RRI prediction approaches}} \\
 		\cmidrule(r){1-3}  \cmidrule(r){4-7}
-		Figures & RRI description& No.of blocks & \rotatebox[origin=c]{90} {Hybrid-only}  &\rotatebox[origin=c]{90}{General}  &\rotatebox[origin=c]{90}{Concatenation (nested)}  &\rotatebox[origin=c]{90}{Accessibility} \\
+		Figures & RRI description& No. of blocks & \rotatebox[origin=c]{90} {Hybrid-only}  &\rotatebox[origin=c]{90}{General}  &\rotatebox[origin=c]{90}{Concatenation (nested)}  &\rotatebox[origin=c]{90}{Accessibility} \\
 		\hline
 		\hline
 		~\ref{Fig:rnahybrid}&Full duplex structure&1 &yes &yes &yes &yes\\
@@ -680,27 +680,27 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 		\hline
 		\hline
 		\addlinespace[0.5cm]
-		NA & Best Time complexity for each \hbox{approach} & NA & $O(nm) $ & $O(n^3m^3)$ & $O(n^3)$ & $O(n^2)$ \\
+		 & Best Time complexity for each \hbox{approach} &  & \rotatebox[origin=c]{90} {$O(nm)$}  & \rotatebox[origin=c]{90} {$O(n^3m^3)$} & \rotatebox[origin=c]{90} {$O(n^3)$} & \rotatebox[origin=c]{90} {$O(n^2)$} \\
 	\end{tabularx}
 	\end{table}
 
 	The understanding of RNA structure and RNA-RNA interaction prediction approaches 
-	is important to ensure correct result interpretation and an knowing of their limitations are necessary to avoid wrong conclusions. Here we give a concise overview of the relevant theoretical history to the most general algorithmic approaches. We could say that the accessibility-based approach is the best approach for single site RNA-RNA interaction. To handle two or multi crossing blocks of interaction, we are introducing multisite accessibility based approach. The Multi-site RRI optimization is based on single-site IntaRNA predictions. Hence, we are going for the multisite accessibility based approach in the next chapter.\\
+	is important to ensure correct result interpretation and knowing of their limitations are necessary to avoid wrong conclusions. Here we give a concise overview of the relevant theoretical history to the most general algorithmic approaches. We could say that the accessibility-based approach is the best approach for single site RNA-RNA interaction. To handle two or multi crossing blocks of interaction, we are introducing, " Multi-site accessibility based approach ". The Multi-site RRI optimization is based on single-site IntaRNA predictions. Hence, we are going for the multisite accessibility based approach in the next chapter.\\
 
 		
 		
 		
-	\chapter{Multisite Accessibility Based  }
+	\chapter{Multi-site Accessibility Based  }
 	
-	In this chapter, we will introduce an accessibility-based approach that can be used for multisite RNA-RNA interaction prediction. In simple words we could say, it is Multi-site RRI optimization based on single-site IntaRNA predictions. Accessibility-based RNA-RNA interaction prediction methods are typically modelling a single block of consecutive inter-molecular base pairs. Thus, interaction pattern that consists of multiple concurrently formed blocks can not be predicted. Within this thesis, we are developing and testing possibilities to efficiently predict concurrent blocks of interaction within an accessibility-based prediction model. The approach will be based on IntaRNA, which is one of the state-of-the-art programs for RNA-RNA interaction prediction.\\
+	In this chapter, we will introduce an accessibility-based approach that can be used for multisite RNA-RNA interaction prediction. In simple words we could say, it is Multi-site RRI optimization based on single-site IntaRNA predictions. Accessibility-based methods for predicting interaction between RNAs. They typically model single block of consecutive inter-molecular base pairs. Thus, it is difficult to anticipate interaction pattern consisting of multiple concurrently formed blocks. We are designing and evaluating possibilities within this thesis to effectively predict concurrent blocks of interaction through an accessibility-based prediction model. The method would be based on IntaRNA, one of the state-of-the-art RNA-RNA interaction prediction model.\\
 	
-	IntaRNA, developed by \citep{busch2008intarna} and \citep{raden2018interactive} at the bioinformatics group at Freiburg University, is a general and fast approach to the prediction of RNA-RNA interactions incorporating both the accessibility of interacting sites as well as the existence of a user-definable seed interaction. IntaRNA uses energy minimisation to find the best possible interaction.  \\
+	IntaRNA, developed by \citep{busch2008intarna} and \citep{raden2018interactive} at the University of Freiburg's bioinformatics department, is a general and rapid approach to predicting RNA-RNA interactions that integrate both the accessibility of interacting sites and the presence of user-definable seed interactions. IntaRNA uses energy minimisation to find the best possible interaction.  \\
 	
-	Many RNAs interact via multiple synchronous, non-overlapping subinteractions (M-RRI), e.g. OxyS-fhlA. The simultaneous prediction of both intra- and inter-molecular base pairing allowing for multiple sites is computationally expensive. Current approaches include IRIS \citep{pervouchine2004iris}, NUPACK \citep{dirks2007thermodynamic},piRNA \citep{chitsaz2009partition}, etc. There are fast and reliable single interaction site (S-RRI) prediction tools like RNAup and IntaRNA, that often show the additional sites within their suboptimal list, ie. are capable of modelling all sites individually but not in a joint prediction.	To overcome this, we use the iterative method in this thesis for finding the interaction between multiple blocks. Beforehand, details of the S-RRI accessbility-based tools RNAup and IntaRNA are introduced. \\
+	Many RNAs interact via multiple synchronous, non-overlapping sub-interactions (M-RRI), e.g. OxyS-fhlA. The simultaneous prediction of both intra- and inter-molecular base pairing allowing for multiple sites is computationally expensive. Current approaches include IRIS \citep{pervouchine2004iris}, NUPACK \citep{dirks2007thermodynamic}, piRNA \citep{chitsaz2009partition}, etc. There are fast and reliable single interaction site (S-RRI) prediction tools like RNAup and IntaRNA, that often show the additional sites within their suboptimal list, i.e., they are capable of modelling all sites individually but not in a joint prediction.	To overcome this, we use the iterative method in this thesis for finding the interaction between multiple blocks. Beforehand, details of the S-RRI accessibility-based tools RNAup and IntaRNA are introduced. \\
 	
-	\section{RNAup - Exact Recursion for single site}
+	\section{RNAup - Exact Recursion for single-site}
 	
-	In the following, I will first introduce the RNAup-like exact recursions \citep{muckstein2006thermodynamics} and then give an overview of IntaRNA heuristic version. The total energy score of the interaction is measured as the sum of the free hybridization energy and the free energy required to make the interaction sites available.\\
+	In the following, I will first introduce the RNAup-like exact recursions \citep{muckstein2006thermodynamics} and then give an overview of the IntaRNA heuristic version. The total energy score of the interaction is measured as the sum of the free hybridization energy and the free energy required to make the interaction sites available.\\
 	
 		\begin{figure}[tb]
 		\includegraphics[width=0.6\linewidth]{inta}
@@ -712,12 +712,12 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	Thus, Scoring an interaction in IntaRNA is dependent on two energy contributions:\\
 	
 	\begin{itemize}
-		\item \textbf{Hybridization energy} : energy value $E_{hybrid}$ from intermolecular base pairings in the form of stackings, bulges or internal loops, i.e., energy is typically a negative value. 
-		\item \textbf{Accessibility energy} : An amount of energy  $ED $ needed to single-strand the interacting region, i.e. not include intramolecular pairings, i.e., energy is a positive value. 
+		\item \textbf{Hybridization energy}: energy value $E_{hybrid}$ from intermolecular base pairings in the form of stackings, bulges, or internal loops, i.e., energy is typically a negative value. 
+		\item \textbf{Accessibility energy}: An amount of energy  $ED $ needed to single-strand the interacting region, i.e. not include intramolecular pairings, i.e., energy is a positive value. 
 	\end{itemize}
 	
 	
-	The energy of an ensemble of structures is calculated using a partition function \citep{mccaskill1990equilibrium}. Similarly, we get $ED(i,k)$ by calculating the partition function, ${Z}_{i,k}^{u}$ covering the ensemble of all structures which can be formed by a sequence $S$, with a single stranded region $[i,k]$. As introduced in the section 1.4.4. Therefore,
+	The energy of an ensemble of structures is calculated using a partition function \citep{mccaskill1990equilibrium}. Similarly, we get $ED(i,k)$ by calculating the partition function, ${Z}_{i,k}^{u}$ covering the ensemble of all structures which can be formed by a sequence $S$, with a single stranded region $[i,k]$. As introduced in section 1.4.4. Therefore,
 	
 		\begin{center}
 		
@@ -727,8 +727,8 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	
 
 
-	\citet{muckstein2006thermodynamics} gives more detailed information on the same.
-	The hybridization energy is measured using the Nearest Neighbor Energy Model. This represents the minimum free hybridization energy  of two subsequences, where a base pair is generated by the left and right most positions of both subsequences.
+	\citet{muckstein2006thermodynamics} give more detailed information on the same.
+	The hybridization energy is measured using the Nearest Neighbor Energy Model. This represents the minimum free hybridization energy  of two subsequences, where a base pair is generated by the left and rightmost positions of both subsequences.
 	For sub-sequences $S_i^1...S_k^1$ and  $S_j^2...S_l^2$ , where $S^1$ is ordered from 5' to 3' and $S^2$ in the reverse order:
 
 %	E(B) =  \sum_{\substack{i \in B \\  j = argmin(i') \\ i' < B \\ i'_1 > i_1 }}E^{SBI}(i,j,k,l)
@@ -755,7 +755,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{cases}
 	\end{equation}
 	
-	Here $e^{SBI} $ is the energy contribution of stack, bulge and internal loop. The traceback helps us to find the base pairs of optimal interaction with energy $H(i,j,k,l)$. Both the accessibility and hybridisation energy forms the extended hybridisation energy which is the specific hybridisation between $S_i^1...S_k^1$ and  $S_j^2...S_l^2$ given by, 
+	Here $e^{SBI} $ is the energy contribution of stack, bulge, and an internal loop. The trace back helps us to find the base pairs of optimal interaction with energy $H(i,j,k,l)$. Both the accessibility and hybridization energy forms the extended hybridization energy which is the specific hybridization between $S_i^1...S_k^1$ and  $S_j^2...S_l^2$ given by, 
 	
 		\begin{equation}
 	C(i,j,k,l) =  \begin{cases}
@@ -766,7 +766,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{cases}
 	\end{equation}
 	
-	We get the time and space complexity of $O(n^2m^2)$ by limiting the loop size, which is still very high. When we limit the interaction length to $l$, it has a complexity of $O(nml^2)$ time and $O(nml^2)$ space. The interaction with the minimum estimated free energy (mfe) is probably the most stable structure and thus the structure fulfills the RNA molecule function. Therefore, we are interested in \\
+	We get the time and space complexity of $O(n^2m^2)$ by limiting the loop size, which is still very high. When we limit the interaction length to $l$, it has a complexity of $O(nml^2)$ time and $O(nml^2)$ space. The interaction with the minimum estimated free energy (mfe) is probably the most stable structure and thus the structure fulfils the RNA molecule function. Therefore, we are interested in \\
 	
 	 \begin{equation*}
 	mfe = \min_{i,j,k,l} C(i,j,k,l)
@@ -776,7 +776,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	
 	\section{IntaRNA -  Heuristic recursion for single site}
 	
-	The exact recursions of RNAup are not suitable for larger genome wide studies due to its high time and space complexity ie., $O(n^2m^2)$	where $n$ represents the length of query and $m$ is the length of target sequence. In order to overcome the time and space complexity problem, IntaRNA introduced the heuristic recursion. This recursion is based on sparsification technique. Hence, we consider only one right end of interactions with left end $(i, j)$  which is single and locally optimal, instead of all the possible interaction. This will help us to reduce the space and time complexity to $O(nm)$, as introduced for IntaRNA version 1 \& 2. The heuristic version is defined as:
+	The exact recursions of RNAup are not suitable for larger genome wide studies due to its high time and space complexity ie., $O(n^2m^2)$	where $n$ represents the length of query and $m$ is the length of the target sequence. To overcome the time and space complexity problem, IntaRNA introduced the \textit{Heuristic recursion}. This recursion is based on sparsification technique. Hence, we consider only one right end of interactions with the left end $(i, j)$  which is single and locally optimal, instead of all the possible interactions. This will help us to reduce the space and time complexity to $O(nm)$, as introduced for IntaRNA version 1 \& 2. The heuristic version is defined as:
 	
 	\begin{equation}
 	C(i,j) =  min \begin{cases}
@@ -790,12 +790,12 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{cases}
 	\end{equation}
 	
-	Here $K(p,q) , L(p,q)$ are newly introduced matrices which provide the right end of the best interaction with left end $(p,q)$. Since ED values are not additive, we have to subtract the old ED values before we add the new ED value.\\
+	Here $K(p,q) , L(p,q)$ are newly introduced matrices that provide the right end of the best interaction with the left end $(p,q)$. Since ED values are not additive, we have to subtract the old ED values before we add the new ED value.\\
 	
 	
-	IntaRNA also enforces a seed region as the required constraint for the interaction of two RNAs. Seed regions are a feature found in many RNA-RNA interactions. The seed region is an interaction region of almost complete complementarity. For animal microRNAs the seed region were first discovered \citep{bentwich2005prediction}, \citep{brennecke2005principles}. Then, \citet{tjaden2006target} discovered it for many bacterial sRNAs. \\
+	IntaRNA also enforces a seed region as the required constraint for the interaction of two RNAs. Seed regions are a feature found in many RNA-RNA interactions. The seed region is an interaction region of almost complete complementarity. For animal microRNAs the seed region was first discovered \citep{bentwich2005prediction}, \citep{brennecke2005principles}. Then, \citet{tjaden2006target} discovered it for many bacterial sRNAs. \\
 	
-	 RNAup does not use any seed condition. Within IntaRNA predictions, at least one seed is needed at the interaction site. The seed length is normally assumed to be between six and eight nucleotides. To speed up the genome-wide, methods such as RIsearch2 (\citep{alkan2017risearch2} ) or RIblast (\citep{fukunaga2017riblast} )utilize suffix-array-dependent screens to classify seed regions that are eventually expanded in both directions utilizing a predictive method focused on usability. In IntaRNA the length of the seed can be set by the user \citep{busch2008intarna}. \\
+	 RNAup does not use any seed condition. Within IntaRNA predictions, at least one seed is needed at the interaction site. The seed length is normally assumed to be between six and eight nucleotides. To speed up the genome-wide, methods such as RIsearch2 (\citep{alkan2017risearch2} ) or RIblast (\citep{fukunaga2017riblast} )utilize suffix-array-dependent screens to classify seed regions that are eventually expanded in both directions utilizing a predictive method focused on usability. In IntaRNA, the length of the seed can be set by the user \citep{busch2008intarna}. \\
 	
 %	\begin{itemize}
 %	
@@ -804,7 +804,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 %	
 %	\end{itemize}
 	
-	That is, given a set of putative seed interactions $\mathcal{B}_{seed}$. We introduce additional matrix $C^{seed}$ to form a seed interaction. The seed matrix $C^{seed}$ can be filled in using the following recursion:\\
+	That is, given a set of putative seed interactions $\mathcal{B}_{seed}$. We introduce additional matrix $C^{seed}$ that represents energies of interactions including seed interaction. The seed matrix $C^{seed}$ can be filled in using the following recursion:\\
 	
 	
 		\begin{equation}
@@ -822,7 +822,7 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	\end{cases}
 	\end{equation}
 	
-	The mfe of IntaRNA is\\
+	The mfe of IntaRNA is,\\
 	
 		
 	\begin{equation*}
@@ -837,13 +837,13 @@ w(P)= exp\left( \frac{-E(P)}{RT} \right)
 	 \begin{itemize}
 	 	 
 	
-	 \item Step 1: Firstly, we have to run IntaRNA and store minimum free energy and boundaries of respective $B_1$.
-	 \item Step 2: Then we get the 'blocking' constraint from step 1 to rerun IntaRNA and predict the conditional minimum free energy and site $B_2$. Here we block $B_1$ (Constrainted IntaRNA) both for intra- and inter molecular base pairing and we get $B_2$ as minimum free energy. Then, the energy of a respective M-RRI can be computed from the two energies, ie., the energy of the conditional call can be added. \\
+	 \item Step 1: First, we have to run IntaRNA and store minimum free energy and boundaries of respective $B_1$.
+	 \item Step 2: Then we get the 'blocking' constraint from step 1 to rerun IntaRNA and predict the conditional minimum free energy and site $B_2$. Here we block $B_1$ (Constrained IntaRNA) both for intra- and inter- molecular base pairing and we get $B_2$ as minimum free energy. Then, the energy of a respective M-RRI can be computed from the two energies, ie., the energy of the conditional call can be added. \\
 	 \begin{center}
 	 	 $E(B_1 \land B_2) = E(B_1) + E(B_2 | B_1)$ .
 	 \end{center}
 	 
-	 \item Step 3: Since prediction of $B_2$ is conditional, the existence of $B_2$ can have effects $B_1$. Thus, one starts to iterate the procedure from (2) but swaps the conditional site and check for convergence: is the site from two-steps before retained $(B_2 == B'_2)$? If yes: convergence and stop iteration by printing the  $B_1 , B_2$. If no: repeat constraint prediction until convergence by swapping .
+	 \item Step 3: Since prediction of $B_2$ is conditional, the existence of $B_2$ can have effects $B_1$. Thus, one starts to iterate the procedure from (2) but swaps the conditional site and check for convergence: is the site from two-steps before retained $(B_2 == B'_2)$? If yes: convergence and stop iteration by printing the  $B_1 , B_2$. If no: repeat constraint prediction until convergence by swapping.
 	 
 	  \end{itemize}
   
@@ -954,8 +954,8 @@ Now, we add right end side values of Eqn ~\ref{3} + ~\ref{2}, we get,\\
 	The generalized multi-site RRI prediction is similar to double-site RRI prediction. Here the process takes two steps (i) Iterative Accumulation, (ii) Iterative Refinement.\\
 	 \begin{itemize}
 	
-	\item Step 1: Iterative Accumulation : Here, We iterate the empty list of constrained prediction and predict the minimum free energy (mfe). Every iteration returns us a list of blocks $C$. Check for mfe ($C$) exists? then, we add a new block $C=C \cup \{B_{mfe}(C)\}$. Empty list of constraints are iterated until we don't get a new block. $C' = \{C\}$. In the end, we get a list of constraints.
-	\item Step 2: Iterative Refinement :For every new block (ie., $\forall b \in C$ : $b= B_{mfe}(C')$ $where$ $C'=C\setminus\{b\}$), we need to check if it is preserved or not. If preserved, for all $C$, then we stop the iteration. If not, then we need to alter the set of blocks ie.,$C=C' \cup \{B_{mfe} (C')\}$ .
+	\item Step 1: Iterative Accumulation: Here, we iterate the empty list of constrained prediction and predict the minimum free energy (mfe). Every iteration returns us a list of blocks $C$. Check for mfe ($C$) exists? then, we add a new block $C=C \cup \{B_{mfe}(C)\}$. An empty list of constraints is iterated until we don't get a new block. $C' = \{C\}$. In the end, we get a list of constraints.
+	\item Step 2: Iterative Refinement: For every new block (ie., $\forall b \in C$ : $b= B_{mfe}(C')$ $where$ $C'=C\setminus\{b\}$), we need to check if it is preserved or not. If preserved, for all $C$, then we stop the iteration. If not, then we need to alter the set of blocks ie.,$C=C' \cup \{B_{mfe} (C')\}$ .
 	
 \end{itemize}
 
@@ -1003,12 +1003,12 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 
 	\chapter{Results \& Discussion}
 	
-	In order to evaluate the multi site interaction, I am comparing the results of the new approach for same RNA interactions with single site interaction tool IntaRNA and results from the literature. Details of the reported RRIs are given at the end of the section in ~\ref{table:2} \\ 
+	To evaluate the multi-site interaction, I am comparing the results of the new approach for same RNA interactions with single-site interaction tool IntaRNA and results from the literature. Details of the reported RRIs are given at the end of the section in ~\ref{table:2} \\ 
 	
 	
 	\section{Setup}
 	
-	I have used the IntaRNA-3.1.3-windows-64bit version for my thesis. The following parameter has been set. The --outMode=C a flexible interface to generate RNA-RNA interaction output in CSV format (using ; as separator). The argument -n 1 or --outNumber=1 can be used to generate up to N interactions for each query-target pair. IntaRNA provides the possibility to constrain the accessibility computation using the --qAccConstr and --tAccConstr parameters. In this I have used "b" blocked to indicate the positions are occupied by some other interaction (implies single-strandedness). It is possible to restrict the overall length an interaction is allowed to have. This can be done independently for the query and target sequence using --qIntLenMax and --tIntLenMax, respectively. We can alter indexing (independently for query and target) using the --qIdxPos0 and --tIdxPos0 parameters, respectively. Here, the overall energy E has times of $E_{init}$.\\
+	I have used the IntaRNA-3.1.3-windows-64bit version for my thesis. The following parameter has been set. The --outMode=C a flexible interface to generate RNA-RNA interaction output in CSV format (using ";" as separator). The argument -n N or --outNumber=N for query-target pair may be used to produce up to N interactions (We have set N to 1). IntaRNA provides the possibility to constrain the accessibility computation using the --qAccConstr and --tAccConstr parameters. In this I have used "b" blocked to indicate the positions are occupied by some other interaction (implies single-strandedness). It is possible to restrict the overall length of an interaction is allowed to have. This can be done independently for the query and target sequence using --qIntLenMax and --tIntLenMax, respectively. We can alter indexing (independently for query and target) using the --qIdxPos0 and --tIdxPos0 parameters, respectively. Here, the overall energy E has times of $E_{init}$.\\
 	
 	
 	With the above setup, we were able to test multi-site RNA-RNA interactions. The used sequences are listed in Appendix Table.\\
@@ -1084,7 +1084,7 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 	The small RNA OxyS binds to a short sequence inside the fhlA mRNA coding region. This is one of the classic examples of multi-site RRI where OxyS forms a stable kissing hairpin complex with fhlA. \\
 	Details of the interaction are taken from the paper ~\citep{argaman2000fhla}. The pairing mechanism between the two RNAs is dramatically influenced by their structure. For this purpose, a full comprehension of the pairing process involves thorough knowledge of the individual RNA structures. \\
 	
-	When OxyS binds fhlA mRNA it forms kissing complex structure and results in a healthy anti-sense-target structure. The secondary structure of the 5' end region of fhlA mRNA was predicted to include two stem loop structures. The findings of the study of the structure confirm the presence of the two structure. \\
+	When OxyS binds fhlA mRNA it forms the kissing complex structure and results in a healthy anti-sense-target structure. The secondary structure of the 5' end region of fhlA mRNA was predicted to include two stem loop structures. The findings of the study of the structure confirm the presence of the two structures. \\
 	
 	When we run with IntaRNA first, we observed that the OxyS (98 - 104) interacts with fhlA (-9 - -15), ie.,104:-15\& 98:-9 is the block that is predicted with the energy -4.37. Then, we run them with our tool, the total energy for both blocks is -7.99. Here the sequence length for OxyS starts from 1 to 109 and for fhla it is from -53 to 60. We can clearly see from the Fig ~\ref{fig:rricomparison1} where the predicted interaction (orange) and the original (blue) interaction from the paper interacts almost at the same place. \\
 	
@@ -1093,7 +1093,7 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 	\begin{figure}[h!tb]
 	\includegraphics[width=1.0\linewidth]{oxys}
 	\centering
-	\caption{ Interaction of OxyS - fhlA. The numbering of fhlA begins with the initiation codon (AUG). The counting of OxyS begins at the transcription start site. Figure is taken from \citep{argaman2000fhla}. } 
+	\caption{ Interaction of OxyS - fhlA. The numbering of fhlA begins with the initiation codon (AUG). The counting of OxyS begins at the transcription start site. The Figure is taken from \citep{argaman2000fhla}. } 
 	\label{fig:oxys}
 	\end{figure}
 
@@ -1112,7 +1112,7 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 	
 	The next interesting example is Spot42 interaction with sthA. The RNA Spot42 plays a large role in the suppression of catabolites in Escherichia coli (E.coli) by the direct suppression of genes involved in primary and secondary metabolism.\\
 	
-	This example is taken from \citep{beisel2011base}. Spot42 is interacting with its targets via three conserved accessible regions (I – III) refer to left side Fig ~\ref{fig:be} . \\
+	This example is taken from \citep{beisel2011base}. Spot42 is interacting with its targets via three conserved accessible regions (I – III) refer to the left side Fig ~\ref{fig:be} . \\
 %	To validate base pairing through the three single-stranded regions II of Spot 42, compensatory mutations have been made in sthA. Such findings suggest that the base pairing with target mRNAs can accrue at three single-stranded regions of Spot 42. \\
 	The mutation in region III influenced the repression of fusion of sthA the most (refer right side Fig ~\ref{fig:bei2} ). Mutating sites I and III were reported to have the highest impact while Region II mutation showed only slight effects. It has been shown that mainly sites I and III are important for the interaction with the target mRNA encoded by the sthA gene. This suggests multiple interaction possibilities of Spot42 with sthA, as discussed in  ~\citet{mann2017intarna}.\\
 %	
@@ -1133,7 +1133,7 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 			\includegraphics[width=.8\linewidth]{spot42}	
 			\label{fig:spot42}
 		\end{subfigure}
-	\caption{ The left side of the figure shows the secondary structure of Spot 42. Mutated regions are in grey colour. Right side of the figure shows the mutational analysis of base-pairing interactions of Spot42 – sthA. Spot 42 base pairs directly with target genes via three separate regions is shown. Figure is taken from the paper \citep{beisel2011base}. The black bar shows the translation product measure of sthA gene and the white one is a control molecule to compare for the different experiments (translational reference). }
+	\caption{ The left side of the figure shows the secondary structure of Spot 42. Mutated regions are in grey colour. Right side of the figure shows the mutational analysis of base-pairing interactions of Spot42 – sthA. Spot 42 base pairs directly with target genes via three separate regions is shown. The Figure is taken from the paper \citep{beisel2011base}. The black bar shows the translation product measure of sthA gene and the white one is a control molecule to compare for the different experiments (translational reference). }
 	\label{fig:be}
 \end{figure}
 	
@@ -1163,13 +1163,13 @@ where $ED(C)$ is $-RTlog(P_u(C))$
 		\includegraphics[width=.8\linewidth]{bei0}	
 		\label{fig:bei0}
 	\end{subfigure}
-\caption{ The left side of the figures shows the Spot42:sthA interaction that is predicted using double-site tool. We can see that predicted interaction (orange colour) of two blocks and only one original interaction block(blue colour) of original is shown as the other interaction is not given in the literature.  The right side of the figure shows the base-pairing interactions with Spot 42 predicted by the folding algorithm NUPACK. Mutation in Region III is shown. Figure is taken from the paper \citep{beisel2011base}  }
+\caption{ The left side of the figures shows the Spot42:sthA interaction that is predicted using the double-site tool. We can see that predicted interaction (orange colour) of two blocks and only one original interaction block(blue colour) of the original is shown as the other interaction is not given in the literature.  The right side of the figure shows the base-pairing interactions with Spot 42 predicted by the folding algorithm NUPACK. Mutation in Region III is shown. The Figure is taken from the paper \citep{beisel2011base}  }
 \label{fig:bei2}
 \end{figure}
 
-When we run with IntaRNA first, we observed that the Spot42 (34 - 55) interacts with sthA (15 - 40), ie.,55:15\&34:40 is the block that is predicted which refers to region III and the mfe is -7.85. Then, we run them with our tool here when Spot42 interacts with sthA, we observed that the total energy value is -13.05. The prediction provides a model for the concurrent interaction of region I and III.  Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}}. From the right side figure ~\ref{fig:be}, we can clearly see, mutating sites I and III showed the highest effect while region II mutation showed only small effects. We can also say that even if the sites are far in sequence they are close if the structure (I and III) is formed.\\
+When we run with IntaRNA first, we observed that the Spot42 (34 - 55) interacts with sthA (15 - 40), ie.,55:15\&34:40 is the block that is predicted which refers to region III and the mfe is -7.85. Then, we run them with our tool here when Spot42 interacts with sthA, we observed that the total energy value is -13.05. The prediction provides a model for the concurrent interaction of regions I and III.  Here for Spot42, we couldn't find the original interaction, hence we are comparing with the bar chart from the figure 2 from paper {\citep{beisel2011base}}. From the right side figure ~\ref{fig:be}, we can see, mutating sites I and III showed the highest effect while the region II mutation showed only small effects. We can also say that even if the sites are far in the sequence they are close if the structure (I and III) is formed.\\
 
-As our model shows only two interacting sites, we tried manually generating the third-site for that we run the IntaRNA with seedbp=6 while blocking the two first interaction sites ( I and III). As a result, we get the interaction with site (II) (ie., Spot42 (20 - 25) interacts with sthA (-19 - -14)) with the mfe of -2.02. Thus the total interaction energy for all the three blocks is -15.07.  Fig ~\ref{fig:thirdsite} shows that all three sites can contribute to the interaction as observed within the experiment of right side of Fig ~\ref{fig:be}. As the interaction sites I and II are close to the start codon, they block the RBS which are called Inhibition of translation initiation. Refer to the Fig ~\ref{fig:sRNA} for the sRNA translation inhibition. \\
+As our model shows only two interacting sites, we tried manually generating the third-site for that we run the IntaRNA with seedbp=6 while blocking the two first interaction sites ( I and III). As a result, we get the interaction with site (II) (ie., Spot42 (20 - 25) interacts with sthA (-19 - -14)) with the mfe of -2.02. Thus the total interaction energy for all the three blocks is -15.07.  Fig ~\ref{fig:thirdsite} shows that all three sites can contribute to the interaction as observed within the experiment of right side of Fig ~\ref{fig:be}. As the interaction sites I and II are close to the start codon, they block the RBS which are called Inhibition of translation initiation. Refer to Fig ~\ref{fig:sRNA} for the sRNA translation inhibition. \\
 
 
 %\begin{figure}[h!tb]
@@ -1182,11 +1182,11 @@ As our model shows only two interacting sites, we tried manually generating the 
 	\begin{figure}[h!tb]
 	\includegraphics[width=0.85\linewidth]{thirdsite.pdf}
 	\centering
-	\caption{ Spot42 interacts with sthA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites I and II, they block the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with sthA (blue colour) can be formed concurrently.  } 
+	\caption{ Spot42 interacts with sthA at three interacting sites (grey colour). As, our model shows only two interacting sites, we manually generated the third-site by blocking the interacting sites I and III and got the third interacting site II. As the start codon (orange colour) is very close to the interacting sites I and II, they block the RBS. The Figure shows all the three interaction sites of Spot42 (black colour) with sthA (blue colour) can be formed concurrently.  } 
 	\label{fig:thirdsite}
 \end{figure}
 
-Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF) studied in the paper \citep{beisel2011base}. The mutation in region I affected the repression of gltA, xylF and nanC. From the Figure ~\ref{fig:all} (except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from the Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. Below subsection gives us the interaction of Spot-42 with target mRNAs. \\
+Similarly, we manually generated the third site for the few other target mRNAs (gltA, srlA, nanC, xylF) studied in the paper \citep{beisel2011base}. The mutation in region I affected the repression of gltA, xylF and nanC. From Figure ~\ref{fig:all} (except the top right one) we can also say that mutation site I showed the highest effect compared to the interaction site II and III for gltA, xylF and nanC. The mutation in region II affected the repression of srlA and from Figure ~\ref{fig:all} (top right) we can also say that mutation site II showed the highest effect. The mutation in region III affected the repression of sthA. Below subsection gives us the interaction of Spot-42 with target mRNAs. \\
 
 \begin{table}[h!]
 	\centering
@@ -1205,7 +1205,7 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 		xylF & \multicolumn{2}{|c|}{$B_1$(-9.92)} & $B_2$ (-4.23)& III < II < I \\  
 		\hline
 	\end{tabular}
-	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site with each blocks mfe, and also the order of respective mutations site interactions in target.}
+	\caption{Interactions between the single stranded regions of Spot 42 and some target mRNAs. This table shows us for each Spot42 target RNA, which block covers which mutation site with each blocks mfe, and also the order of respective mutations site interactions in the target.}
 	\label{table:last}
 \end{table}
 
@@ -1215,7 +1215,7 @@ Similarly, we manually generated the third site for the few other target mRNAs (
   \begin{figure}[h!]
  	\includegraphics[width=0.85\linewidth]{gltathirdsite.pdf}
  	\centering
- 	\caption{ Spot42 interacts with gltA at three interacting sites (grey colour). As, our model shows only two interacting sites, As the start codon (orange colour) is very close to the interacting sites III and II, they block the RBS. The Figure shows the all the three interaction sites of Spot42 (black colour) with gltA (blue colour) can be formed concurrently.  } 
+ 	\caption{ Spot42 interacts with gltA at three interacting sites (grey colour). As our model shows only two interacting sites, As the start codon (orange colour) is very close to the interacting sites III and II, they block the RBS. The Figure shows all the three interaction sites of Spot42 (black colour) with gltA (blue colour) can be formed concurrently.  } 
  	\label{fig:gltathirdsite}
  \end{figure}
  
@@ -1226,19 +1226,19 @@ Similarly, we manually generated the third site for the few other target mRNAs (
   	\begin{figure}[h!]
   	\includegraphics[width=0.85\linewidth]{srlathirdsite.pdf}
   	\centering
-  	\caption{ Spot42 interacts with srlA at three interacting sites (grey colour).  The Figure shows the all the three interaction sites of Spot42 (black colour) with srlA (blue colour) can be formed concurrently.  } 
+  	\caption{ Spot42 interacts with srlA at three interacting sites (grey colour).  The Figure shows all the three interaction sites of Spot42 (black colour) with srlA (blue colour) can be formed concurrently.  } 
   	\label{fig:srlathirdsite}
   \end{figure}
   
   
    \subsection{Spot-42 - nanC}
-   As, our model shows only two interacting sites, we manually generated the third-site for nanC by blocking the interacting sites I and III and got the third interacting site II. We got the interaction site II (ie., Spot42 (26 - 31) interacts with nanC (-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31. Refer to Fig ~\ref{fig:nancthirdsite}\\
+   As our model shows only two interacting sites, we manually generated the third-site for nanC by blocking the interacting sites I and III and got the third interacting site II. We got the interaction site II (ie., Spot42 (26 - 31) interacts with nanC (-160 - -155)) with the mfe of -1.09. Thus the total interaction energy for all three blocks of nanC is -21.31. Refer to Fig ~\ref{fig:nancthirdsite}\\
  
 
 \begin{figure}[h!]
 	\includegraphics[width=0.65\linewidth]{nancthirdsite.pdf}
 	\centering
-	\caption{ Spot42 interacts with nanC at three interacting sites (grey colour). The Figure shows the all the three interaction sites of Spot42 (black colour) with nanC (blue colour) can be formed concurrently.  } 
+	\caption{ Spot42 interacts with nanC at three interacting sites (grey colour). The Figure shows all the three interaction sites of Spot42 (black colour) with nanC (blue colour) can be formed concurrently.  } 
 	\label{fig:nancthirdsite}
 \end{figure}
 
@@ -1249,11 +1249,11 @@ Similarly, we manually generated the third site for the few other target mRNAs (
  \begin{figure}[h!]
  	\includegraphics[width=0.7\linewidth]{xylfthirdsite.pdf}
  	\centering
- 	\caption{ Spot42 interacts with xylF at three interacting sites (grey colour). In xylF, the block 1 interacts in both mutation site I and II and block 2 in site III. The Figure shows the all the three interaction sites of Spot42 (black colour) with xylF (blue colour) can be formed concurrently.  } 
+ 	\caption{ Spot42 interacts with xylF at three interacting sites (grey colour). In xylF, the block 1 interacts in both mutation site I and II and block 2 in site III. The Figure shows all the three interaction sites of Spot42 (black colour) with xylF (blue colour) can be formed concurrently.  } 
  	\label{fig:xylfthirdsite}
  \end{figure}
  
-  These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites. The order of block predictions ($B_1-B_3$) are nicely correlated with the experimental effect of respective mutations, refer to Fig ~\ref{fig:all} and ~\ref{table:last} for the same. ie.,the first block $B_1$ correlates with the mutation of highest impact, $B_3$ has the lowest for gltA, xylF, nanC and srlA.\\
+  These findings indicate that the three single-stranded regions of Spot 42 are involved in strong base-pair interactions with gltA, nanC, xylF, srlA and sthA mRNAs. Table ~\ref{table:last} gives you the details of each Spot42 target RNAs, which blocks covers which the mutation sites. The order of block predictions ($B_1-B_3$) are nicely correlated with the experimental effect of respective mutations, refer to Fig ~\ref{fig:all} and ~\ref{table:last} for the same. ie.,the first block $B_1$ correlates with the mutation of the highest impact, $B_3$ has the lowest for gltA, xylF, nanC and srlA.\\
  
  
 
@@ -1282,7 +1282,7 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 		\label{fig:xylF}
 	\end{subfigure}
 	\
-	\caption{The figure shows the mutational analysis of base-pairing interactions of Spot42 with its target mRNAs. The black bar shows the translation product measure of each gene and the white one is a control molecule to compare for the different experiments (translational reference). Figure is taken from the paper \citep{beisel2011base} .\\ }
+	\caption{The figure shows the mutational analysis of base-pairing interactions of Spot42 with its target mRNAs. The black bar shows the translation product measure of each gene and the white one is a control molecule to compare for the different experiments (translational reference). The Figure is taken from the paper \citep{beisel2011base} .\\ }
 	\label{fig:all}
 \end{figure}
 
@@ -1314,25 +1314,25 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 		\label{fig:xylf2}
 	\end{subfigure}
 	\
-	\caption{ The figure shows the base-pairing interactions with Spot 42 predicted by the folding algorithm NUPACK. It shows the mutation region sites for the target mRNAs. Here spf is referred to as Spot42. Figure is taken from the paper \citep{beisel2011base} \\ }
+	\caption{ The figure shows the base-pairing interactions with Spot 42 predicted by the folding algorithm NUPACK. It shows the mutation region sites for the target mRNAs. Here spf is referred to as Spot42. The Figure is taken from the paper \citep{beisel2011base} \\ }
 	\label{fig:all1}
 \end{figure}
 
 \clearpage
 
 	\section{GcvB – oppA }
-    The gcvB gene encodes two small, nontranslated RNAs that regulate oppA. The structure of the GcvB-oppA complex consists of two intermolecular helices that precede and follow the putative terminator. This is an example where there are four concurrent blocks predicted by the IRIS tool {\citep{pervouchine2004iris}}. \\ 
+    The gene GcvB encodes two small, non-translated RNAs which regulate OppA. The structure of the GcvB-oppA complex consists of two intermolecular helices that precede and follow the putative terminator. This is an example where there are four concurrent blocks predicted by the IRIS tool {\citep{pervouchine2004iris}}. \\ 
     
-     oppA is the periplasmic-binding protein portion of the OppABCDF oligopeptide transport system. The functional consequence of deleting the gcvB gene is a derepression of oppA. The mechanism of GcvB regulation of oppA is likely to be on a translational level \citep{urbanowski2000gcvb}. One of the major role of oppA is the transport of dietary peptides.\\
+     oppA is the periplasmic-binding protein portion of the OppABCDF oligopeptide transport system. The functional consequence of deleting the GcvB gene is a derepression of oppA. The mechanism of GcvB regulation of oppA is likely to be on a translational level \citep{urbanowski2000gcvb}. One of the major roles of oppA is the transport of dietary peptides.\\
     
     Study of the GcvB sequence identified a complementarity area near the ribosome-binding sites of oppA mRNAs. The findings from {\citep{pulvermacher2008role}} indicate that various regions of GcvB have specific functions in the control of oppA mRNA. The Shine-Dalgarno sequence in the GcvB-oppA complex is obstructed ~\citep{pervouchine2004iris} and the complex structure is located in the upstream region. This is very much in accordance with the assumption that the oppA control seems to be at the translational stage. \\
     
-    When we run with IntaRNA first, we observed that the oppA (-9 - 14) interacts with GcvB (67 - 89), ie., 14:67\&-9:89 is the block that is predicted with an mfe of -14.57. Then, we run them with our tool as, we predict the double block interaction, we have predicted the two sites of the interaction out of four. The total interaction energy for two sides of block is 26.38 kcal/mol. Also, in the prediction we get a crossing structure, which is in contrast to the model by IRIS , Fig :~\ref{fig:oppa}. Second block not in accordance with IRIS prediction as they form a pseudoknot. So, here the block predicted is not as same as the original.\\
+    When we run with IntaRNA first, we observed that the oppA (-9 - 14) interacts with GcvB (67 - 89), ie., 14:67\&-9:89 is the block that is predicted with a mfe of -14.57. Then, we run them with our tool as, we predict the double block interaction, we have predicted the two sites of the interaction out of four. The total interaction energy for two sides of the block is 26.38 kcal/mol. Also, in the prediction, we get a crossing structure, which is in contrast to the model by IRIS, Fig:~\ref{fig:oppa}. Second block not in accordance with IRIS prediction as they form a pseudoknot. So, here the block predicted is not as same as the original.\\
 	
 		\begin{figure}[h!tb]
 		\includegraphics[width=1.0\linewidth]{oppa}
 		\centering
-		\caption{ Interaction of GcvB – oppA . Figure is taken from the paper \citep{pervouchine2004iris}} 
+		\caption{ Interaction of GcvB – oppA . The Figure is taken from the paper \citep{pervouchine2004iris}} 
 		\label{fig:oppa}
 	\end{figure}
 
@@ -1354,23 +1354,23 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 	
 	This is an example of a crossing interaction. We note that the DicF-ftsZ complex admits an area of complementarity, which gives rise to a generalized pseudo-knot. \\   
 	
-	The function of DicF was predicted on the basis of the complementarity of DicF RNA with the ftsZ mRNA binding region. DicF RNA is a 53-nucleotide gene formed in certain E.coli mutants. Here, DicF RNA is an antisense regulator of ftsZ translation.\\
+	The function of DicF was predicted based on the complementarity of DicF RNA with the ftsZ mRNA binding region. DicF RNA is a 53-nucleotide gene formed in certain E.coli mutants. Here, DicF RNA is an antisense regulator of ftsZ translation.\\
 	
 	This example is taken from the paper \citep{pervouchine2004iris}. They say that DicF RNA has substantial complementarity with ftsZ mRNA in the area surrounding the Shine Dalgarno sequence, which is compatible with the finding that DicF controls ftsZ through interaction with the ribosome binding. DicF-ftsZ complex admits the region of complementarity which leads to generalized pseudoknot (refer to Fig ~\ref{fig:dicf}). \\
 	
-	When we run with IntaRNA first, we observed that the Dicf (35 - 52) interacts with ftsZ (53 - 75) is the block that is predicted (52:55\&35:73) with mfe of -6.89. Then, we run them with our tool. For this example we used the parameter file and set the tIntLenMax=20 ( for restricting the overall length an interaction ).The total interaction energy for two sides of block that has been predicted by the tool is -13.86. In the prediction model, the cross structure is not formed, which says that the prediction model is different from the original one's. \\
+	When we run with IntaRNA first, we observed that the Dicf (35 - 52) interacts with ftsZ (53 - 75) is the block that is predicted (52:55\&35:73) with mfe of -6.89. Then, we run them with our tool. For this example we used the parameter file and set the tIntLenMax=20 ( for restricting the overall length an interaction ). The total interaction energy for two sides of the block that has been predicted by the tool is -13.86. In the prediction model, the cross structure is not formed, which says that the prediction model is different from the original one. \\
 	
 		\begin{figure}[h!tb]
 		\includegraphics[width=1.0\linewidth]{dicf}
 		\centering
-		\caption{ Interaction of DicF - ftsZ which has a generalized pseudoknot structure that has been predicted by IRIS.  Figure is taken from the paper \citep{pervouchine2004iris}. } 
+		\caption{ Interaction of DicF - ftsZ which has a generalized pseudoknot structure that has been predicted by IRIS. The Figure is taken from the paper \citep{pervouchine2004iris}. } 
 		\label{fig:dicf}
 	\end{figure}
 
 \begin{figure}[h!tb]
 	\centering
 	\includegraphics[width=.4\linewidth]{rricomparison3}
-	\caption{DicF:ftsZ interaction that is predicted using double-site tool. We can see that the original interaction blocks(blue colour) form a crossing structure, whereas the predicted (orange colour) blocks doesn't.}
+	\caption{DicF:ftsZ interaction that is predicted using double-site tool. We can see that the original interaction blocks(blue colour) form a crossing structure, whereas the predicted (orange colour) blocks don't.}
 	\label{fig:rricomparison3}
 \end{figure}
 
@@ -1379,9 +1379,9 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 	
 	 In all species ribonuclease P (RNase P) was found. External guide sequences (EGSs) are RNA molecules consisting of a sequence complementary to mRNA targeting and recruiting intracellular ribonuclease P (RNase P), a tRNA processing enzyme, for target mRNA specific degradation. EGS  RNAs  derived  from  natural  tRNA sequences can be good in blocking gene expression in  bacteria.\\
 	 
-	 This example is taken from the paper {\citep{zhang2013engineered}}. It is possible that an improvement in the RNase P cleavage rate could be attributed to additional tertiary interactions that theoretically stabilize the mRNA-EGS complex. Variant C386 was chosen for this analysis because the EGS RNAs derived from this version are among the most efficient EGS's. EGS S-C386 was built by connecting the EGS domain of C386 to targeting sequences complementary to the S mRNA. The EGS, S-SER, originating from the normal tRNASer series, was also built. If this is the case, the binding affinity of the EGS variant (i.e. S-C386) to the target S RNA sequence might be greater than that of the EGS (i.e. S-SER) derived from the normal tRNA sequence. We couldn't reproduce the structures from literature for any of the sequence pairs.\\
+	 This example is taken from the paper {\citep{zhang2013engineered}}. It is possible that an improvement in the RNase P cleavage rate could be attributed to additional tertiary interactions that theoretically stabilize the mRNA-EGS complex. Variant C386 was chosen for this analysis because the EGS RNAs derived from this version are among the most efficient EGS's. EGS S-C386 was built by connecting the EGS domain of C386 to targeting sequences complementary to the S mRNA. The EGS, S-SER, originating from the normal $tRNA^{Ser}$ series, was also built. Binding affinity of the variant EGS (i.e. S-C386) to the RNA sequence of the target S might be greater than that of the EGS (i.e. S-SER) derived from the normal tRNA sequence. We couldn't reproduce the structures from literature for any of the sequence pairs.\\
 	 
-	 S-C386-C and S-SER-C were derived from S-C386 and S-SER, respectively, and incorporated simple substitutions (5'-UUC-3'- > AAG) at the three closely conserved locations in the T-loop of these EGSs. Nucleotides in these three positions are highly conserved among tRNA molecules and are essential for the folding and recognition of tRNA molecules by RNase P, so mutations in these positions are involved in the EGS process. S-C386-C and S-SER-C had the same anti-sense pattern to the targetS RNA series as S-C386 and S-SER Fig: ~\ref{fig:test1}  and had identical binding affinities to S38 as S-C386 and S-SER, respectively. S-C386-Cand S-SER-C can also be used as anti-sense regulation of such EGSs.\\
+	 S-C386-C and S-SER-C were derived from S-C386 and S-SER, respectively, and incorporated simple substitutions (5'-UUC-3'- > AAG) at the three closely conserved locations in the T-loop of these EGSs. The nucleotides are highly conserved among tRNA molecules in these three positions and are essential for the folding and recognition of tRNA molecules by RNase P, so mutations in these positions are involved in the EGS process. S-C386-C and S-SER-C had the same anti-sense pattern to the target S RNA series as S-C386 and S-SER Fig: ~\ref{fig:test1}  and had identical binding affinities to S38 as S-C386 and S-SER, respectively. S-C386-Cand S-SER-C can also be used as anti-sense regulation of such EGSs.\\
 	   
 	 
 	 Due to its very short sequence Fig: ~\ref{fig:test1}, we took the 50nt long on the left side and right side of UCUUCAUCCUGCUGCUAUGCCUCAUCUUC of S-mRNA. When we run with IntaRNA first, we observed that the mRNA (-1 - 7) interacts with EGS S-SER \& SER-C (46 - 53) ie.,-1:53\&7:46 is the block that is predicted for both mRNA:EGS S-SER and mRNA:EGS S-SER-C with mfe of -8.41. The total energy for mRNA:EGS S-C386 is -14.14, mRNA:EGS S-C386C is -13.24, mRNA:EGS S-SER and mRNA:EGS S-SER-C is -16.0.  Here, the start of the S-mRNA is complementary to the end of the S-SER, which led to the crossing pattern.  \\
@@ -1436,7 +1436,7 @@ Similarly, we manually generated the third site for the few other target mRNAs (
  		\caption{mRNA:EGS S-SERC}
  		\label{fig:rricomparison8}
  	\end{subfigure}
- 	\caption{An EGS resembling the structure of a tRNA. The left side of the figure is taken from the paper \citep {zhang2013engineered}. The site of cleavage by RNase P is marked with an arrowhead, S mRNA (red color) and the EGS (blue color). The right side is the predicted structure from the tool. Original interaction blocks(blue colour) and the predicted blocks (orange colour). Just the exact sequence of the S mRNA around the targeting region is displayed (in red) and the EGS sequence is shown in blue. The RNase P cleavage site is labelled with an arrowhead. The sequences of S-SER and S-SER-C relative to T-stem and loop and the variable area of the tRNA molecule were derived from tRNASer, while those of S-C386 and S-C386-C were derived from the EGS variant C386. The index position is taken from the site of cleavage.\\ }
+ 	\caption{An EGS resembling the structure of a tRNA. The left side of the figure is taken from the paper \citep {zhang2013engineered}. The site of cleavage by RNase P is marked with an arrowhead, S mRNA (red color), and the EGS (blue color). The right side is the predicted structure from the tool. Original interaction blocks(blue colour) and the predicted blocks (orange colour). The S-SER and S-SER-C sequences identical to the T-stem and loop and $tRNA^{Ser}$ was derived from the variable region of the tRNA molecule, while those of S-C386 and S-C386-C were derived from the EGS variant C386. The index position is taken from the site of cleavage.\\ }
 	 	\label{fig:test1}
 	 \end{figure}
 	 
@@ -1472,9 +1472,9 @@ Similarly, we manually generated the third site for the few other target mRNAs (
 
 \section{Details of studied RRIs}
 
-Below is the table for the comparison between the different interacting RNAs that are used for the study purpose within this thesis. First column gives us the query and target that is interacting. Original column gives us the interaction detail of the query and target from the paper. The details of the paper are given in the respective RRI sections. Prediction column gives us the result of the interactions using our tool. For getting the 3rd block for Spot-42 interactions with its target mRNAs are done by blocking manually using IntaRNA tool. $E(B1)$ column gives us the minimum free energy for the single-site interaction. $E(B_1+B_2)$ column gives us the minimum free energy for the double-site interaction, similarly $E(B_1+B_2+B_3)$ column gives us the total mfe of all the three blocks. 1st Index gives us with the index positions for the respective query and target and the length determines the sequence length of the query and target. \\
+Below is the table for the comparison between the different interacting RNAs that are used for the study purpose within this thesis. The first column gives us the query and target that is interacting. The original column gives us the interaction detail of the query and target from the paper. The details of the paper are given in the respective RRI sections. The prediction column gives us the result of the interactions using our tool. For getting the 3rd block for Spot-42 interactions with its target mRNAs are done by blocking manually using IntaRNA tool. $E(B1)$ column gives us the minimum free energy for the single-site interaction. $E(B_1+B_2)$ column gives us the minimum free energy for the double-site interaction, similarly $E(B_1+B_2+B_3)$ column gives us the total mfe of all the three blocks. 1st Index gives us the index positions for the respective query and target and the length determines the sequence length of the query and target. \\
 
-The table also clearly tells us that $E(B_1+B_2)$ the double-site energy is almost double the single-site energy $E(B1)$. For Spot-42-sthA interaction, the original interaction from the paper doesn't have the target interaction details for the second block, hence they are written as "NA". As, we know only for the Spot-42 interactions with its target mRNAs has three blocks, the respective values of the minimum free energy has been filled and for the rest all the interactions it is "NA". We also know from the subsection 3.3.4 the interaction between Spot-42 and xylF has only two blocks, hence the $E(B_1+B_2+B_3)$ value is "NA".  \\
+The table also clearly tells us that $E(B_1+B_2)$ the double-site energy is almost double the single-site energy $E(B1)$. For Spot-42-sthA interaction, the original interaction from the paper doesn't have the target interaction details for the second block, hence they are written as "NA". As, we know only for the Spot-42 interactions with its target mRNAs has three blocks, the respective values of the minimum free energy have been filled and for the rest of all the interactions it is "NA". We also know from the subsection 3.3.4 the interaction between Spot-42 and xylF has only two blocks, hence the $E(B_1+B_2+B_3)$ value is "NA".  \\
 	
 \begin{table}[h!]
 	
@@ -1528,7 +1528,7 @@ The table also clearly tells us that $E(B_1+B_2)$ the double-site energy is almo
 		  & -8.67 & \hbox{-13.24} &NA & -60:1 &129:150 \\
 		\hline
 	\end{tabular}
-	\caption{Collections of multisite RNA interaction. The query and target are the RNAs interacting. ":" is used to differentiate between the query and target , "\&" is used for the differentiate between start and end of the blocks.  }	
+	\caption{Collections of multi-site RNA interaction. The query and target are the RNAs interacting. ":" is used to differentiate between the query and target , "\&" is used for the differentiate between start and end of the blocks.  }	
 		\label{table:2}
 \end{table}
 
@@ -1558,13 +1558,13 @@ The table also clearly tells us that $E(B_1+B_2)$ the double-site energy is almo
 	
 		\chapter{Summary}
 		
-	The motivation of the thesis is to efficiently predict concurrent blocks of interaction within an accessibility-based prediction model. Here, we use a Single-site RNA-RNA interaction prediction tool (namely IntaRNA) for the prediction of Multi-site RNA-RNA interaction. Due to the time constraint, we have implemented the double-site interaction here by using an iterative scheme. In the iterative scheme we block the interaction site and fixing the conditional site while running the IntaRNA tool. Until we get the convergence, we iterate. The theoretical approach of multi-site interaction scheme has also been discussed. Future work on the multi-site interaction can be implemented based on the theoretical approach that has been discussed above ( refer to section 2.4). \\
+	The motivation of the thesis is to efficiently predict concurrent blocks of interaction within an accessibility-based prediction model. Here, we use a single-site RNA-RNA interaction prediction tool (namely IntaRNA) for the prediction of multi-site RNA-RNA interaction. Due to the time constraint, we have implemented the double-site interaction here by using an "Iterative scheme". In the iterative scheme, we block the interaction site and fixing the conditional site while running the IntaRNA tool. Until we get the convergence, we iterate. The theoretical approach of the multi-site interaction scheme has also been discussed. Future work on the multi-site interaction can be implemented based on the theoretical approach that has been discussed above (refer to section 2.4). \\
 	
-	 The proof and implementation of double-site interaction model has been developed within this thesis. The theory proof of energy of an respective Multi-site RNA-RNA interaction can be computed from the two energies was developed and shown in the section 2.3. Then the idea has been implemented by using python based on IntaRNA calls. The double-site interaction study says that interaction energy for two blocks B1 and B2 together often double the minimum free energy. The detailed study of such examples are given in a table ~\ref{table:2} for the easy comparison. \\
+	 The proof and implementation of double-site interaction model have been developed within this thesis. The theory proof of energy of a respective double-site RNA-RNA interaction can be computed from the two energies was developed and shown in section 2.3. Then the idea has been implemented by using python based on IntaRNA calls. The double-site interaction study says that interaction energy for two blocks B1 and B2 together often double the minimum free energy. The detailed study of such examples is given in a table ~\ref{table:2} for the easy comparison. \\
 	 
-	  We collected some sample Multi-site RNA-RNA interaction examples from literature. The examples with the crossing interaction (pseudoknot), with two intermolecular helices, kissing interaction,etc., are used for the study purpose. We used the python polygon plots for plotting the blocks that are predicted. Then, we compared the outcome with extracted data from literatures. Each example shows its own structure, but most of them were very well close to the original one's that is taken from the literature. The explanation of the each study has been given in the chapter 3. \\ 
+	  We collected some sample Multi-site RNA-RNA interaction examples from literature. The examples with the crossing interaction (pseudoknot), with two intermolecular helices, kissing interaction,etc., are used for the study purpose. We used the python polygon plots for plotting the blocks that are predicted. Then, we compared the outcome with extracted data from literature. Each example shows its own structure, but most of them were very well close to the original one's that is taken from the literature. The explanation of each study has been given in chapter 3. \\ 
 	  
-	  We also manually generated the third-site for few Spot-42 interactions with its target mRNAs using IntaRNA tool. It tells us which mutation site has the highest effect and which has the lowest effect along with the minimum free energy for all the three blocks. We also observed that the order of predictions of the blocks are correctly correlated with the original effect of the respective mutations. Table ~\ref{table:last} gives us the details of the mfe of each block corresponding to its mutation site along with the site order with respect to the mRNA.\\
+	  We also manually generated the third-site for few Spot-42 interactions with its target mRNAs using IntaRNA tool. It tells us which mutation site has the highest effect and which has the lowest effect along with the minimum free energy for all three blocks. We also observed that the order of predictions of the blocks is correctly correlated with the original effect of the respective mutations. Table ~\ref{table:last} gives us the details of the mfe of each block corresponding to its mutation site along with the site order with respect to the mRNA.\\
 	
 	
 %	RNA interaction prediction is still an expanding field. The future work that can extended beyond this thesis, one possible idea would be the multi-site prediction. For multi-site interaction, we need to fix two conditional site and iterate it until it converges.  \\
